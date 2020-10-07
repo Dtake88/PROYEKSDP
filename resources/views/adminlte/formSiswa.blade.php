@@ -60,7 +60,6 @@
             <th>NIS</th>
             <th>NISN</th>
             <th>Nama</th>
-            <th>Password</th>
             <th>Alamat</th>
             <th>Agama</th>
             <th>Email</th>
@@ -77,7 +76,6 @@
                     <td>{{$siswa->NIS}}</td>
                     <td>{{$siswa->NISN}}</td>
                     <td>{{$siswa->NAMA_SISWA}}</td>
-                    <td>{{$siswa->PASSWORD}}</td>
                     <td>{{$siswa->ALAMAT_SISWA}}</td>
                     <td>{{$siswa->AGAMA_SISWA}}</td>
                     <td>{{$siswa->EMAIL_SISWA}}</td>
@@ -85,6 +83,12 @@
                     <td>{{$siswa->NO_HP_SISWA}}</td>
                     <td>{{$siswa->TANGGAL_LAHIR}}</td>
                     <td>{{$siswa->STATUS}}</td>
+                    <td>
+                        <form action="/siswa/crud" method="post" class="form-horizontal">
+                            @csrf
+                            <button type="submit" class="btn btn-danger" name="Delete" value="{{$siswa->ID_SISWA}}">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -160,15 +164,12 @@
                   <div class="control-group">
                     <label for="normal" class="control-label">Nomor Telepon</label>
                     <div class="controls">
-                      <input type="text" class="span11" name="notelp">
-                      <span class="help-block blue span8">(+62) 999-9999</span> </div>
+                      <input type="text" class="span11" name="notelp" placeholder="No Telp">
                   </div>
                   <div class="control-group">
                     <label class="control-label">Tanggal Lahir (dd-mm-yyyy)</label>
                     <div class="controls">
-                      <div  data-date="12-02-2012" class="input-append date datepicker">
-                        <input type="text" value="12-02-2012"  data-date-format="dd-mm-yyyy" class="span11" name="tglLahir">
-                        <span class="add-on"><i class="icon-th"></i></span> </div>
+                        <input type="date" value="12-02-2012"  data-date-format="dd-mm-yyyy" class="span11" name="tglLahir">
                     </div>
                   </div>
                   <div class="control-group">
@@ -181,7 +182,8 @@
                     </div>
                   </div>
                 <div class="form-actions">
-                  <button type="submit" class="btn btn-success" name="Save">Save</button>
+                  <button type="submit" class="btn btn-success" name="Insert">Insert</button>
+                  <button type="submit" class="btn btn-success" name="Update">Update</button>
                 </div>
               </form>
             </div>

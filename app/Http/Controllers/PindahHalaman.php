@@ -27,7 +27,10 @@ class PindahHalaman extends Controller
 
     public function pindahGuru()
     {
-        return view("adminlte.formGuru");
+        $daftarGuru = DB::select('select * from guru');
+        return view("adminlte.formGuru",[
+            "daftarGuru"=>$daftarGuru
+        ]);
     }
 
     public function pindahKelas()

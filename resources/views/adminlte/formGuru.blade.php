@@ -48,7 +48,44 @@
     <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>Welcome Admin</a></div>
   </div>
 <!--End-breadcrumbs-->
-
+<div class="widget-box">
+    <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+      <h5>Table Siswa</h5>
+    </div>
+    <div class="widget-content nopadding">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>NIG</th>
+            <th>Nama</th>
+            <th>Alamat</th>
+            <th>No HP</th>
+            <th>Tanggal Lahir</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach ($daftarGuru as $guru)
+                <tr>
+                    <td>{{$guru->ID_GURU}}</td>
+                    <td>{{$guru->NIG}}</td>
+                    <td>{{$guru->NAMA_GURU}}</td>
+                    <td>{{$guru->NO_HP_GURU}}</td>
+                    <td>{{$guru->ALAMAT_GURU}}</td>
+                    <td>{{$guru->STATUS_GURU}}</td>
+                    <td>
+                        <form action="/guru/crud" method="post" class="form-horizontal">
+                            @csrf
+                            <button type="submit" class="btn btn-danger" name="Delete" value="{{$guru->ID_GURU}}">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
 <!--Chart-box-->
     <div class="row-fluid">
             <div class="widget-box">
@@ -56,48 +93,55 @@
                 <h5>Input Guru</h5>
                 </div>
                 <div class="widget-content nopadding">
-                <form action="#" method="get" class="form-horizontal">
+                <form action="/guru/crud" method="POST" class="form-horizontal">
+                    @csrf
+                    <div class="control-group">
+                    <label class="control-label">ID :</label>
+                    <div class="controls">
+                        <input type="text" class="span11" placeholder="ID" name="id"/>
+                    </div>
+                    </div>
                     <div class="control-group">
                     <label class="control-label">NIG :</label>
                     <div class="controls">
-                        <input type="text" class="span11" placeholder="NIG" />
+                        <input type="text" class="span11" placeholder="NIG" name="nig"/>
                     </div>
                     </div>
                     <div class="control-group">
                     <label class="control-label">Nama Lengkap Guru:</label>
                     <div class="controls">
-                        <input type="text" class="span11" placeholder="Nama Lengkap Guru" />
+                        <input type="text" class="span11" placeholder="Nama Lengkap Guru" name="nama" />
                     </div>
                     </div>
                     <div class="control-group">
                     <label class="control-label">Kata Sandi :</label>
                     <div class="controls">
-                        <input type="password"  class="span11" placeholder="Kata Sandi"  />
+                        <input type="password"  class="span11" placeholder="Kata Sandi"  name="pw"/>
                     </div>
                     </div>
                     <div class="control-group">
                     <label class="control-label">Alamat :</label>
                     <div class="controls">
-                        <input type="text"  class="span11" placeholder="Alamat"  />
+                        <input type="text"  class="span11" placeholder="Alamat" name="alamat" />
                     </div>
                     </div>
                     <div class="control-group">
                         <label for="normal" class="control-label">Nomor Telepon</label>
                         <div class="controls">
-                        <input type="text" id="mask-phone" class="span11 mask text">
-                        <span class="help-block blue span8">(+62) 999-9999</span> </div>
+                        <input type="text" class="span11" name="notelp" placeholder="No Telpon">
                     </div>
                     <div class="control-group">
                         <label class="control-label">Status Guru</label>
                         <div class="controls">
-                        <select class="span11">
-                            <option>Aktif</option>
-                            <option>Tidak Aktif</option>
+                        <select class="span11" name="status">
+                            <option value="1" selected>Aktif</option>
+                            <option value="0">Tidak Aktif</option>
                         </select>
                         </div>
                     </div>
                     <div class="form-actions">
-                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="submit" class="btn btn-success" name="Insert">Insert</button>
+                    <button type="submit" class="btn btn-success" name="Update">Update</button>
                     </div>
                 </form>
                 </div>

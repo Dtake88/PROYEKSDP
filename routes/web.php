@@ -31,3 +31,4 @@ Route::get('/inputNilai', 'PindahHalaman@pindahInputNilai');
 // post
 Route::post('/OlahLogin', 'OlahData@OlahData');
 Route::post('/siswa/crud', 'Database@selectSiswa');
+Route::post('/guru/crud', 'Database@selectGuru');
