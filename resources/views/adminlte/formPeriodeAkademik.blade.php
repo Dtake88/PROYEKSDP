@@ -80,21 +80,29 @@
           <h5>Input Periode</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="#" method="get" class="form-horizontal">
+          <form action="/perodAkad/crud" method="post" class="form-horizontal">
+            @csrf
+            <div class="control-group">
+              <label class="control-label">ID Periode Akademik :</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="ID Periode Akademik" name="id"/>
+              </div>
+            </div>
             <div class="control-group">
               <label class="control-label">Tahun Ajaran :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Tahun Ajaran" />
+                <input type="text" class="span11" placeholder="Tahun Ajaran" name="TahunAjaran"/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Semester :</label>
               <div class="controls">
-                <input type="text"  class="span11" placeholder="Semester"  />
+                <input type="text"  class="span11" placeholder="Semester" name="Semester" />
               </div>
             </div>
             <div class="form-actions">
-              <button type="submit" class="btn btn-success">Save</button>
+              <button type="submit" class="btn btn-success" name="Insert">Insert</button>
+              <button type="submit" class="btn btn-success" name="Update">Update</button>
             </div>
           </form>
         </div>

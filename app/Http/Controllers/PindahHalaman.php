@@ -40,7 +40,10 @@ class PindahHalaman extends Controller
 
     public function pindahMatPel()
     {
-        return view("adminlte.formMatPel");
+        $daftarMatPel = DB::select('select * from mapel');
+        return view("adminlte.formMatPel",[
+            "daftarMatPel"=>$daftarMatPel
+        ]);
     }
 
     public function pindahJadwal()

@@ -88,4 +88,59 @@ class Database extends Controller
         $daftarGuru = DB::select('select * from guru');
         return redirect("/guru")->with('daftarGuru', $daftarGuru);
     }
+
+    public function selectPerodAkad(Request $data)
+    {
+        if ($data->has("Insert")) {
+            DB::table('periode_akademik')->insert(
+                [
+                    "ID_PERIODE"=>$data->input("id"),
+                    "TAHUN_AJARAN"=>$data->input("TahunAjaran"),
+                    "SEMESTER"=>$data->input("Semester")
+                ]
+            );
+        }
+        if ($data->has("Update")) {
+            DB::table('periode_akademik')->where('ID_PERIODE','=',$data->input("id"))->update(
+                [
+                    "ID_PERIODE"=>$data->input("id"),
+                    "TAHUN_AJARAN"=>$data->input("TahunAjaran"),
+                    "SEMESTER"=>$data->input("Semester")
+                ]
+            );
+        }
+
+        $daftarPerod = DB::select('select * from periode_akademik');
+        return redirect("/PeriodeAkademik")->with('daftarPerod', $daftarPerod);
+    }
+
+    public function selectMatPel(Request $data)
+    {
+        if ($data->has("Insert")) {
+            DB::table('mapel')->insert(
+                [
+                    "ID_MAPEL"=>$data->input("id"),
+                    "NAMA_MAPEL"=>$data->input("nama"),
+                    "KKM"=>$data->input("kkm"),
+                    "TINGKAT"=>$data->input("tingkat")
+                ]
+            );
+        }
+        if ($data->has("Update")) {
+            DB::table('mapel')->where('ID_MAPEL','=',$data->input("id"))->update(
+                [
+                    "ID_MAPEL"=>$data->input("id"),
+                    "NAMA_MAPEL"=>$data->input("nama"),
+                    "KKM"=>$data->input("kkm"),
+                    "TINGKAT"=>$data->input("tingkat")
+                ]
+            );
+        }
+        if ($data->has("Delete")) {
+            $valueDelete = $data->input("Delete");
+            DB::table('mapel')->where('ID_MAPEL', '=' , $valueDelete)->delete();
+        }
+        $daftarMapel = DB::select('select * from mapel');
+        return redirect("/MataPelajaran")->with('daftarMapel', $daftarMapel);
+    }
 }

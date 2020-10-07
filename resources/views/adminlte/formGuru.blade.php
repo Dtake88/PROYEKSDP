@@ -63,6 +63,7 @@
             <th>No HP</th>
             <th>Tanggal Lahir</th>
             <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
