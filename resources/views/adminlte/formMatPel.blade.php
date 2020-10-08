@@ -66,14 +66,14 @@
         <tbody>
             @foreach ($daftarMatPel as $mapel)
                 <tr>
-                    <td>{{$mapel->ID_MAPEL}}</td>
-                    <td>{{$mapel->NAMA_MAPEL}}</td>
+                    <td>{{$mapel->Id_mapel}}</td>
+                    <td>{{$mapel->Nama_mapel}}</td>
                     <td>{{$mapel->KKM}}</td>
-                    <td>{{$mapel->TINGKAT}}</td>
+                    <td>{{$mapel->Tingkat}}</td>
                     <td>
                         <form action="/mapel/crud" method="post" class="form-horizontal">
                             @csrf
-                            <button type="submit" class="btn btn-danger" name="Delete" value="{{$mapel->ID_MAPEL}}">Delete</button>
+                            <button type="submit" class="btn btn-danger" name="Delete" value="{{$mapel->Id_mapel}}">Delete</button>
                         </form>
                     </td>
                 </tr>

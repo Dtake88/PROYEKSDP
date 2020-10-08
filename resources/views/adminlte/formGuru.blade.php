@@ -56,12 +56,10 @@
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
-            <th>ID</th>
             <th>NIG</th>
             <th>Nama</th>
-            <th>Alamat</th>
             <th>No HP</th>
-            <th>Tanggal Lahir</th>
+            <th>Alamat</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -69,16 +67,15 @@
         <tbody>
             @foreach ($daftarGuru as $guru)
                 <tr>
-                    <td>{{$guru->ID_GURU}}</td>
                     <td>{{$guru->NIG}}</td>
-                    <td>{{$guru->NAMA_GURU}}</td>
-                    <td>{{$guru->NO_HP_GURU}}</td>
-                    <td>{{$guru->ALAMAT_GURU}}</td>
-                    <td>{{$guru->STATUS_GURU}}</td>
+                    <td>{{$guru->Nama_guru}}</td>
+                    <td>{{$guru->No_hp_guru}}</td>
+                    <td>{{$guru->Alamat_guru}}</td>
+                    <td>{{$guru->Status_guru}}</td>
                     <td>
                         <form action="/guru/crud" method="post" class="form-horizontal">
                             @csrf
-                            <button type="submit" class="btn btn-danger" name="Delete" value="{{$guru->ID_GURU}}">Delete</button>
+                            <button type="submit" class="btn btn-danger" name="Delete" value="{{$guru->NIG}}">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -97,16 +94,10 @@
                 <form action="/guru/crud" method="POST" class="form-horizontal">
                     @csrf
                     <div class="control-group">
-                    <label class="control-label">ID :</label>
-                    <div class="controls">
-                        <input type="text" class="span11" placeholder="ID" name="id"/>
-                    </div>
-                    </div>
-                    <div class="control-group">
-                    <label class="control-label">NIG :</label>
-                    <div class="controls">
-                        <input type="text" class="span11" placeholder="NIG" name="nig"/>
-                    </div>
+                        <label class="control-label">NIG :</label>
+                        <div class="controls">
+                            <input type="text" class="span11" placeholder="NIG" name="nig"/>
+                        </div>
                     </div>
                     <div class="control-group">
                     <label class="control-label">Nama Lengkap Guru:</label>
@@ -117,7 +108,7 @@
                     <div class="control-group">
                     <label class="control-label">Kata Sandi :</label>
                     <div class="controls">
-                        <input type="password"  class="span11" placeholder="Kata Sandi"  name="pw"/>
+                        <input type="password"  class="span11" placeholder="Kata Sandi" name="pw"/>
                     </div>
                     </div>
                     <div class="control-group">

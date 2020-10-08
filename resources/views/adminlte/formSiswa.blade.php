@@ -56,16 +56,15 @@
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>NIS</th>
             <th>NISN</th>
+            <th>NIS</th>
             <th>Nama</th>
-            <th>Alamat</th>
+            <th>Tempat dan Tanggal Lahir</th>
             <th>Agama</th>
-            <th>Email</th>
+            <th>Nama Ibu</th>
+            <th>Nama Ayah</th>
+            <th>Alamat</th>
             <th>Jenis Kelamin</th>
-            <th>No HP</th>
-            <th>Tanggal Lahir</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -73,21 +72,20 @@
         <tbody>
             @foreach ($daftarSiswa as $siswa)
                 <tr>
-                    <td>{{$siswa->ID_SISWA}}</td>
-                    <td>{{$siswa->NIS}}</td>
                     <td>{{$siswa->NISN}}</td>
-                    <td>{{$siswa->NAMA_SISWA}}</td>
-                    <td>{{$siswa->ALAMAT_SISWA}}</td>
-                    <td>{{$siswa->AGAMA_SISWA}}</td>
-                    <td>{{$siswa->EMAIL_SISWA}}</td>
-                    <td>{{$siswa->JENIS_KELAMIN}}</td>
-                    <td>{{$siswa->NO_HP_SISWA}}</td>
-                    <td>{{$siswa->TANGGAL_LAHIR}}</td>
-                    <td>{{$siswa->STATUS}}</td>
+                    <td>{{$siswa->NIS}}</td>
+                    <td>{{$siswa->Nama_siswa}}</td>
+                    <td>{{$siswa->Tempat_lahir_siswa}} , {{$siswa->Tanggal_lahir_siswa}}</td>
+                    <td>{{$siswa->Agama}}</td>
+                    <td>{{$siswa->Nama_ibu}}</td>
+                    <td>{{$siswa->Nama_ayah}}</td>
+                    <td>{{$siswa->Alamat_siswa}}</td>
+                    <td>{{$siswa->Jenis_kelamin}}</td>
+                    <td>{{$siswa->Status}}</td>
                     <td>
                         <form action="/siswa/crud" method="post" class="form-horizontal">
                             @csrf
-                            <button type="submit" class="btn btn-danger" name="Delete" value="{{$siswa->ID_SISWA}}">Delete</button>
+                            <button type="submit" class="btn btn-danger" name="Delete" value="{{$siswa->NIS}}">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -105,12 +103,6 @@
             <div class="widget-content nopadding">
               <form action="/siswa/crud" method="post" class="form-horizontal">
                 @csrf
-                <div class="control-group">
-                  <label class="control-label">ID SISWA :</label>
-                  <div class="controls">
-                    <input type="text" class="span11" placeholder="ID_SISWA" name="id"/>
-                  </div>
-                </div>
                 <div class="control-group">
                   <label class="control-label">NISN :</label>
                   <div class="controls">
@@ -136,21 +128,38 @@
                   </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label">Alamat :</label>
+                  <label class="control-label">Tempat Lahir :</label>
                   <div class="controls">
-                    <input type="text"  class="span11" placeholder="Alamat" name="alamat" />
+                    <input type="text"  class="span11" placeholder="Alamat" name="tmptLahir" />
                   </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Tanggal Lahir :</label>
+                  <div class="controls">
+                      <input type="date" value="12-02-2012"  data-date-format="dd-mm-yyyy" class="span11" name="tglLahir">
+                  </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Nama Ibu :</label>
+                    <div class="controls">
+                        <input type="text"  class="span11" placeholder="Nama Ibu" name="NameMom" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Nama Ayah :</label>
+                    <div class="controls">
+                        <input type="text"  class="span11" placeholder="Nama Ayah" name="NameDad" />
+                    </div>
+                </div>
+                <div class="control-group">
+                  <label for="normal" class="control-label">Alamat :</label>
+                  <div class="controls">
+                    <input type="text" class="span11" name="alamat" placeholder="alamat">
                 </div>
                 <div class="control-group">
                   <label class="control-label">Agama :</label>
                   <div class="controls">
                     <input type="text"  class="span11" placeholder="Agama" name="agama" />
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label">Email :</label>
-                  <div class="controls">
-                    <input type="email"  class="span11" placeholder="Email" name="email" />
                   </div>
                 </div>
                 <div class="control-group">
@@ -160,17 +169,6 @@
                         <option value="Pria" selected>Pria</option>
                         <option value="Wanita">Wanita</option>
                       </select>
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <label for="normal" class="control-label">Nomor Telepon</label>
-                    <div class="controls">
-                      <input type="text" class="span11" name="notelp" placeholder="No Telp">
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">Tanggal Lahir (dd-mm-yyyy)</label>
-                    <div class="controls">
-                        <input type="date" value="12-02-2012"  data-date-format="dd-mm-yyyy" class="span11" name="tglLahir">
                     </div>
                   </div>
                   <div class="control-group">

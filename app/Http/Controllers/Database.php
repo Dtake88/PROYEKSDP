@@ -11,40 +11,37 @@ class Database extends Controller
     {
         if ($data->has("Delete")) {
             $valueDelete = $data->input("Delete");
-            DB::table('siswa')->where('ID_SISWA', '=' , $valueDelete)->delete();
+            DB::table('siswa')->where('NIS', '=' , $valueDelete)->delete();
         }
 
         if ($data->has("Update")) {
-                DB::table('siswa')->where('ID_SISWA', '=' , $data->input("id"))->update([
-                "NIS"=>$data->input("nis"),
-                "NISN"=>$data->input("nisn"),
-                "NAMA_SISWA"=>$data->input("nama"),
-                "PASSWORD"=>$data->input("pw"),
-                "ALAMAT_SISWA"=>$data->input("alamat"),
-                "AGAMA_SISWA"=>$data->input("agama"),
-                "EMAIL_SISWA"=>$data->input("email"),
-                "JENIS_KELAMIN"=>$data->input("jk"),
-                "NO_HP_SISWA"=>$data->input("notelp"),
-                "TANGGAL_LAHIR"=>$data->input("tglLahir"),
-                "STATUS"=>$data->input("status")
+                DB::table('siswa')->where('NIS', '=' , $data->input("nis"))->update([
+                    "Nama_siswa"=>$data->input("nama"),
+                    "Password_siswa"=>$data->input("pw"),
+                    "Tempat_lahir_siswa"=>$data->input("tmptLahir"),
+                    "Tanggal_lahir_siswa"=>$data->input("tglLahir"),
+                    "Nama_ibu"=>$data->input("NameMom"),
+                    "Nama_ayah"=>$data->input("NameDad"),
+                    "Alamat_siswa"=>$data->input("alamat"),
+                    "Agama"=>$data->input("agama"),
+                    "Jenis_kelamin"=>$data->input("jk"),
+                    "Status"=>$data->input("status")
                 ]);
         }
-
         if ($data->has("Insert")) {
             DB::table('siswa')->insert(
                 [
-                    "ID_SISWA"=>$data->input("id"),
-                    "NIS"=>$data->input("nis"),
+                    "Nama_siswa"=>$data->input("nama"),
+                    "Password_siswa"=>$data->input("pw"),
+                    "Tempat_lahir_siswa"=>$data->input("tmptLahir"),
+                    "Tanggal_lahir_siswa"=>$data->input("tglLahir"),
+                    "Nama_ibu"=>$data->input("NameMom"),
+                    "Nama_ayah"=>$data->input("NameDad"),
+                    "Status"=>$data->input("status"),
                     "NISN"=>$data->input("nisn"),
-                    "NAMA_SISWA"=>$data->input("nama"),
-                    "PASSWORD"=>$data->input("pw"),
-                    "ALAMAT_SISWA"=>$data->input("alamat"),
-                    "AGAMA_SISWA"=>$data->input("agama"),
-                    "EMAIL_SISWA"=>$data->input("email"),
-                    "JENIS_KELAMIN"=>$data->input("jk"),
-                    "NO_HP_SISWA"=>$data->input("notelp"),
-                    "TANGGAL_LAHIR"=>$data->input("tglLahir"),
-                    "STATUS"=>$data->input("status")
+                    "Agama"=>$data->input("agama"),
+                    "Jenis_kelamin"=>$data->input("jk"),
+                    "Alamat_siswa"=>$data->input("alamat")
                 ]
             );
         }
@@ -58,32 +55,30 @@ class Database extends Controller
         if ($data->has("Insert")) {
             DB::table('guru')->insert(
                 [
-                    "ID_GURU"=>$data->input("id"),
-                    "NIG"=>$data->input("nig"),
-                    "NAMA_GURU"=>$data->input("nama"),
-                    "PASSWORD_GURU"=>$data->input("pw"),
-                    "NO_HP_GURU"=>$data->input("notelp"),
-                    "ALAMAT_GURU"=>$data->input("alamat"),
-                    "STATUS_GURU"=>$data->input("status")
+                    "Nama_guru"=>$data->input("nama"),
+                    "Password_guru"=>$data->input("pw"),
+                    "No_hp_guru"=>$data->input("notelp"),
+                    "Alamat_guru"=>$data->input("alamat"),
+                    "Status_guru"=>$data->input("status")
                 ]
             );
         }
+
         if ($data->has("Update")) {
-            DB::table('guru')->where('ID_GURU','=',$data->input("id"))->update(
+            DB::table('guru')->where('NIG','=',$data->input("nig"))->update(
                 [
-                    "ID_GURU"=>$data->input("id"),
-                    "NIG"=>$data->input("nig"),
-                    "NAMA_GURU"=>$data->input("nama"),
-                    "PASSWORD_GURU"=>$data->input("pw"),
-                    "NO_HP_GURU"=>$data->input("notelp"),
-                    "ALAMAT_GURU"=>$data->input("alamat"),
-                    "STATUS_GURU"=>$data->input("status")
+                    "Nama_guru"=>$data->input("nama"),
+                    "Password_guru"=>$data->input("pw"),
+                    "No_hp_guru"=>$data->input("notelp"),
+                    "Alamat_guru"=>$data->input("alamat"),
+                    "Status_guru"=>$data->input("status")
                 ]
             );
         }
+
         if ($data->has("Delete")) {
             $valueDelete = $data->input("Delete");
-            DB::table('guru')->where('ID_GURU', '=' , $valueDelete)->delete();
+            DB::table('guru')->where('NIG', '=' , $valueDelete)->delete();
         }
         $daftarGuru = DB::select('select * from guru');
         return redirect("/guru")->with('daftarGuru', $daftarGuru);
@@ -94,18 +89,21 @@ class Database extends Controller
         if ($data->has("Insert")) {
             DB::table('periode_akademik')->insert(
                 [
-                    "ID_PERIODE"=>$data->input("id"),
-                    "TAHUN_AJARAN"=>$data->input("TahunAjaran"),
-                    "SEMESTER"=>$data->input("Semester")
+                    "Id_periode"=>$data->input("id"),
+                    "Tahun_ajaran"=>$data->input("TahunAjaran"),
+                    "Semester"=>$data->input("Semester"),
+                    "Status"=>$data->input("status")
                 ]
             );
         }
+
         if ($data->has("Update")) {
-            DB::table('periode_akademik')->where('ID_PERIODE','=',$data->input("id"))->update(
+            DB::table('periode_akademik')->where('Id_periode','=',$data->input("id"))->update(
                 [
-                    "ID_PERIODE"=>$data->input("id"),
-                    "TAHUN_AJARAN"=>$data->input("TahunAjaran"),
-                    "SEMESTER"=>$data->input("Semester")
+                    "Id_periode"=>$data->input("id"),
+                    "Tahun_ajaran"=>$data->input("TahunAjaran"),
+                    "Semester"=>$data->input("Semester"),
+                    "Status"=>$data->input("status")
                 ]
             );
         }
@@ -119,26 +117,24 @@ class Database extends Controller
         if ($data->has("Insert")) {
             DB::table('mapel')->insert(
                 [
-                    "ID_MAPEL"=>$data->input("id"),
-                    "NAMA_MAPEL"=>$data->input("nama"),
+                    "Nama_mapel"=>$data->input("nama"),
                     "KKM"=>$data->input("kkm"),
-                    "TINGKAT"=>$data->input("tingkat")
+                    "Tingkat"=>$data->input("tingkat")
                 ]
             );
         }
         if ($data->has("Update")) {
             DB::table('mapel')->where('ID_MAPEL','=',$data->input("id"))->update(
                 [
-                    "ID_MAPEL"=>$data->input("id"),
-                    "NAMA_MAPEL"=>$data->input("nama"),
+                    "Nama_mapel"=>$data->input("nama"),
                     "KKM"=>$data->input("kkm"),
-                    "TINGKAT"=>$data->input("tingkat")
+                    "Tingkat"=>$data->input("tingkat")
                 ]
             );
         }
         if ($data->has("Delete")) {
             $valueDelete = $data->input("Delete");
-            DB::table('mapel')->where('ID_MAPEL', '=' , $valueDelete)->delete();
+            DB::table('mapel')->where('Id_mapel', '=' , $valueDelete)->delete();
         }
         $daftarMapel = DB::select('select * from mapel');
         return redirect("/MataPelajaran")->with('daftarMapel', $daftarMapel);

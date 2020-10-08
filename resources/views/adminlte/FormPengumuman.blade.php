@@ -59,9 +59,21 @@
                 <div class="widget-content nopadding">
                 <form action="#" method="get" class="form-horizontal">
                     <div class="control-group">
+                        <label class="control-label">Judul :</label>
+                        <div class="controls">
+                          <input type="text" class="span11" placeholder="Nama Lengkap" name="namaToa"/>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Tanggal :</label>
+                        <div class="controls">
+                            <input type="date" value="12-02-2012"  data-date-format="dd-mm-yyyy" class="span11" name="tglToa">
+                        </div>
+                      </div>
+                    <div class="control-group">
                         <label class="control-label">File Pengumuman Input</label>
                         <div class="controls">
-                          <input type="file" />
+                          <input type="file" name="fileToa"/>
                         </div>
                       </div>
                     <div class="form-actions">

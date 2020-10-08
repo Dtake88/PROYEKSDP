@@ -64,9 +64,10 @@
         <tbody>
             @foreach ($daftarPerodAkademik as $PA)
                 <tr>
-                    <td>{{$PA->ID_PERIODE}}</td>
-                    <td>{{$PA->TAHUN_AJARAN}}</td>
-                    <td>{{$PA->SEMESTER}}</td>
+                    <td>{{$PA->Id_periode}}</td>
+                    <td>{{$PA->Tahun_ajaran}}</td>
+                    <td>{{$PA->Semester}}</td>
+                    <td>{{$PA->Status}}</td>
                 </tr>
             @endforeach
         </tbody>
@@ -99,6 +100,15 @@
               <div class="controls">
                 <input type="text"  class="span11" placeholder="Semester" name="Semester" />
               </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Status Periode Akademik</label>
+                <div class="controls">
+                <select class="span11" name="status">
+                    <option value="1" selected>Aktif</option>
+                    <option value="0">Tidak Aktif</option>
+                </select>
+                </div>
             </div>
             <div class="form-actions">
               <button type="submit" class="btn btn-success" name="Insert">Insert</button>
