@@ -48,7 +48,42 @@
     <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>Welcome Admin</a></div>
   </div>
 <!--End-breadcrumbs-->
-
+<div class="widget-box">
+    <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+      <h5>Table Siswa</h5>
+    </div>
+    <div class="widget-content nopadding">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Judul</th>
+            <th>Tanggal</th>
+            <th>Nama File</th>
+            <th>ID Admin</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach ($daftarToa as $Toa)
+                <tr>
+                    <td>{{$Toa->Id_pengumuman}}</td>
+                    <td>{{$Toa->Judul_pengumuman}}</td>
+                    <td>{{$Toa->Tanggal_pengumuman}}</td>
+                    <td>{{$Toa->File_pengumuman}}</td>
+                    <td>{{$Toa->Id_administrasi}}</td>
+                    <td>
+                        <form action="/toa/crud" method="post" class="form-horizontal">
+                            @csrf
+                            <button type="submit" class="btn btn-danger" name="Delete" value="{{$Toa->Id_pengumuman}}">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
 <!--Chart-box-->
     <div class="row-fluid">
         <div class="widget-box">
@@ -57,17 +92,18 @@
                 <h5>Input Pengumuman</h5>
                 </div>
                 <div class="widget-content nopadding">
-                <form action="#" method="get" class="form-horizontal">
+                <form action="/toa/crud" method="post" class="form-horizontal">
+                    @csrf
+                    <div class="control-group">
+                        <label class="control-label">Id :</label>
+                        <div class="controls">
+                          <input type="text" class="span11" placeholder="ID" name="id"/>
+                        </div>
+                      </div>
                     <div class="control-group">
                         <label class="control-label">Judul :</label>
                         <div class="controls">
                           <input type="text" class="span11" placeholder="Nama Lengkap" name="namaToa"/>
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label">Tanggal :</label>
-                        <div class="controls">
-                            <input type="date" value="12-02-2012"  data-date-format="dd-mm-yyyy" class="span11" name="tglToa">
                         </div>
                       </div>
                     <div class="control-group">
@@ -76,8 +112,15 @@
                           <input type="file" name="fileToa"/>
                         </div>
                       </div>
+                      <div class="control-group">
+                        <label class="control-label">Admin Penginput :</label>
+                        <div class="controls">
+                          <input type="text" class="span11" placeholder="ID Admin" name="penToa"/>
+                        </div>
+                      </div>
                     <div class="form-actions">
-                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="submit" class="btn btn-success" name="Insert">Insert</button>
+                    <button type="submit" class="btn btn-success" name="Update">Update</button>
                     </div>
                 </form>
                 </div>

@@ -14,7 +14,10 @@ class PindahHalaman extends Controller
 
     public function pindahPengumuman()
     {
-        return view("adminlte.FormPengumuman");
+        $daftarToa = DB::select('select * from pengumuman');
+        return view("adminlte.FormPengumuman",[
+            "daftarToa"=>$daftarToa
+        ]);
     }
 
     public function pindahSiswa()
@@ -35,7 +38,10 @@ class PindahHalaman extends Controller
 
     public function pindahKelas()
     {
-        return view("adminlte.formKelas");
+        $daftarKelas = DB::select('select * from kelas');
+        return view("adminlte.formKelas",[
+            "daftarKelas"=>$daftarKelas
+        ]);
     }
 
     public function pindahMatPel()

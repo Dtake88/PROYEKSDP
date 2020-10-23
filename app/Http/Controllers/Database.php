@@ -124,7 +124,7 @@ class Database extends Controller
             );
         }
         if ($data->has("Update")) {
-            DB::table('mapel')->where('ID_MAPEL','=',$data->input("id"))->update(
+            DB::table('mapel')->where('Id_mapel','=',$data->input("id"))->update(
                 [
                     "Nama_mapel"=>$data->input("nama"),
                     "KKM"=>$data->input("kkm"),
@@ -138,5 +138,65 @@ class Database extends Controller
         }
         $daftarMapel = DB::select('select * from mapel');
         return redirect("/MataPelajaran")->with('daftarMapel', $daftarMapel);
+    }
+
+    public function selectToa(Request $data)
+    {
+        // dd($data->input("fileToa"));
+        if ($data->has("Insert")) {
+            DB::table('pengumuman')->insert(
+                [
+                    "Judul_pengumuman"=>$data->input("namaToa"),
+                    "File_pengumuman"=>$data->input("fileToa"),
+                    "Id_administrasi"=>$data->input("penToa")
+                ]
+            );
+        }
+        if ($data->has("Update")) {
+            DB::table('pengumuman')->where('Id_pengumuman','=',$data->input("id"))->update(
+                [
+                    "Judul_pengumuman"=>$data->input("namaToa"),
+                    "Tanggal_pengumuman"=>$data->input("tglToa"),
+                    "File_pengumuman"=>$data->input("fileToa"),
+                    "Id_administrasi"=>$data->input("penToa")
+                ]
+            );
+        }
+        if ($data->has("Delete")) {
+            $valueDelete = $data->input("Delete");
+            DB::table('pengumuman')->where('Id_pengumuman', '=' , $valueDelete)->delete();
+        }
+        return redirect("/pengumuman");
+    }
+
+    public function selectKelas(Request $data)
+    {
+        if ($data->has("Insert")) {
+            DB::table('kelas')->insert(
+                [
+                    "Id_periode"=>$data->input("period"),
+                    "NIG"=>$data->input("nig"),
+                    "Nama_kelas"=>$data->input("nama"),
+                    "Tingkat_kelas"=>$data->input("tingkat"),
+                    "Id_jurusan"=>$data->input("idJur")
+                ]
+            );
+        }
+        if ($data->has("Update")) {
+            DB::table('kelas')->where('Id_kelas','=',$data->input("id"))->update(
+                [
+                    "Id_periode"=>$data->input("period"),
+                    "NIG"=>$data->input("nig"),
+                    "Nama_kelas"=>$data->input("nama"),
+                    "Tingkat_kelas"=>$data->input("tingkat"),
+                    "Id_jurusan"=>$data->input("idJur")
+                ]
+            );
+        }
+        if ($data->has("Delete")) {
+            $valueDelete = $data->input("Delete");
+            DB::table('kelas')->where('Id_kelas', '=' , $valueDelete)->delete();
+        }
+        return redirect("/kelas");
     }
 }

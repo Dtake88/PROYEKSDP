@@ -59,6 +59,7 @@
             <th>ID</th>
             <th>TAHUN AJARAN</th>
             <th>SEMESTER</th>
+            <th>STATUS</th>
           </tr>
         </thead>
         <tbody>

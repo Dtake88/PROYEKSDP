@@ -34,4 +34,5 @@ Route::post('/siswa/crud', 'Database@selectSiswa');
 Route::post('/guru/crud', 'Database@selectGuru');
 Route::post('/mapel/crud', 'Database@selectMatPel');
 Route::post('/perodAkad/crud', 'Database@selectPerodAkad');
-
+Route::post('/toa/crud', 'Database@selectToa');
+Route::post('/kelas/crud', 'Database@selectKelas');

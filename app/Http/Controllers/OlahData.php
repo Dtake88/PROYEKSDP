@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 
 class OlahData extends Controller
 {
@@ -12,7 +13,7 @@ class OlahData extends Controller
         $user = $data->input("user");
         $pass = $data->input("pw");
 
-        if ($user == "admin" && $pass == "admin") {
+        if (DB::table('administrasi')->where('Username_administrasi',$user)->where('Password_admin',$pass)->exists()) {
             $userLogin = [
                 "username" => $user,
                 "password"=> $pass
@@ -20,7 +21,7 @@ class OlahData extends Controller
             Cookie::queue("userLogin",json_encode($userLogin),120);
             return view("adminlte.index");
         }
-        if ($user == "guru" && $pass == "guru") {
+        if (DB::table('guru')->where('NIG',$user)->where('Password_guru',$pass)->exists()) {
             $userLogin = [
                 "username" => $user,
                 "password"=> $pass
@@ -28,7 +29,7 @@ class OlahData extends Controller
             Cookie::queue("userLogin",json_encode($userLogin),120);
             return view("guru.index");
         }
-        if ($user == "siswa" && $pass == "siswa") {
+        if (DB::table('siswa')->where('NIS',$user)->where('Password_siswa',$pass)->exists()) {
             $userLogin = [
                 "username" => $user,
                 "password"=> $pass

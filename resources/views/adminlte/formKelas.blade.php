@@ -48,7 +48,43 @@
     <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>Welcome Admin</a></div>
   </div>
 <!--End-breadcrumbs-->
-
+<div class="widget-box">
+    <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+      <h5>Table Kelas</h5>
+    </div>
+    <div class="widget-content nopadding">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>ID Periode</th>
+            <th>NIG</th>
+            <th>Nama Kelas</th>
+            <th>Tingkat Kelas</th>
+            <th>ID Jurusan</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach ($daftarKelas as $kls)
+                <tr>
+                    <td>{{$kls->Id_kelas}}</td>
+                    <td>{{$kls->Id_periode}}</td>
+                    <td>{{$kls->NIG}}</td>
+                    <td>{{$kls->Nama_kelas}}</td>
+                    <td>{{$kls->Tingkat_kelas}}</td>
+                    <td>{{$kls->Id_jurusan}}</td>
+                    <td>
+                        <form action="/kelas/crud" method="post" class="form-horizontal">
+                            @csrf
+                            <button type="submit" class="btn btn-danger" name="Delete" value="{{$kls->Id_kelas}}">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
 <!--Chart-box-->
     <div class="row-fluid">
         <div class="widget-box">
@@ -56,21 +92,47 @@
               <h5>Input Kelas</h5>
             </div>
             <div class="widget-content nopadding">
-              <form action="#" method="get" class="form-horizontal">
+              <form action="/kelas/crud" method="post" class="form-horizontal">
+                @csrf
+                <div class="control-group">
+                  <label class="control-label">ID :</label>
+                  <div class="controls">
+                    <input type="text" class="span11" placeholder="ID Periode"  name="id"/>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">ID Periode :</label>
+                  <div class="controls">
+                    <input type="text" class="span11" placeholder="ID Periode"  name="period"/>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">NIG :</label>
+                  <div class="controls">
+                    <input type="text" class="span11" placeholder="NIG" name="nig"/>
+                  </div>
+                </div>
                 <div class="control-group">
                   <label class="control-label">Nama Kelas :</label>
                   <div class="controls">
-                    <input type="text" class="span11" placeholder="Nama Lengkap" />
+                    <input type="text" class="span11" placeholder="Nama Lengkap" name="nama" />
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label">Tingkat Kelas :</label>
                   <div class="controls">
-                    <input type="text"  class="span11" placeholder="Tingkat Kelas"  />
+                    <input type="text"  class="span11" placeholder="Tingkat Kelas" name="tingkat"  />
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">ID Jurusan :</label>
+                  <div class="controls">
+                    <input type="text"  class="span11" placeholder="ID Jurusan" name="idJur" />
                   </div>
                 </div>
                 <div class="form-actions">
-                  <button type="submit" class="btn btn-success">Save</button>
+                  <button type="submit" class="btn btn-success" name="Insert">Insert</button>
+                  <button type="submit" class="btn btn-success" name="Update">Update</button>
                 </div>
               </form>
             </div>
