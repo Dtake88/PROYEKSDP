@@ -38,9 +38,15 @@ class PindahHalaman extends Controller
 
     public function pindahKelas()
     {
-        $daftarKelas = DB::select('select * from kelas');
+        $daftarKelas = DB::table('kelas')->get();
+        $DBPeriode = DB::table('periode_akademik')->where("Status", 1)->get();
+        $GuruAktif = DB::table('guru')->where("Status_guru",1)->get();
+        $DBJurusan = DB::table('jurusan')->get();
         return view("adminlte.formKelas",[
-            "daftarKelas"=>$daftarKelas
+            "daftarKelas"=>$daftarKelas,
+            "periode"=>$DBPeriode,
+            "Guru"=>$GuruAktif,
+            "jurusan"=>$DBJurusan
         ]);
     }
 
@@ -54,7 +60,11 @@ class PindahHalaman extends Controller
 
     public function pindahJadwal()
     {
-        return view("adminlte.jadwal");
+        $DBJadwal = DB::table('ajar_mengajar')->get();
+        $GuruAktif = DB::table('guru')->where("Status_guru",1)->get();
+        $Mapel = DB::table("mapel")->get();
+        $kelas = DB::table('kelas')->get();
+        return view("adminlte.jadwal",["Jadwal"=>$DBJadwal, "Guru"=>$GuruAktif,"Mapel"=>$Mapel,"kelas"=>$kelas]);
     }
 
     public function pindahPerodAkademik()

@@ -48,7 +48,36 @@
     <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>Welcome Admin</a></div>
   </div>
 <!--End-breadcrumbs-->
-
+<div class="widget-content nopadding">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>ID Kelas</th>
+          <th>ID Mapel</th>
+          <th>NIG</th>
+          <th>Jam Mulai</th>
+          <th>Jam Berakhir</th>
+          <th>Hari</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+          @foreach ($Jadwal as $i)
+              <tr>
+                  <td>{{$i->Id_ajar_mengajar}}</td>
+                  <td>{{$i->Id_kelas}}</td>
+                  <td>{{$i->Id_mapel}}</td>
+                  <td>{{$i->NIG}}</td>
+                  <td>{{$i->Jam_dimulai}}</td>
+                  <td>{{$i->Jam_berakhir}}</td>
+                  <td>{{$i->Hari}}</td>
+                  <td>{{$i->Status_jadwal}}</td>
+              </tr>
+          @endforeach
+      </tbody>
+    </table>
+  </div>
 <!--Chart-box-->
 <div class="row-fluid">
     <div class="widget-box">
@@ -58,21 +87,60 @@
         <div class="widget-content nopadding">
           <form action="#" method="get" class="form-horizontal">
             <div class="control-group">
-                <label class="control-label">Pelajaran di Mulai:</label>
+                <label class="control-label">Kelas</label>
                 <div class="controls">
-                  <div  data-date="12-02-2012" class="input-append date datepicker">
-                    <input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy" class="span11" >
-                    <span class="add-on"><i class="icon-th"></i></span> </div>
+                <select class="span11">
+                    @foreach ($kelas as $i)
+                        <option value="{{$i->Id_kelas}}">{{$i->Id_kelas}} - {{$i->Nama_kelas}} - {{$i->Id_jurusan}}</option>
+                    @endforeach
+                </select>
                 </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">Pelajaran Berakhir:</label>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Mata Pelajaran</label>
                 <div class="controls">
-                  <div  data-date="12-02-2012" class="input-append date datepicker">
-                    <input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy" class="span11" >
-                    <span class="add-on"><i class="icon-th"></i></span> </div>
+                <select class="span11">
+                    @foreach ($Mapel as $i)
+                        <option value="{{$i->Id_mapel}}">{{$i->Id_mapel}} - {{$i->Nama_mapel}} - {{$i->Tingkat}}</option>
+                    @endforeach
+                </select>
                 </div>
-              </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Guru</label>
+                <div class="controls">
+                <select class="span11">
+                    @foreach ($Guru as $i)
+                        <option value="{{$i->NIG}}">{{$i->NIG}} - {{$i->Nama_guru}}</option>
+                    @endforeach
+                </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Hari</label>
+                <div class="controls">
+                <select class="span11">
+                        <option value="senin">senin</option>
+                        <option value="selasa">selasa</option>
+                        <option value="rabu">rabu</option>
+                        <option value="kamis">kamis</option>
+                        <option value="jumat">jumat</option>
+                </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Jam Mulai :</label>
+                <div class="controls">
+                  <input type="time" name="jamMulai" min="08:00" max="14:00" required>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Jam Berakhir :</label>
+                <div class="controls">
+                  <input type="time" name="jamBerakhir" min="08:00" max="14:00" required>
+                </div>
+            </div>
+
             <div class="form-actions">
               <button type="submit" class="btn btn-success">Save</button>
             </div>
