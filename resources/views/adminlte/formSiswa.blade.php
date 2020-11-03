@@ -185,7 +185,7 @@
                 <div class="control-group">
                     <label class="control-label">File Siswa:</label>
                     <div class="controls">
-                    <input type="file" name="fileToa"/>
+                    <input type="file" name="fileToa"/> Import Siswa Format File: Excel
                     </div>
                 </div>
 

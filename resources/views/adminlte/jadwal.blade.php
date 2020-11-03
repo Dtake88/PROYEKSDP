@@ -137,7 +137,7 @@
             <div class="control-group">
                 <label class="control-label">Jam Berakhir :</label>
                 <div class="controls">
-                  <input type="time" name="jamBerakhir" min="08:00" max="14:00" required>
+                  <input type="time" name="jamBerakhir" value="15:37z" required>
                 </div>
             </div>
 
