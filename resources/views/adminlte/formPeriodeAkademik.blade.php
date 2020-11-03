@@ -88,18 +88,25 @@
               <label class="control-label">ID Periode Akademik :</label>
               <div class="controls">
                 <input type="text" class="span11" placeholder="ID Periode Akademik" name="id"/>
+
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Tahun Ajaran :</label>
               <div class="controls">
                 <input type="text" class="span11" placeholder="Tahun Ajaran" name="TahunAjaran"/>
+                @error('TahunAjaran')
+                            <br><span style="color: red;">{{ $message }}</span>
+                        @enderror
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Semester :</label>
               <div class="controls">
                 <input type="text"  class="span11" placeholder="Semester" name="Semester" />
+                @error('Semester')
+                            <br><span style="color: red;">{{ $message }}</span>
+                        @enderror
               </div>
             </div>
             <div class="control-group">
@@ -109,6 +116,9 @@
                     <option value="1" selected>Aktif</option>
                     <option value="0">Tidak Aktif</option>
                 </select>
+                @error('status')
+                            <br><span style="color: red;">{{ $message }}</span>
+                        @enderror
                 </div>
             </div>
             <div class="form-actions">

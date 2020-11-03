@@ -9,6 +9,9 @@
             <div class="controls">
                 <div class="main_input_box">
                     <span class="add-on bg_lg"><i class="icon-user"> </i></span><input type="text" placeholder="Username" name="user" />
+                    @error('user')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -16,6 +19,9 @@
             <div class="controls">
                 <div class="main_input_box">
                     <span class="add-on bg_ly"><i class="icon-lock"></i></span><input type="password" placeholder="Password" name="pw" />
+                    @error('pw')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
         </div>

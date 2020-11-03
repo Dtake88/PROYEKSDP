@@ -10,10 +10,15 @@ class OlahData extends Controller
 {
     public function OlahData(Request $data)
     {
+        $data->validate([
+            "user" => "required",
+            "pw" => "required"
+        ]);
+
         $user = $data->input("user");
         $pass = $data->input("pw");
 
-        if (DB::table('administrasi')->where('Username_administrasi',$user)->where('Password_admin',$pass)->exists()) {
+        if (DB::table('administrasi')->where('Username_administrasi',$user)->where('Password_administrasi',$pass)->exists()) {
             $userLogin = [
                 "username" => $user,
                 "password"=> $pass

@@ -103,24 +103,36 @@
                     <label class="control-label">Nama Lengkap Guru:</label>
                     <div class="controls">
                         <input type="text" class="span11" placeholder="Nama Lengkap Guru" name="nama" />
+                        @error('nama')
+                            <br><span style="color: red;">{{ $message }}</span>
+                        @enderror
                     </div>
                     </div>
                     <div class="control-group">
                     <label class="control-label">Kata Sandi :</label>
                     <div class="controls">
                         <input type="password"  class="span11" placeholder="Kata Sandi" name="pw"/>
+                        @error('pw')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                     </div>
                     </div>
                     <div class="control-group">
                     <label class="control-label">Alamat :</label>
                     <div class="controls">
                         <input type="text"  class="span11" placeholder="Alamat" name="alamat" />
+                        @error('alamat')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                     </div>
                     </div>
                     <div class="control-group">
                         <label for="normal" class="control-label">Nomor Telepon</label>
                         <div class="controls">
                         <input type="text" class="span11" name="notelp" placeholder="No Telpon">
+                        @error('notelp')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                     </div>
                     <div class="control-group">
                         <label class="control-label">Status Guru</label>
@@ -129,6 +141,9 @@
                             <option value="1" selected>Aktif</option>
                             <option value="0">Tidak Aktif</option>
                         </select>
+                        @error('status')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                         </div>
                     </div>
                     <div class="form-actions">

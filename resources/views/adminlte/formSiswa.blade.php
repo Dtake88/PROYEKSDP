@@ -81,7 +81,7 @@
                     <td>{{$siswa->Nama_ayah}}</td>
                     <td>{{$siswa->Alamat_siswa}}</td>
                     <td>{{$siswa->Jenis_kelamin}}</td>
-                    <td>{{$siswa->Status}}</td>
+                    <td>{{$siswa->Status_siswa}}</td>
                     <td>
                         <form action="/siswa/crud" method="post" class="form-horizontal">
                             @csrf
@@ -113,53 +113,80 @@
                   <label class="control-label">NIS :</label>
                   <div class="controls">
                     <input type="text" class="span11" placeholder="NIS" name="nis"/>
+                    @error('nis')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label">Nama Lengkap :</label>
                   <div class="controls">
                     <input type="text" class="span11" placeholder="Nama Lengkap" name="nama" />
+                    @error('nama')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label">Kata Sandi :</label>
                   <div class="controls">
                     <input type="password"  class="span11" placeholder="Kata Sandi" name="pw" />
+                    @error('pw')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label">Tempat Lahir :</label>
                   <div class="controls">
                     <input type="text"  class="span11" placeholder="Alamat" name="tmptLahir" />
+                    @error('tmptLahir')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label">Tanggal Lahir :</label>
                   <div class="controls">
                       <input type="date" value="12-02-2012"  data-date-format="dd-mm-yyyy" class="span11" name="tglLahir">
+                      @error('tglLahir')
+                        <br><span style="color: red;">{{ $message }}</span>
+                      @enderror
                   </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label">Nama Ibu :</label>
                     <div class="controls">
                         <input type="text"  class="span11" placeholder="Nama Ibu" name="NameMom" />
+                        @error('NameMom')
+                            <br><span style="color: red;">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label">Nama Ayah :</label>
                     <div class="controls">
                         <input type="text"  class="span11" placeholder="Nama Ayah" name="NameDad" />
+                        @error('NameDad')
+                            <br><span style="color: red;">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="control-group">
                   <label for="normal" class="control-label">Alamat :</label>
                   <div class="controls">
                     <input type="text" class="span11" name="alamat" placeholder="alamat">
+                    @error('alamat')
+                            <br><span style="color: red;">{{ $message }}</span>
+                        @enderror
                 </div>
                 <div class="control-group">
                   <label class="control-label">Agama :</label>
                   <div class="controls">
                     <input type="text"  class="span11" placeholder="Agama" name="agama" />
+                    @error('agama')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                   </div>
                 </div>
                 <div class="control-group">
@@ -169,6 +196,9 @@
                         <option value="Pria" selected>Pria</option>
                         <option value="Wanita">Wanita</option>
                       </select>
+                      @error('jk')
+                            <br><span style="color: red;">{{ $message }}</span>
+                        @enderror
                     </div>
                   </div>
                   <div class="control-group">
@@ -178,6 +208,9 @@
                         <option value="1" selected>Aktif</option>
                         <option value="0">Tidak Aktif</option>
                       </select>
+                      @error('status')
+                            <br><span style="color: red;">{{ $message }}</span>
+                        @enderror
                     </div>
                   </div>
                 <div class="form-actions">
