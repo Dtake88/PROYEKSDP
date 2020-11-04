@@ -52,6 +52,8 @@
     <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
       <h5>Table Siswa</h5>
     </div>
+
+
     <div class="widget-content nopadding">
       <table class="table table-bordered table-striped">
         <thead>
@@ -110,6 +112,7 @@
                   </div>
                 </div>
                 <div class="control-group">
+<<<<<<< HEAD
                   <label class="control-label">NIS :</label>
                   <div class="controls">
                     <input type="text" class="span11" placeholder="NIS" name="nis"/>
@@ -119,6 +122,8 @@
                   </div>
                 </div>
                 <div class="control-group">
+=======
+>>>>>>> 9f215a5a80b71437fca20322a0cbd78cffcaa709
                   <label class="control-label">Nama Lengkap :</label>
                   <div class="controls">
                     <input type="text" class="span11" placeholder="Nama Lengkap" name="nama" />
@@ -218,6 +223,14 @@
                   <button type="submit" class="btn btn-success" name="Update">Update</button>
                 </div>
               </form>
+              {{-- form untuk admin input siswa dengan excel --}}
+                <div class="control-group">
+                    <label class="control-label">File Siswa:</label>
+                    <div class="controls">
+                    <input type="file" name="fileToa"/> Import Siswa Format File: Excel
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

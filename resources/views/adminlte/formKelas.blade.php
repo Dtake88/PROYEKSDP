@@ -95,22 +95,24 @@
               <form action="/kelas/crud" method="post" class="form-horizontal">
                 @csrf
                 <div class="control-group">
-                  <label class="control-label">ID :</label>
-                  <div class="controls">
-                    <input type="text" class="span11" placeholder="ID Periode"  name="id"/>
-                  </div>
+                    <label class="control-label">Periode</label>
+                    <div class="controls">
+                    <select class="span11">
+                        @foreach ($periode as $i)
+                            <option value="{{$i->Id_periode}}">{{$i->Tahun_ajaran}} - Semester {{$i->Semester}}</option>
+                        @endforeach
+                    </select>
+                    </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label">ID Periode :</label>
-                  <div class="controls">
-                    <input type="text" class="span11" placeholder="ID Periode"  name="period"/>
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label">NIG :</label>
-                  <div class="controls">
-                    <input type="text" class="span11" placeholder="NIG" name="nig"/>
-                  </div>
+                    <label class="control-label">Guru</label>
+                    <div class="controls">
+                    <select class="span11">
+                        @foreach ($Guru as $i)
+                            <option value="{{$i->NIG}}">{{$i->NIG}} - {{$i->Nama_guru}}</option>
+                        @endforeach
+                    </select>
+                    </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label">Nama Kelas :</label>
@@ -125,10 +127,14 @@
                   </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label">ID Jurusan :</label>
-                  <div class="controls">
-                    <input type="text"  class="span11" placeholder="ID Jurusan" name="idJur" />
-                  </div>
+                    <label class="control-label">Jurusan</label>
+                    <div class="controls">
+                    <select class="span11">
+                        @foreach ($jurusan as $i)
+                            <option value="{{$i->Id_jurusan}}">{{$i->Nama_jurusan}}</option>
+                        @endforeach
+                    </select>
+                    </div>
                 </div>
                 <div class="form-actions">
                   <button type="submit" class="btn btn-success" name="Insert">Insert</button>

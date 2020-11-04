@@ -92,12 +92,6 @@
           <form action="/mapel/crud" method="post" class="form-horizontal">
             @csrf
             <div class="control-group">
-              <label class="control-label">ID Mata Pelajaran :</label>
-              <div class="controls">
-                <input type="text" class="span11" placeholder="ID Mata Pelajaran" name="id" />
-              </div>
-            </div>
-            <div class="control-group">
               <label class="control-label">Nama Mata Pelajaran :</label>
               <div class="controls">
                 <input type="text" class="span11" placeholder="Nama Mata Pelajaran" name="nama"/>

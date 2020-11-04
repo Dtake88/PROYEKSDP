@@ -95,12 +95,6 @@
                 <form action="/toa/crud" method="post" class="form-horizontal">
                     @csrf
                     <div class="control-group">
-                        <label class="control-label">Id :</label>
-                        <div class="controls">
-                          <input type="text" class="span11" placeholder="ID" name="id"/>
-                        </div>
-                      </div>
-                    <div class="control-group">
                         <label class="control-label">Judul :</label>
                         <div class="controls">
                           <input type="text" class="span11" placeholder="Nama Lengkap" name="namaToa"/>
@@ -110,12 +104,6 @@
                         <label class="control-label">File Pengumuman Input</label>
                         <div class="controls">
                           <input type="file" name="fileToa"/>
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label">Admin Penginput :</label>
-                        <div class="controls">
-                          <input type="text" class="span11" placeholder="ID Admin" name="penToa"/>
                         </div>
                       </div>
                     <div class="form-actions">

@@ -94,12 +94,6 @@
                 <form action="/guru/crud" method="POST" class="form-horizontal">
                     @csrf
                     <div class="control-group">
-                        <label class="control-label">NIG :</label>
-                        <div class="controls">
-                            <input type="text" class="span11" placeholder="NIG" name="nig"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
                     <label class="control-label">Nama Lengkap Guru:</label>
                     <div class="controls">
                         <input type="text" class="span11" placeholder="Nama Lengkap Guru" name="nama" />

@@ -42,87 +42,32 @@
 <!--End-breadcrumbs-->
 
 <!--Chart-box-->
+      <div class="row-fluid">
+          <div class="widget-box">
+              <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+              <h5>Input Nilai</h5>
+              </div>
+              <div class="control-group">
+                  <label class="control-label">Input Nilai:</label>
+                  <div class="controls">
+                  <input type="file" name="fileToa"/> Import Nilai Format File: Excel
+                  </div>
+              </div>
+              <form action="DownloadFormat" method="get">
+                Format Input Nilai Di Excel
+                <input type="button" value="Download">
+              </form>
+          </div>
+      </div>
         <div class="row-fluid">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                <h5>Input Nilai</h5>
+                <h5>Table Nilai</h5>
                 </div>
-                <div class="widget-content nopadding">
-                <form action="#" method="get" class="form-horizontal">
-                    <div class="control-group">
-                        <label class="control-label">Mata Pelajaran</label>
-                        <div class="controls">
-                        <select class="span11">
-                            <option>Sejarah</option>
-                            <option>Ekonomi</option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Nama Murid</label>
-                        <div class="controls">
-                        <select class="span11">
-                            <option>Joko</option>
-                            <option>Adi</option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Nilai Quiz 1 :</label>
-                        <div class="controls">
-                          <input type="text" class="span11" placeholder="Quiz 1" />
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label">Nilai Quiz 2 :</label>
-                        <div class="controls">
-                          <input type="text" class="span11" placeholder="Quiz 2" />
-                        </div>
-                      </div>
-                    <div class="control-group">
-                        <label class="control-label">Nilai Tugas 1 :</label>
-                        <div class="controls">
-                          <input type="text" class="span11" placeholder="Tugas 1" />
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label">Nilai Tugas 2 :</label>
-                        <div class="controls">
-                          <input type="text" class="span11" placeholder="Tugas 2" />
-                        </div>
-                      </div>
-                    <div class="control-group">
-                        <label class="control-label">Nilai UTS :</label>
-                        <div class="controls">
-                          <input type="text" class="span11" placeholder="UTS" />
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label">Nilai UAS :</label>
-                        <div class="controls">
-                          <input type="text" class="span11" placeholder="UAS" />
-                        </div>
-                      </div>
-                    <div class="control-group">
-                        <label class="control-label">Nilai Sikap :</label>
-                        <div class="controls">
-                          <input type="text" class="span11" placeholder="Sikap" />
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label">Nilai Akhir :</label>
-                        <div class="controls">
-                          <input type="text" class="span11" placeholder="Hasil Akhir" />
-                        </div>
-                      </div>
-                    <div class="form-actions">
-                    <button type="submit" class="btn btn-success">Save</button>
-                    </div>
-                </form>
-                </div>
+
             </div>
         </div>
-    </div>
+      </div>
 <!--End-Chart-box-->
     <hr/>
 </div>
