@@ -27,6 +27,14 @@ Route::get('/Jadwal', 'PindahHalaman@pindahJadwal');
 Route::get('/PeriodeAkademik', 'PindahHalaman@pindahPerodAkademik');
 Route::get('dashboardGuru', 'PindahHalaman@pindahDBGuru');
 Route::get('/inputNilai', 'PindahHalaman@pindahInputNilai');
+Route::get('/jurusan', 'PindahHalaman@PindahJurusan');
+Route::get('/biodata', 'PindahHalaman@PindahBiodata');
+Route::get('/EditBiodata', 'PindahHalaman@EditBiodata');
+Route::get('/nilaiSiswa', 'PindahHalaman@LihatNilai');
+Route::get('/dashboardSiswa', 'PindahHalaman@PindahDashboardSiswa');
+
+
+
 
 // post
 Route::post('/OlahLogin', 'OlahData@OlahData');

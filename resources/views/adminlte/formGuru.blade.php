@@ -69,7 +69,7 @@
                 <tr>
                     <td>{{$guru->NIG}}</td>
                     <td>{{$guru->Nama_guru}}</td>
-                    <td>{{$guru->No_hp_guru}}</td>
+                    <td>{{$guru->No_guru}}</td>
                     <td>{{$guru->Alamat_guru}}</td>
                     <td>{{$guru->Status_guru}}</td>
                     <td>

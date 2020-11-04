@@ -230,6 +230,13 @@
                     <input type="file" name="fileToa"/> Import Siswa Format File: Excel
                     </div>
                 </div>
+                    <div class="controls">
+                        <form action="GetFormatSiswa" method="get">
+                            Download Format Siswa:
+                            <input type="submit" value="Format Input Siswa">
+                        </form>
+                    </div>
+
 
             </div>
         </div>

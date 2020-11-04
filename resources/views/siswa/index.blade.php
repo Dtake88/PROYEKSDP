@@ -14,11 +14,11 @@
 {{-- Look Profile n Edit File --}}
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
-    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome Admin</span><b class="caret"></b></a>
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome Siswa</span><b class="caret"></b></a>
       <ul class="dropdown-menu">
-        <li><a href="#"><i class="icon-user"></i>Profile Admin</a></li>
+        <li><a href="#"><i class="icon-user"></i>Profile Siswa</a></li>
         <li class="divider"></li>
-        <li><a href="login.html"><i class="icon-key"></i> Edit File Admin</a></li>
+        <li><a href="login.html"><i class="icon-key"></i> Edit File Siswa</a></li>
       </ul>
     </li>
   </ul>
@@ -28,15 +28,11 @@
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
-    <li><a href="/dashboard"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-    <li> <a href="/pengumuman"><i class="icon icon-bullhorn"></i>Pengumuman</a></li>
-    <li> <a href="/siswa"><i class="icon icon-group"></i> <span>Siswa</span></a></li>
-    <li> <a href="/guru"><i class="icon icon-user"></i> <span>Guru</span></a></li>
-    <li> <a href="/PeriodeAkademik"><i class="icon icon-user"></i> <span>Periode Akademik</span></a></li>
-    <li> <a href="/kelas"><i class="icon icon-book"></i> <span>Kelas</span></a></li>
-    <li> <a href="/MataPelajaran"><i class="icon icon-beaker"></i> <span>Mata Pelajaran</span></a></li>
-    <li> <a href="/Jadwal"><i class="icon icon-beaker"></i> <span>Jadwal</span></a></li>
-    <li><a href="/dashboard"><i class="icon icon-signout"></i> <span>Log Out</span></a></li>
+    <li><a href="/dashboardSiswa"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li> <a href="/biodata"><i class="icon icon-bullhorn"></i>Biodata</a></li>
+    <li> <a href="/nilaiSiswa"><i class="icon icon-group"></i> <span>Nilai</span></a></li>
+    <li> <a href="/jurusan"><i class="icon icon-user"></i> <span>Jurusan</span></a></li>
+    <li><a href="/"><i class="icon icon-signout"></i> <span>Log Out</span></a></li>
   </ul>
 </div>
 <!--sidebar-menu-->

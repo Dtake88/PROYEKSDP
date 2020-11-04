@@ -14,9 +14,11 @@
 {{-- Look Profile n Edit File --}}
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
-    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome Guru</span><b class="caret"></b></a>
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome Siswa</span><b class="caret"></b></a>
       <ul class="dropdown-menu">
-        <li><a href="#"><i class="icon-user"></i>Profile Guru</a></li>
+        <li><a href="#"><i class="icon-user"></i>Profile Siswa</a></li>
+        <li class="divider"></li>
+        <li><a href="login.html"><i class="icon-key"></i> Edit File Siswa</a></li>
       </ul>
     </li>
   </ul>
@@ -26,8 +28,10 @@
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
-    <li><a href="/dashboardGuru"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-    <li> <a href="/inputNilai"><i class="icon icon-bullhorn"></i>Input Nilai</a></li>
+    <li><a href="/dashboardSiswa"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li> <a href="/biodata"><i class="icon icon-bullhorn"></i>Biodata</a></li>
+    <li> <a href="/nilaiSiswa"><i class="icon icon-group"></i> <span>Nilai</span></a></li>
+    <li> <a href="/jurusan"><i class="icon icon-user"></i> <span>Jurusan</span></a></li>
     <li><a href="/"><i class="icon icon-signout"></i> <span>Log Out</span></a></li>
   </ul>
 </div>
@@ -42,61 +46,29 @@
 <!--End-breadcrumbs-->
 
 <!--Chart-box-->
-      <div class="row-fluid">
-          <div class="widget-box">
-              <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-              <h5>Input Nilai</h5>
-              </div>
-              <div class="control-group">
-                  <label class="control-label">Input Nilai:</label>
-                  <div class="controls">
-                  <input type="file" name="fileToa"/> Import Nilai Format File: Excel
-                  </div>
-              </div>
-              <form action="DownloadFormat" method="get">
-                Format Input Nilai Di Excel
-                <input type="submit" value="Download">
-              </form>
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title bg_lo"  data-toggle="collapse" href="#collapseG3" > <span class="icon"> <i class="icon-chevron-down"></i> </span>
+              <h5>Pilih Jurusan</h5>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Jurusan Yang Dipilih</label>
+                <div class="controls">
+                <select class="span11">
+                        <option >IPA</option>
+                        <option >IPS</option>
+                        <option >BAHASA</option>
+                </select>
+            </div>
+            Rekomendasi : IPA
+            </div>
+            <form action="DownloadFormat" method="get">
+                <input type="submit" value="Submit">
+            </form>
+
           </div>
-      </div>
-        <div class="row-fluid">
-            <div class="widget-box">
-                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                <h5>Filter</h5>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">Mata Pelajaran</label>
-                    <div class="controls">
-                    <select class="span11">
-                            <option >Sejarah</option>
-                            <option >Matematika</option>
-                    </select>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">Kelas</label>
-                    <div class="controls">
-                    <select class="span11">
-                            <option >Umum1</option>
-                            <option >IPA1</option>
-                    </select>
-                    </div>
-                </div>
-                <form action="DownloadFormat" method="get">
-                    <input type="submit" value="Search">
-                  </form>
-            </div>
         </div>
-        <div class="row-fluid">
-            <div class="widget-box">
-                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                <h5>Table Nilai</h5>
-                </div>
-
-            </div>
-        </div>
-
-      </div>
+    </div>
 <!--End-Chart-box-->
     <hr/>
 </div>
