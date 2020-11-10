@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon;
 use Carbon\Carbon as CarbonCarbon;
 use Illuminate\Support\Carbon as SupportCarbon;
+use Illuminate\Support\Facades\Hash;
 
 class Database extends Controller
 {
@@ -65,6 +66,9 @@ class Database extends Controller
             siswa::where('NIS', '=' , $valueDelete)->delete();
         }
         $daftarSiswa = siswa::all();
+        foreach($daftarSiswa as $siswas){
+            $siswas->Password_siswa = Hash::make($siswas->Password_siswa);
+        }
         return redirect("/siswa")->with('daftarsiswa', $daftarSiswa);
     }
 
@@ -102,6 +106,10 @@ class Database extends Controller
             guru::where('NIG', '=', $valueDelete)->delete();
         }
         $daftarGuru = guru::all();
+        $daftarGuru = siswa::all();
+        foreach($daftarGuru as $gurus){
+            $gurus->Password_guru = Hash::make($gurus->Password_guru);
+        }
         return redirect("/guru")->with('daftarGuru', $daftarGuru);
     }
 
