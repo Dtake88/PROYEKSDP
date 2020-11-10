@@ -95,19 +95,28 @@
               <label class="control-label">Nama Mata Pelajaran :</label>
               <div class="controls">
                 <input type="text" class="span11" placeholder="Nama Mata Pelajaran" name="nama"/>
-              </div>
+                @error('nama')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
+            </div>
             </div>
             <div class="control-group">
               <label class="control-label">KKM :</label>
               <div class="controls">
                 <input type="text"  class="span11" placeholder="KKM"  name="kkm"/>
-              </div>
+                @error('kkm')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
+            </div>
             </div>
             <div class="control-group">
               <label class="control-label">Tingkat Mata Pelajaran :</label>
               <div class="controls">
                 <input type="text"  class="span11" placeholder="Tingkatan Mata Pelajaran" name="tingkat" />
-              </div>
+                @error('tingkat')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
+            </div>
             </div>
             <div class="form-actions">
               <button type="submit" class="btn btn-success" name="Insert">Insert</button>

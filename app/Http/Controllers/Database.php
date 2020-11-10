@@ -8,6 +8,9 @@ use App\periode_akademik;
 use App\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon;
+use Carbon\Carbon as CarbonCarbon;
+use Illuminate\Support\Carbon as SupportCarbon;
 
 class Database extends Controller
 {
@@ -21,9 +24,9 @@ class Database extends Controller
             "NameMom" => "required|alpha",
             "NameDad" => "required|alpha",
             "status" => "required",
-            "nisn" => "required|size:10",
+            "nisn" => "required|numeric|size:10|unique:connection.siswa, NISN",
             "agama" => "required|alpha",
-            "jk" => "required",
+            "jk" => "required|alpha",
             "alamat" => "required"
         ]);
         if ($data->has("Insert")) {
@@ -70,7 +73,7 @@ class Database extends Controller
         $data->validate([
             "nama" => "required|alpha",
             "pw" => "required",
-            "notelp" => "required|numeric|size:12",
+            "notelp" => "required|numeric|size:12|unique:connection.guru, No_guru",
             "alamat" => "required",
             "status" => "required"
         ]);
@@ -79,7 +82,7 @@ class Database extends Controller
                 [
                     "Nama_guru"=>$data->input("nama"),
                     "Password_guru"=>$data->input("pw"),
-                    "No_hp_guru"=>$data->input("notelp"),
+                    "No_guru"=>$data->input("notelp"),
                     "Alamat_guru"=>$data->input("alamat"),
                     "Status_guru"=>$data->input("status")
                 ]
@@ -89,7 +92,7 @@ class Database extends Controller
             $tempnig = guru::find($data->input("nig"));
             $tempnig->Nama_guru = $data->input("nama");
             $tempnig->Password_guru = $data->input("pw");
-            $tempnig->No_hp_guru = $data->input("notelp");
+            $tempnig->No_guru = $data->input("notelp");
             $tempnig->Alamat_guru = $data->input("alamat");
             $tempnig->Status_guru = $data->input("status");
             $tempnig->save();
@@ -138,6 +141,11 @@ class Database extends Controller
 
     public function selectMatPel(Request $data)
     {
+        $data->validate([
+            "Nama_mapel" => "required|alpha",
+            "KKM" => "required|numeric|size:3",
+            "Tingkat" => "required|numeric|size:1"
+        ]);
         if ($data->has("Insert")) {
             DB::table('mapel')->insert(
                 [
@@ -166,11 +174,16 @@ class Database extends Controller
 
     public function selectToa(Request $data)
     {
+        $data->validate([
+            "Judul_pengumuman" => "required",
+            "File_pengumuman" => "required"
+        ]);
         // dd($data->input("fileToa"));
         if ($data->has("Insert")) {
             DB::table('pengumuman')->insert(
                 [
                     "Judul_pengumuman"=>$data->input("namaToa"),
+                    "Tanggal_pengumuman"=>CarbonCarbon::now()->format('YYYY-MM-DD'),
                     "File_pengumuman"=>$data->input("fileToa"),
                     "Id_administrasi"=>$data->input("penToa")
                 ]
@@ -195,6 +208,13 @@ class Database extends Controller
 
     public function selectKelas(Request $data)
     {
+        $data->validate([
+            "period" => "required",
+            "nig" => "required",
+            "nama" => "required|alpha",
+            "tingkat" => "required|max:1|numeric",
+            "idJur" => "required"
+        ]);
         if ($data->has("Insert")) {
             DB::table('kelas')->insert(
                 [
@@ -227,6 +247,10 @@ class Database extends Controller
     ///////////////////////////////////////////tambahan
     public function selectHistoryEdit(Request $data)
     {
+        $data->validate([
+            "Id_table" => "required|numeric|size:6",
+            "Id_pengedit" => "required|numeric|size:6"
+        ]);
         if ($data->has("Insert")) {
             history_edit::create(
                 [

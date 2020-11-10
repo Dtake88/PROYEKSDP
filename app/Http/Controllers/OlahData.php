@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\administrasi;
+use App\guru;
+use App\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +21,7 @@ class OlahData extends Controller
         $user = $data->input("user");
         $pass = $data->input("pw");
 
-        if (DB::table('administrasi')->where('Username_administrasi',$user)->where('Password_administrasi',$pass)->exists()) {
+        if (administrasi::where('Username_administrasi',$user)->where('Password_administrasi',$pass)->exists()) {
             $userLogin = [
                 "username" => $user,
                 "password"=> $pass
@@ -26,7 +29,7 @@ class OlahData extends Controller
             Cookie::queue("userLogin",json_encode($userLogin),120);
             return view("adminlte.index");
         }
-        if (DB::table('guru')->where('NIG',$user)->where('Password_guru',$pass)->exists()) {
+        if (guru::where('NIG',$user)->where('Password_guru',$pass)->exists()) {
             $userLogin = [
                 "username" => $user,
                 "password"=> $pass
@@ -34,7 +37,7 @@ class OlahData extends Controller
             Cookie::queue("userLogin",json_encode($userLogin),120);
             return view("guru.index");
         }
-        if (DB::table('siswa')->where('NIS',$user)->where('Password_siswa',$pass)->exists()) {
+        if (siswa::where('NIS',$user)->where('Password_siswa',$pass)->exists()) {
             $userLogin = [
                 "username" => $user,
                 "password"=> $pass
@@ -42,7 +45,6 @@ class OlahData extends Controller
             Cookie::queue("userLogin",json_encode($userLogin),120);
             return view("siswa.index");
         }
-
 
     }
 }

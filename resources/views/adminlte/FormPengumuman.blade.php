@@ -98,12 +98,18 @@
                         <label class="control-label">Judul :</label>
                         <div class="controls">
                           <input type="text" class="span11" placeholder="Nama Lengkap" name="namaToa"/>
+                          @error('namaToa')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                         </div>
                       </div>
                     <div class="control-group">
                         <label class="control-label">File Pengumuman Input</label>
                         <div class="controls">
                           <input type="file" name="fileToa"/>
+                          @error('fileToa')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                         </div>
                       </div>
                     <div class="form-actions">

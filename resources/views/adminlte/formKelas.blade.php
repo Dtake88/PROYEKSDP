@@ -97,43 +97,58 @@
                 <div class="control-group">
                     <label class="control-label">Periode</label>
                     <div class="controls">
-                    <select class="span11">
+                    <select class="span11" name="period">
                         @foreach ($periode as $i)
                             <option value="{{$i->Id_periode}}">{{$i->Tahun_ajaran}} - Semester {{$i->Semester}}</option>
                         @endforeach
                     </select>
+                    @error('period')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label">Guru</label>
                     <div class="controls">
-                    <select class="span11">
+                    <select class="span11" name="nig">
                         @foreach ($Guru as $i)
                             <option value="{{$i->NIG}}">{{$i->NIG}} - {{$i->Nama_guru}}</option>
                         @endforeach
                     </select>
+                    @error('nig')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                     </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label">Nama Kelas :</label>
                   <div class="controls">
                     <input type="text" class="span11" placeholder="Nama Lengkap" name="nama" />
-                  </div>
+                    @error('nama')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
+                </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label">Tingkat Kelas :</label>
                   <div class="controls">
                     <input type="text"  class="span11" placeholder="Tingkat Kelas" name="tingkat"  />
-                  </div>
+                    @error('tingkat')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
+                </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label">Jurusan</label>
                     <div class="controls">
-                    <select class="span11">
+                    <select class="span11" name="idJur">
                         @foreach ($jurusan as $i)
                             <option value="{{$i->Id_jurusan}}">{{$i->Nama_jurusan}}</option>
                         @endforeach
                     </select>
+                    @error('idJur')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
                     </div>
                 </div>
                 <div class="form-actions">
