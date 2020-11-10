@@ -28,7 +28,7 @@
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
-    <li><a href="/dashboard"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li> <a href="/dashboard"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     <li> <a href="/pengumuman"><i class="icon icon-bullhorn"></i>Pengumuman</a></li>
     <li> <a href="/siswa"><i class="icon icon-group"></i> <span>Siswa</span></a></li>
     <li> <a href="/guru"><i class="icon icon-user"></i> <span>Guru</span></a></li>

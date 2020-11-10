@@ -135,9 +135,7 @@
                             <option value="1" selected>Aktif</option>
                             <option value="0">Tidak Aktif</option>
                         </select>
-                        @error('status')
-                        <br><span style="color: red;">{{ $message }}</span>
-                    @enderror
+
                         </div>
                     </div>
                     <div class="form-actions">
