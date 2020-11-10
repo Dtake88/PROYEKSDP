@@ -85,16 +85,6 @@
           <form action="/perodAkad/crud" method="post" class="form-horizontal">
             @csrf
             <div class="control-group">
-<<<<<<< HEAD
-              <label class="control-label">ID Periode Akademik :</label>
-              <div class="controls">
-                <input type="text" class="span11" placeholder="ID Periode Akademik" name="id"/>
-
-              </div>
-            </div>
-            <div class="control-group">
-=======
->>>>>>> 9f215a5a80b71437fca20322a0cbd78cffcaa709
               <label class="control-label">Tahun Ajaran :</label>
               <div class="controls">
                 <input type="text" class="span11" placeholder="Tahun Ajaran" name="TahunAjaran"/>

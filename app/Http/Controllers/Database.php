@@ -117,7 +117,7 @@ class Database extends Controller
     {
         $data->validate([
             "Id_periode" => "required|alpha",
-            "Tahun_ajaran" => "required|size:1",
+            "TahunAjaran" => "required|size:1",
             "Semester" => "required|numeric|size:1",
             "Status" => "required"
         ]);

@@ -112,18 +112,15 @@
                   </div>
                 </div>
                 <div class="control-group">
-<<<<<<< HEAD
                   <label class="control-label">NIS :</label>
                   <div class="controls">
                     <input type="text" class="span11" placeholder="NIS" name="nis"/>
-                    @error('nis')
+                    {{-- @error('nis')
                         <br><span style="color: red;">{{ $message }}</span>
-                    @enderror
+                    @enderror --}}
                   </div>
                 </div>
                 <div class="control-group">
-=======
->>>>>>> 9f215a5a80b71437fca20322a0cbd78cffcaa709
                   <label class="control-label">Nama Lengkap :</label>
                   <div class="controls">
                     <input type="text" class="span11" placeholder="Nama Lengkap" name="nama" />
