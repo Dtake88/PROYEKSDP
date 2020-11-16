@@ -182,6 +182,7 @@ class Database extends Controller
 
     public function selectToa(Request $data)
     {
+        // ascas
         $data->validate([
             "Judul_pengumuman" => "required",
             "File_pengumuman" => "required"
