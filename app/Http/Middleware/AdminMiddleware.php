@@ -16,6 +16,8 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
+
+        // dd($request);
         if(!$request->session()->has('loggedAdmin')){
             return back()->with("tembak","Not Authorized");
         }

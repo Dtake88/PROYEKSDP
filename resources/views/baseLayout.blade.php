@@ -23,6 +23,9 @@
 </head>
 <body>
 
+    @if (Session::has("tembak"))
+         <script>alert("Hayooo")</script>
+    @endif
 
 <!--Header-part-->
 <div id="header">
@@ -30,9 +33,7 @@
   </div>
   <!--close-Header-part-->
 
-@if (Session::has("tembak"))
-<script>alert("Hayooo")</script>
-@endif
+
   <!--top-Header-menu-->
   {{-- di header --}}
   {{-- Look Profile n Edit File --}}
@@ -49,64 +50,13 @@
   </div>
 
   <!--close-top-serch-->
+  @if (Session::has("tembak"))
+  <script>alert("Hayooo")</script>
+@endif
   <!--sidebar-menu-->
-  <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
-    <ul>
-      <li>
-          <a href="/homeAdmin">
-              <i class="icon icon-home"></i>
-              <span>Dashboard</span></a>
-      </li>
-      <li>
-          <a href="{{url("/pengumuman")}}">
-              <i class="icon icon-bullhorn"></i>Pengumuman
-          </a>
-      </li>
-      <li>
-          <a href="{{url("/siswa")}}">
-              <i class="icon icon-group"></i>
-              <span>Siswa</span>
-          </a>
-      </li>
-      <li>
-           <a href="/guru">
-              <i class="icon icon-user"></i>
-              <span>Guru</span>
-          </a>
-      </li>
-      <li>
-          <a href="/PeriodeAkademik">
-              <i class="icon icon-user"></i>
-              <span>Periode Akademik</span>
-          </a>
-      </li>
-      <li>
-          <a href="/kelas">
-              <i class="icon icon-book"></i>
-              <span>Kelas</span>
-          </a>
-      </li>
-
-      <li>
-          <a href="/MataPelajaran">
-              <i class="icon icon-beaker"></i>
-              <span>Mata Pelajaran</span>
-          </a>
-      </li>
-      <li>
-          <a href="/Jadwal">
-              <i class="icon icon-beaker"></i>
-              <span>Jadwal</span>
-          </a>
-      </li>
-      <li>
-          <a href="/logout">
-              <i class="icon icon-signout"></i>
-              <span>Log Out</span>
-          </a>
-      </li>
-    </ul>
-  </div>
+  @yield('contentAdmin')
+  @yield('contentGuru')
+  @yield('contentSiswa')
   <!--sidebar-menu-->
 
   <!--main-container-part-->
@@ -117,26 +67,16 @@
     </div>
   <!--End-breadcrumbs-->
 
-        @yield('indexAdmin')
-        @yield('formPengumuman')
-        @yield('formSiswa')
-        @yield('formGuru')
-        @yield('formKelas')
-        @yield('formMapel')
-        @yield('formPeriodeAkademik')
 
 
       <hr/>
   </div>
-
   <!--end-main-container-part-->
 
   <!--Footer-part-->
-
   <div class="row-fluid">
     <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in">Themedesigner.in</a> </div>
   </div>
-
   <!--end-Footer-part-->
 
   <script src="js/excanvas.min.js"></script>

@@ -53,8 +53,8 @@ class OlahData extends Controller
                 "password"=> $pass
             ];
             Cookie::queue("userLogin",json_encode($userLogin),120);
-            Session::put("loggedSiswa","siswa");
-            return view("siswa.index");
+            $data->session()->put('loggedSiswa', "siswa");
+            return redirect("dashboardSiswa");
         }
 
         return redirect("/")->with("error","1");

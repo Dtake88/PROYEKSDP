@@ -16,7 +16,7 @@ class SiswaMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(!Session::has("loggedUser")||Session::get("loggedUser")!="siswa"){
+        if(!$request->session()->has('loggedSiswa')){
             return back()->with("tembak","Not Authorized");
         }
         return $next($request);

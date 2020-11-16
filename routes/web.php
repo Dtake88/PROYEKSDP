@@ -25,14 +25,6 @@ Route::get('/logout', function () {
 });
 
 
-Route::get('/jurusan', 'PindahHalaman@PindahJurusan');
-Route::get('/biodata', 'PindahHalaman@PindahBiodata');
-Route::get('/EditBiodata', 'PindahHalaman@EditBiodata');
-Route::get('/nilaiSiswa', 'PindahHalaman@LihatNilai');
-Route::get('/dashboardSiswa', 'PindahHalaman@PindahDashboardSiswa');
-
-
-
 //admin
 Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/homeAdmin', 'AdminController@toHome');
@@ -47,8 +39,23 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
 
 
 //guru
-Route::get('/homeGuru', 'GuruController@toHome');
-Route::get('/inputNilai', 'GuruController@pindahInputNilai');
+Route::group(['middleware' => ['GuruMiddleware']], function () {
+    Route::get('/homeGuru', 'GuruController@toHome');
+    Route::get('/inputNilai', 'GuruController@pindahInputNilai');
+});
+
+
+//siswa
+Route::group(['middleware' => ["SiswaMiddleware"]], function () {
+    Route::get('/jurusan', 'SiswaController@PindahJurusan');
+    Route::get('/biodata', 'SiswaController@PindahBiodata');
+    Route::get('/EditBiodata', 'SiswaController@EditBiodata');
+    Route::get('/nilaiSiswa', 'SiswaController@LihatNilai');
+    Route::get('/dashboardSiswa', 'SiswaController@PindahDashboardSiswa');
+});
+
+
+
 
 
 // post
