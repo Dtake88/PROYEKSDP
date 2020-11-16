@@ -1,6 +1,8 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,16 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('adminlte.login');
 });
-Route::get('/pengumuman', 'PindahHalaman@pindahPengumuman');
-Route::get('/dashboard', 'PindahHalaman@PindahDashboard');
-Route::get('/siswa', 'PindahHalaman@pindahSiswa');
-Route::get('/guru', 'PindahHalaman@pindahGuru');
-Route::get('/kelas', 'PindahHalaman@pindahKelas');
-Route::get('/MataPelajaran', 'PindahHalaman@pindahMatPel');
-Route::get('/Jadwal', 'PindahHalaman@pindahJadwal');
-Route::get('/PeriodeAkademik', 'PindahHalaman@pindahPerodAkademik');
-Route::get('dashboardGuru', 'PindahHalaman@pindahDBGuru');
-Route::get('/inputNilai', 'PindahHalaman@pindahInputNilai');
+Route::get('/logout', function () {
+    Session::flush();
+    return redirect("/");
+});
+
+
 Route::get('/jurusan', 'PindahHalaman@PindahJurusan');
 Route::get('/biodata', 'PindahHalaman@PindahBiodata');
 Route::get('/EditBiodata', 'PindahHalaman@EditBiodata');
@@ -34,6 +32,23 @@ Route::get('/nilaiSiswa', 'PindahHalaman@LihatNilai');
 Route::get('/dashboardSiswa', 'PindahHalaman@PindahDashboardSiswa');
 
 
+
+//admin
+Route::group(['middleware' => ['AdminMiddleware']], function () {
+    Route::get('/homeAdmin', 'AdminController@toHome');
+    Route::get('/pengumuman', 'AdminController@pindahPengumuman');
+    Route::get('/siswa', 'AdminController@pindahSiswa');
+    Route::get('/guru', 'AdminController@pindahGuru');
+    Route::get('/kelas', 'AdminController@pindahKelas');
+    Route::get('/MataPelajaran', 'AdminController@pindahMatPel');
+    Route::get('/Jadwal', 'AdminController@pindahJadwal');
+    Route::get('/PeriodeAkademik', 'AdminController@pindahPerodAkademik');
+});
+
+
+//guru
+Route::get('/homeGuru', 'GuruController@toHome');
+Route::get('/inputNilai', 'GuruController@pindahInputNilai');
 
 
 // post

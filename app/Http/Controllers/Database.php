@@ -81,6 +81,7 @@ class Database extends Controller
             "alamat" => "required",
             "status" => "required"
         ]);
+
         if ($data->has("Insert")) {
             guru::create(
                 [

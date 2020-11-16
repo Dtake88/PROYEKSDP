@@ -12,4 +12,8 @@ class administrasi extends Model
     public $incrementing = true;
     public $timestamps = false;
     protected $fillable = ['Nama_administrasi', 'Usernama_administrasi', 'No_administrasi', 'Alamat_administrasi', 'Password_administrasi'];
+
+
+
+
 }

@@ -12,4 +12,7 @@ class guru extends Model
     public $incrementing = true;
     public $timestamps = false;
     protected $fillable = ['Nama_guru', 'Password_guru', 'No_guru', 'Alamat_guru', 'Status_guru'];
+
+
+    
 }

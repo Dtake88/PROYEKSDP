@@ -1,6 +1,11 @@
 @extends('home')
 
 @section('body')
+
+@if (Session::has("error"))
+    <script>alert("User not found") </script>
+@endif
+
 <div id="loginbox">
     <form class="form-vertical" action="/OlahLogin" method="POST">
         @csrf
