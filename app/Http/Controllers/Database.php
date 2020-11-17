@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\guru;
 use App\history_edit;
+use App\pengumuman;
 use App\periode_akademik;
 use App\siswa;
 use Illuminate\Http\Request;
@@ -34,18 +35,24 @@ class Database extends Controller
             siswa::create(
                 [
                     "Nama_siswa"=>$data->input("nama"),
-                    "Password_siswa"=>$data->input("pw"),
+                    "Password_siswa"=>" ",
                     "Tempat_lahir_siswa"=>$data->input("tmptLahir"),
                     "Tanggal_lahir_siswa"=>$data->input("tglLahir"),
                     "Nama_ibu"=>$data->input("NameMom"),
                     "Nama_ayah"=>$data->input("NameDad"),
-                    "Status"=>$data->input("status"),
+                    "Status"=>1,
                     "NISN"=>$data->input("nisn"),
                     "Agama"=>$data->input("agama"),
                     "Jenis_kelamin"=>$data->input("jk"),
                     "Alamat_siswa"=>$data->input("alamat")
                 ]
             );
+
+            $lastSiswa = siswa::latest("NIS")->first();
+
+            
+
+
         }
         if ($data->has("Update")) {
             $tempnis = siswa::find($data->input("nis"));
@@ -189,7 +196,7 @@ class Database extends Controller
         ]);
         // dd($data->input("fileToa"));
         if ($data->has("Insert")) {
-            DB::table('pengumuman')->insert(
+            pengumuman::insert(
                 [
                     "Judul_pengumuman"=>$data->input("namaToa"),
                     "Tanggal_pengumuman"=>CarbonCarbon::now()->format('YYYY-MM-DD'),
@@ -199,10 +206,10 @@ class Database extends Controller
             );
         }
         if ($data->has("Update")) {
-            DB::table('pengumuman')->where('Id_pengumuman','=',$data->input("id"))->update(
+            pengumuman::where('Id_pengumuman','=',$data->input("id"))->update(
                 [
                     "Judul_pengumuman"=>$data->input("namaToa"),
-                    "Tanggal_pengumuman"=>$data->input("tglToa"),
+                    "Tanggal_pengumuman"=>CarbonCarbon::now()->format('YYYY-MM-DD'),
                     "File_pengumuman"=>$data->input("fileToa"),
                     "Id_administrasi"=>$data->input("penToa")
                 ]
@@ -210,7 +217,7 @@ class Database extends Controller
         }
         if ($data->has("Delete")) {
             $valueDelete = $data->input("Delete");
-            DB::table('pengumuman')->where('Id_pengumuman', '=' , $valueDelete)->delete();
+            pengumuman::where('Id_pengumuman', '=' , $valueDelete)->delete();
         }
         return redirect("/pengumuman");
     }

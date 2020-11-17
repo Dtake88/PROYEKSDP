@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\administrasi;
 use App\guru;
+use App\pengumuman;
 use App\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -27,7 +28,8 @@ class OlahData extends Controller
                 "password"=> $pass
             ];
             Cookie::queue("userLogin",json_encode($userLogin),120);
-            return view("adminlte.index");
+            $dbPengumuman = pengumuman::all();
+            return view("adminlte.index", ["dbpengumuman"=>$dbPengumuman]);
         }
         if (guru::where('NIG',$user)->where('Password_guru',$pass)->exists()) {
             $userLogin = [
@@ -35,15 +37,17 @@ class OlahData extends Controller
                 "password"=> $pass
             ];
             Cookie::queue("userLogin",json_encode($userLogin),120);
-            return view("guru.index");
+            $dbPengumuman = pengumuman::all();
+            return view("guru.index", ["dbpengumuman"=>$dbPengumuman]);
         }
-        if (siswa::where('NIS',$user)->where('Password_siswa',$pass)->exists()) {
+        if (siswa::where('NISN',$user)->where('Password_siswa',$pass)->exists()) {
             $userLogin = [
                 "username" => $user,
                 "password"=> $pass
             ];
             Cookie::queue("userLogin",json_encode($userLogin),120);
-            return view("siswa.index");
+            $dbPengumuman = pengumuman::all();
+            return view("siswa.index", ["dbpengumuman"=>$dbPengumuman]);
         }
 
     }

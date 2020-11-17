@@ -112,15 +112,6 @@
                   </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label">NIS :</label>
-                  <div class="controls">
-                    <input type="text" class="span11" placeholder="NIS" name="nis"/>
-                    {{-- @error('nis')
-                        <br><span style="color: red;">{{ $message }}</span>
-                    @enderror --}}
-                  </div>
-                </div>
-                <div class="control-group">
                   <label class="control-label">Nama Lengkap :</label>
                   <div class="controls">
                     <input type="text" class="span11" placeholder="Nama Lengkap" name="nama" />
@@ -183,14 +174,21 @@
                         @enderror
                 </div>
                 <div class="control-group">
-                  <label class="control-label">Agama :</label>
-                  <div class="controls">
-                    <input type="text"  class="span11" placeholder="Agama" name="agama" />
-                    @error('agama')
-                        <br><span style="color: red;">{{ $message }}</span>
-                    @enderror
+                    <label class="control-label">Agama</label>
+                    <div class="controls">
+                      <select class="span11" name="agama">
+                        <option value="Pria" selected>Islam</option>
+                        <option value="Wanita">Budha</option>
+                        <option value="Wanita">Hindu</option>
+                        <option value="Wanita">Katolik</option>
+                        <option value="Wanita">Kristen</option>
+                        <option value="Wanita">Konghucu</option>
+                      </select>
+                      @error('agama')
+                            <br><span style="color: red;">{{ $message }}</span>
+                        @enderror
+                    </div>
                   </div>
-                </div>
                 <div class="control-group">
                     <label class="control-label">Jenis Kelamin</label>
                     <div class="controls">
@@ -199,18 +197,6 @@
                         <option value="Wanita">Wanita</option>
                       </select>
                       @error('jk')
-                            <br><span style="color: red;">{{ $message }}</span>
-                        @enderror
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">Status Siswa</label>
-                    <div class="controls">
-                      <select class="span11" name="status">
-                        <option value="1" selected>Aktif</option>
-                        <option value="0">Tidak Aktif</option>
-                      </select>
-                      @error('status')
                             <br><span style="color: red;">{{ $message }}</span>
                         @enderror
                     </div>

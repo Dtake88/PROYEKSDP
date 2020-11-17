@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\guru;
+use App\pengumuman;
+use App\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,12 +12,13 @@ class PindahHalaman extends Controller
 {
     public function PindahDashboard()
     {
-        return view("adminlte.index");
+        $dbPengumuman = pengumuman::all();
+        return view("adminlte.index", ["dbpengumuman"=>$dbPengumuman]);
     }
 
     public function pindahPengumuman()
     {
-        $daftarToa = DB::select('select * from pengumuman');
+        $daftarToa = pengumuman::all();
         return view("adminlte.FormPengumuman",[
             "daftarToa"=>$daftarToa
         ]);
@@ -22,7 +26,7 @@ class PindahHalaman extends Controller
 
     public function pindahSiswa()
     {
-        $daftarSiswa = DB::select('select * from siswa');
+        $daftarSiswa = siswa::all();
         return view("adminlte.formSiswa",[
             "daftarSiswa"=>$daftarSiswa
         ]);
@@ -30,7 +34,7 @@ class PindahHalaman extends Controller
 
     public function pindahGuru()
     {
-        $daftarGuru = DB::select('select * from guru');
+        $daftarGuru = guru::all();
         return view("adminlte.formGuru",[
             "daftarGuru"=>$daftarGuru
         ]);
