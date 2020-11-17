@@ -35,7 +35,7 @@ class Database extends Controller
             siswa::create(
                 [
                     "Nama_siswa"=>$data->input("nama"),
-                    "Password_siswa"=>" ",
+                    "Password_siswa"=>Hash::make( $data->input("pw")),
                     "Tempat_lahir_siswa"=>$data->input("tmptLahir"),
                     "Tanggal_lahir_siswa"=>$data->input("tglLahir"),
                     "Nama_ibu"=>$data->input("NameMom"),
@@ -50,14 +50,14 @@ class Database extends Controller
 
             $lastSiswa = siswa::latest("NIS")->first();
 
-            
+
 
 
         }
         if ($data->has("Update")) {
             $tempnis = siswa::find($data->input("nis"));
             $tempnis->Nama_siswa = $data->input("nama");
-            $tempnis->Password_siswa = $data->input("pw");
+            $tempnis->Password_siswa =Hash::make($data->input("pw")) ;
             $tempnis->Tempat_lahir_siswa = $data->input("tmptLahir");
             $tempnis->Tanggal_lahir_siswa = $data->input("tglLahir");
             $tempnis->Nama_ibu = $data->input("NameMom");
@@ -88,11 +88,12 @@ class Database extends Controller
             "alamat" => "required",
             "status" => "required"
         ]);
+
         if ($data->has("Insert")) {
             guru::create(
                 [
                     "Nama_guru"=>$data->input("nama"),
-                    "Password_guru"=>$data->input("pw"),
+                    "Password_guru"=>Hash::make($data->input("pw")),
                     "No_guru"=>$data->input("notelp"),
                     "Alamat_guru"=>$data->input("alamat"),
                     "Status_guru"=>$data->input("status")
@@ -102,7 +103,7 @@ class Database extends Controller
         if ($data->has("Update")) {
             $tempnig = guru::find($data->input("nig"));
             $tempnig->Nama_guru = $data->input("nama");
-            $tempnig->Password_guru = $data->input("pw");
+            $tempnig->Password_guru = Hash::make($data->input("pw"));
             $tempnig->No_guru = $data->input("notelp");
             $tempnig->Alamat_guru = $data->input("alamat");
             $tempnig->Status_guru = $data->input("status");
