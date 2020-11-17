@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\administrasi;
 use App\guru;
 use App\siswa;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,7 @@ class OlahData extends Controller
 {
     public function OlahData(Request $data)
     {
+        // dd($data->all());
         $data->validate([
             "user" => "required",
             "pw" => "required"
@@ -28,24 +30,33 @@ class OlahData extends Controller
                 "password"=> $pass
             ];
             Cookie::queue("userLogin",json_encode($userLogin),120);
-            return view("adminlte.index");
+            $data->session()->put('loggedAdmin', "admin");
+            return redirect("homeAdmin");
         }
+
         if (guru::where('NIG',$user)->where('Password_guru',$pass)->exists()) {
             $userLogin = [
                 "username" => $user,
                 "password"=> $pass
             ];
             Cookie::queue("userLogin",json_encode($userLogin),120);
-            return view("guru.index");
+            $data->session()->put('loggedGuru', "guru");
+            return redirect("homeGuru");
         }
+
+
         if (siswa::where('NIS',$user)->where('Password_siswa',$pass)->exists()) {
             $userLogin = [
                 "username" => $user,
                 "password"=> $pass
             ];
             Cookie::queue("userLogin",json_encode($userLogin),120);
-            return view("siswa.index");
+            $data->session()->put('loggedSiswa', "siswa");
+            return redirect("dashboardSiswa");
         }
+
+        return redirect("/")->with("error","1");
+
 
     }
 }
