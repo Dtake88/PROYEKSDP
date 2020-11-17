@@ -21,6 +21,7 @@ class OlahData extends Controller
         $user = $data->input("user");
         $pass = $data->input("pw");
 
+        //cek hashing
         if (administrasi::where('Username_administrasi',$user)->where('Password_administrasi',$pass)->exists()) {
             $userLogin = [
                 "username" => $user,
