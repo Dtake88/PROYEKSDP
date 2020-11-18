@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class guru extends Model
 {
+
+    use  SoftDeletes;
     protected $table = 'guru';
     protected $primaryKey = 'NIG';
     protected $keyType = 'bigint';

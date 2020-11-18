@@ -39,10 +39,12 @@
                     <td>{{$siswa->Jenis_kelamin}}</td>
                     <td>{{$siswa->Status_siswa}}</td>
                     <td>
-                        <form action="/siswa/crud" method="post" class="form-horizontal">
+                    <button class="btn btn-primary"><a href="updateSiswa/{{$siswa->NIS}}">Update</a></button>
+                    <button class="btn btn-danger"><a href="deleteSiswa/{{$siswa->NIS}}">Delete</a></button>
+                        {{-- <form action="/siswa/crud" method="post" class="form-horizontal">
                             @csrf
                             <button type="submit" class="btn btn-danger" name="Delete" value="{{$siswa->NIS}}">Delete</button>
-                        </form>
+                        </form> --}}
                     </td>
                 </tr>
             @endforeach

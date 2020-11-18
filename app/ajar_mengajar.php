@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ajar_mengajar extends Model
 {
+
+    use SoftDeletes;
+
     protected $table = 'ajar_mengajar';
     protected $primaryKey = 'id_ajar_mengajar';
     protected $keyType = 'bigint';

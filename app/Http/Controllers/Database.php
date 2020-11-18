@@ -15,6 +15,15 @@ use Illuminate\Support\Facades\Hash;
 
 class Database extends Controller
 {
+    public function deleteSiswa($id)
+    {
+        # code...
+        // dd($id);
+        $siswa = siswa::find($id);
+        $siswa->delete();
+    }
+
+
     public function selectSiswa(Request $data)
     {
         $data->validate([

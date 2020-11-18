@@ -2,6 +2,7 @@
 
 use App\guru;
 use App\riwayat_akademik;
+use App\siswa;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -25,6 +26,13 @@ Route::get('/logout', function () {
     return redirect("/");
 });
 
+Route::get('/restore', function () {
+
+    dd(siswa::onlyTrashed()->restore());    
+    // return view('adminlte.login');
+});
+
+
 
 //admin
 Route::group(['middleware' => ['AdminMiddleware']], function () {
@@ -36,6 +44,9 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/kelas', 'AdminController@pindahKelas');
     Route::get('/MataPelajaran', 'AdminController@pindahMatPel');
     Route::get('/Jadwal', 'AdminController@pindahJadwal');
+
+    Route::get('/deleteSiswa/{id}', 'Database@deleteSiswa');
+    // Route::get('/deleteSiswa/{id}', 'Database@deleteSiswa');
 });
 
 
