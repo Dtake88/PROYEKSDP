@@ -12,5 +12,18 @@ class ajar_mengajar extends Model
     public $incrementing = true;
     public $timestamps = false;
 
-    
+
+    public function kelas(){
+        return $this->hasOne(kelas::class,"Id_kelas","Id_kelas");
+    }
+
+    public function mapel(){
+        return $this->hasOne(mapel::class,"Id_mapel","Id_mapel");
+    }
+
+    public function guru(){
+        return $this->belongsTo(guru::class,"NIG","NIG");
+    }
+
+
 }

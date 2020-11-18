@@ -25,7 +25,7 @@ class OlahData extends Controller
         $pass = $data->input("pw");
 
         //cek hashing
-        if (administrasi::where('Username_administrasi',$user)->where('Password_administrasi',$pass)->exists()) {
+        if (administrasi::where('Username_administrasi',$user)->where('Password_admin',$pass)->exists()) {
             $userLogin = [
                 "username" => $user,
                 "password"=> $pass
@@ -41,7 +41,7 @@ class OlahData extends Controller
                 "password"=> $pass
             ];
             Cookie::queue("userLogin",json_encode($userLogin),120);
-            $data->session()->put('loggedGuru', "guru");
+            $data->session()->put('loggedGuru', $userLogin);
             return redirect("homeGuru");
         }
 

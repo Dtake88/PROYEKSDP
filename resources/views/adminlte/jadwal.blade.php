@@ -1,6 +1,6 @@
-@extends('home')
+@extends('adminlte.adminLayout')
 
-@section('body')
+@section('jadwal')
 
 <div class="widget-content nopadding">
     <table class="table table-bordered table-striped">
@@ -20,9 +20,9 @@
           @foreach ($Jadwal as $i)
               <tr>
                   <td>{{$i->Id_ajar_mengajar}}</td>
-                  <td>{{$i->Id_kelas}}</td>
-                  <td>{{$i->Id_mapel}}</td>
-                  <td>{{$i->NIG}}</td>
+                  <td>{{$i->kelas->Id_kelas}} -{{$i->kelas->Nama_kelas}}</td>
+                  <td>{{$i->Id_mapel}} - {{$i->mapel->Nama_mapel}}</td>
+                  <td>{{$i->NIG}} - {{$i->guru->Nama_guru}}</td>
                   <td>{{$i->Jam_dimulai}}</td>
                   <td>{{$i->Jam_berakhir}}</td>
                   <td>{{$i->Hari}}</td>
