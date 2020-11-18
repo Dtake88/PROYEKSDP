@@ -14,5 +14,20 @@ class guru extends Model
     protected $fillable = ['Nama_guru', 'Password_guru', 'No_guru', 'Alamat_guru', 'Status_guru'];
 
 
-    
+    public function kelas(){
+        return $this->hasMany(kelas::class,'NIG','NIG');
+    }
+
+    public function membimbing(){
+        return $this->hasMany(membimbing::class,"NIG","NIG");
+    }
+
+
+    public function mapel(){
+             return $this->belongsToMany(mapel::class,'membimbing','NIG','Id_mapel');
+                    // ->withPivot('tb_id','tb_stok')//kenalkan tb_stok sebag/ai column pada tabel pivot
+                    ;
+    }
+
+
 }
