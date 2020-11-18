@@ -124,6 +124,7 @@
         @yield('formKelas')
         @yield('formMapel')
         @yield('formPeriodeAkademik')
+        @yield('jadwal')
 
 
       <hr/>

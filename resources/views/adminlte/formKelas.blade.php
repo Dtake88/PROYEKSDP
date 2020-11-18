@@ -11,7 +11,8 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>ID Periode</th>
+            <th>Tahun Periode</th>
+            <th>Semester</th>
             <th>NIG</th>
             <th>Nama Kelas</th>
             <th>Tingkat Kelas</th>
@@ -22,11 +23,12 @@
             @foreach ($daftarKelas as $kls)
                 <tr>
                     <td>{{$kls->Id_kelas}}</td>
-                    <td>{{$kls->Id_periode}}</td>
-                    <td>{{$kls->NIG}}</td>
+                    <td>{{$kls->periode->Tahun_ajaran}}</td>
+                    <td>{{$kls->periode->Semester}}</td>
+                    <td>{{$kls->guru->Nama_guru}}</td>
                     <td>{{$kls->Nama_kelas}}</td>
                     <td>{{$kls->Tingkat_kelas}}</td>
-                    <td>{{$kls->Id_jurusan}}</td>
+                    <td>{{$kls->jurusan->Nama_jurusan}}  -  {{$kls->Id_jurusan}}</td>
                     <td>
                         <form action="/kelas/crud" method="post" class="form-horizontal">
                             @csrf
@@ -97,7 +99,7 @@
                     <div class="controls">
                     <select class="span11" name="idJur">
                         @foreach ($jurusan as $i)
-                            <option value="{{$i->Id_jurusan}}">{{$i->Nama_jurusan}}</option>
+                            <option value="{{$i->Id_jurusan}}">{{$i->Nama_jurusan}} - {{$i->Id_jurusan}}</option>
                         @endforeach
                     </select>
                     @error('idJur')

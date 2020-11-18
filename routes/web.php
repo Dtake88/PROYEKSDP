@@ -32,10 +32,10 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/pengumuman', 'AdminController@pindahPengumuman');
     Route::get('/siswa', 'AdminController@pindahSiswa');
     Route::get('/guru', 'AdminController@pindahGuru');
+    Route::get('/PeriodeAkademik', 'AdminController@pindahPerodAkademik');
     Route::get('/kelas', 'AdminController@pindahKelas');
     Route::get('/MataPelajaran', 'AdminController@pindahMatPel');
     Route::get('/Jadwal', 'AdminController@pindahJadwal');
-    Route::get('/PeriodeAkademik', 'AdminController@pindahPerodAkademik');
 });
 
 

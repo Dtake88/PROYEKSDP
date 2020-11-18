@@ -15,7 +15,7 @@ class kelas extends Model
 
 
     public function periode(){
-        return $this->hasOne(periode_akademik::class,"id_kelas","id_periode");
+        return $this->hasOne(periode_akademik::class,"Id_periode","Id_periode");
     }
 
     public function guru(){
@@ -23,10 +23,10 @@ class kelas extends Model
     }
 
     public function jurusan(){
-        return $this->hasOne(jurusan::class,"id_jurusan","id_jurusan");
+        return $this->hasOne(jurusan::class,"Id_jurusan","Id_jurusan");
     }
 
-    
+
 
 
 
