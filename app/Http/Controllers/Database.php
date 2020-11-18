@@ -35,7 +35,7 @@ class Database extends Controller
             siswa::create(
                 [
                     "Nama_siswa"=>$data->input("nama"),
-                    "Password_siswa"=>Hash::make( $data->input("pw")),
+                    "Password_siswa"=>"default",
                     "Tempat_lahir_siswa"=>$data->input("tmptLahir"),
                     "Tanggal_lahir_siswa"=>$data->input("tglLahir"),
                     "Nama_ibu"=>$data->input("NameMom"),
@@ -50,7 +50,7 @@ class Database extends Controller
 
             $lastSiswa = siswa::latest("NIS")->first();
 
-
+            siswa::where('NIS',$lastSiswa->NIS)->update(['Password_siswa'=>Hash::make($lastSiswa->NIS)]);
 
 
         }
