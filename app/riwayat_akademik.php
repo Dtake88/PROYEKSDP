@@ -14,7 +14,6 @@ class riwayat_akademik extends Model
     public $incrementing = true;
     public $timestamps = false;
 
-
     public function kelas(){
         return $this->hasOne(kelas::class,"Id_kelas","Id_kelas");
     }
@@ -22,7 +21,6 @@ class riwayat_akademik extends Model
     public function  mapel(){
         return $this->hasOne(mapel::class,"Id_mapel","Id_mapel");
     }
-
 
     public function siswa(){
         return $this->belongsTo(siswa::class,"NIS","NIS");

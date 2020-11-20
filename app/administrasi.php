@@ -14,7 +14,7 @@ class administrasi extends Model
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;
-    protected $fillable = ['Nama_administrasi', 'Usernama_administrasi', 'No_administrasi', 'Alamat_administrasi', 'Password_administrasi'];
+    protected $fillable = ['Nama_administrasi', 'Username_administrasi', 'No_administrasi', 'Alamat_administrasi', 'Password_administrasi'];
 
 
 

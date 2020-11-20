@@ -28,7 +28,7 @@ Route::get('/logout', function () {
 
 Route::get('/restore', function () {
 
-    dd(siswa::onlyTrashed()->restore());    
+    dd(siswa::onlyTrashed()->restore());
     // return view('adminlte.login');
 });
 
@@ -43,16 +43,41 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/PeriodeAkademik', 'AdminController@pindahPerodAkademik');
     Route::get('/kelas', 'AdminController@pindahKelas');
     Route::get('/MataPelajaran', 'AdminController@pindahMatPel');
+    Route::get('/riwayat', 'AdminController@pindahRiwayat');
     Route::get('/Jadwal', 'AdminController@pindahJadwal');
 
+
     Route::get('/deleteSiswa/{id}', 'Database@deleteSiswa');
-    // Route::get('/deleteSiswa/{id}', 'Database@deleteSiswa');
+    Route::get('/toUpdateSiswa/{id}', 'Database@toUpdateSiswa');
+    Route::post('/updateSiswa', 'Database@updateSiswa');
+    Route::get('/aktifNonaktifSiswa/{id}', function($id){
+        $siswa = siswa::find($id);
+        if($siswa->Status == 1){
+            $siswa->Status = 0;}
+        else{
+            $siswa->Status = 1;
+        }
+        $siswa->save();
+        return redirect("/siswa");
+    });
+
+    Route::get('toUpdateRiwayat/{id}',function(){
+        $siswa = Session::get("siswa");
+        return view('adminlte.editSiswa',["siswa"=>$siswa]);
+    });
+
+
+
+
 });
 
 
 //guru
 Route::group(['middleware' => ['GuruMiddleware']], function () {
-    Route::get('/homeGuru', 'GuruController@toHome');
+    // Route::get('/homeGuru', 'GuruController@toHome');
+    Route::get('/homeGuru', function(){
+        return view("guru.index");
+    });
     Route::get('/inputNilai', 'GuruController@pindahInputNilai');
     Route::get('/getDaftarNilai',"GuruController@getDaftarNilai" );
 });

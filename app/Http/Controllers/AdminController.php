@@ -9,16 +9,17 @@ use App\kelas;
 use App\mapel;
 use App\pengumuman;
 use App\periode_akademik;
+use App\riwayat_akademik;
 use App\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+
     public function toHome(Request $request)
     {
         return view("adminlte.index");
-
     }
 
     public function PindahDashboard()
@@ -52,17 +53,10 @@ class AdminController extends Controller
 
     public function pindahKelas()
     {
-        // $daftarKelas = DB::table('kelas')->get();
-        // $DBPeriode = DB::table('periode_akademik')->where("Status", 1)->get();
-        // $GuruAktif = DB::table('guru')->where("Status_guru",1)->get();
-        // $DBJurusan = DB::table('jurusan')->get();
         $daftarKelas = kelas::all();
         $DBPeriode = periode_akademik::where("status",1);
         $GuruAktif = guru::where("Status_guru",1)->get();
         $DBJurusan = jurusan::all();
-
-
-        // dd($daftarKelas[0]->jurusan);
         return view("adminlte.formKelas",[
             "daftarKelas"=>$daftarKelas,
             "periode"=>$DBPeriode,
@@ -79,18 +73,20 @@ class AdminController extends Controller
         ]);
     }
 
+    public function pindahRiwayat()
+    {
+        $riwayat = riwayat_akademik::all();
+        return view("adminlte.formRiwayat",["riwayat"=>$riwayat]);
+    }
+
+
+
     public function pindahJadwal()
     {
-        // $DBJadwal = DB::table('ajar_mengajar')->get();
-        // $GuruAktif = DB::table('guru')->where("Status_guru",1)->get();
-        // $Mapel = DB::table("mapel")->get();
-        // $kelas = DB::table('kelas')->get();
-
         $DBJadwal = ajar_mengajar::all();
         $GuruAktif = guru::where("Status_guru",1)->get();
         $Mapel = mapel::all();
         $kelas = kelas::all();
-
         return view("adminlte.jadwal",["Jadwal"=>$DBJadwal, "Guru"=>$GuruAktif,"Mapel"=>$Mapel,"kelas"=>$kelas]);
     }
 

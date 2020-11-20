@@ -12,15 +12,40 @@ use Carbon;
 use Carbon\Carbon as CarbonCarbon;
 use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class Database extends Controller
 {
+    public function updateSiswa(Request $request)
+    {
+        // dd($request->all());
+        $siswa = siswa::find($request->NIS);
+        $siswa->NISN = $request->NISN;
+        $siswa->Nama_siswa = $request->nama;
+        $siswa->Password_siswa = $request->password;
+        $siswa->Tempat_lahir_siswa = $request->tempatLahir;
+        $siswa->Tanggal_lahir_siswa = $request->tanggalLahir;
+        $siswa->Nama_ibu = $request->namaIbu;
+        $siswa->Nama_ayah = $request->namaAyah;
+        $siswa->agama = $request->agama;
+        $siswa->Jenis_kelamin = $request->jenisKelamin;
+        $siswa->Alamat_Siswa = $request->alamat;
+        $siswa->save();
+        return redirect('/siswa');
+    }
+
     public function deleteSiswa($id)
     {
-        # code...
-        // dd($id);
         $siswa = siswa::find($id);
         $siswa->delete();
+        return redirect("/siswa");
+    }
+
+    public function toUpdateSiswa($id)
+    {
+        $siswa  = siswa::find($id);
+        Session::put("siswa",$siswa);
+        return view('adminlte.editSiswa',["siswa"=>$siswa]);
     }
 
 
