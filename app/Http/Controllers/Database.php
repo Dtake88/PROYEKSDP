@@ -61,11 +61,12 @@ class Database extends Controller
             "tglLahir" => "required|date",
             "NameMom" => "required|alpha",
             "NameDad" => "required|alpha",
-            "status" => "required",
             "nisn" => "required|numeric|size:10|unique:connection.siswa, NISN",
             "agama" => "required|alpha",
             "jk" => "required|alpha",
-            "alamat" => "required"
+            "alamat" => "required",
+            "kelas" => "required",
+            "jurusan" => "required",
         ]);
 
         if ($data->has("Insert")) {
@@ -82,8 +83,8 @@ class Database extends Controller
                     "Agama"=>$data->input("agama"),
                     "Jenis_kelamin"=>$data->input("jk"),
                     "Alamat_siswa"=>$data->input("alamat"),
-                    "id_kelas" => 118000,
-                    "id_jurusan" =>117003
+                    "id_kelas" => $data->input("kelas"),
+                    "id_jurusan" =>$data->input("jurusan")
                 ]
             );
             // dd("inserted");
@@ -92,7 +93,7 @@ class Database extends Controller
         if ($data->has("Update")) {
             $tempnis = siswa::find($data->input("nis"));
             $tempnis->Nama_siswa = $data->input("nama");
-            $tempnis->Password_siswa =Hash::make($data->input("pw")) ;
+            $tempnis->Password_siswa =Hash::make($data->input("pw"));
             $tempnis->Tempat_lahir_siswa = $data->input("tmptLahir");
             $tempnis->Tanggal_lahir_siswa = $data->input("tglLahir");
             $tempnis->Nama_ibu = $data->input("NameMom");
@@ -101,6 +102,8 @@ class Database extends Controller
             $tempnis->Agama = $data->input("agama");
             $tempnis->Jenis_kelamin = $data->input("jk");
             $tempnis->Status = $data->input("status");
+            $tempnis->Id_kelas = $data->input("kelas");
+            $tempnis->Id_jurusan = $data->input("jurusan");
             $tempnis->save();
         }
         if ($data->has("Delete")) {
