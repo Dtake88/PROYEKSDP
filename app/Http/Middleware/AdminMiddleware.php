@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Session\Session;
-use Illuminate\Support\Facades\Auth;
 
 class AdminMiddleware
 {
@@ -19,7 +18,8 @@ class AdminMiddleware
     {
 
         // dd($request);
-        if(!Auth::guard('admin')->check()){
+        // !Auth::guard('guru')->check()
+        if(!$request->session()->has('loggedAdmin')){
             return back()->with("tembak","Not Authorized");
         }
         return $next($request);
