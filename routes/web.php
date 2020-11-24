@@ -83,10 +83,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
 
 //guru
 Route::group(['middleware' => ['GuruMiddleware']], function () {
-    // Route::get('/homeGuru', 'GuruController@toHome');
-    Route::get('/homeGuru', function(){
-        return view("guru.index");
-    });
+    Route::get('/homeGuru', 'GuruController@toHome');
     Route::get('/inputNilai', 'GuruController@pindahInputNilai');
     Route::get('/getDaftarNilai',"GuruController@getDaftarNilai" );
 });
