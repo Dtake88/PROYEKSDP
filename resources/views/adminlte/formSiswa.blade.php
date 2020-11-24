@@ -168,8 +168,8 @@
                     <label class="control-label">Jenis Kelamin</label>
                     <div class="controls">
                       <select class="span11" name="jk">
-                        <option value="Islam" selected>Pria</option>
-                        <option value="Budha">Wanita</option>
+                        <option value="Pria" selected>Pria</option>
+                        <option value="Wanita">Wanita</option>
                       </select>
                       @error('jk')
                             <br><span style="color: red;">{{ $message }}</span>

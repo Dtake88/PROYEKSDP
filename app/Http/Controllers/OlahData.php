@@ -40,12 +40,12 @@ class OlahData extends Controller
         ];
 
         //cek hashing
-        if(Auth::guard('siswa')->attempt($siswa)){
-            // Cookie::queue("userLogin",json_encode($siswa),120);
-            // $data->session()->put('loggedSiswa', "siswa");
-            // dd(Auth::guard('siswa')->user());
-            return redirect("dashboardSiswa");
-        }
+        // if(Auth::guard('siswa')->attempt($siswa)){
+        //     // Cookie::queue("userLogin",json_encode($siswa),120);
+        //     // $data->session()->put('loggedSiswa', "siswa");
+        //     // dd(Auth::guard('siswa')->user());
+        //     return redirect("dashboardSiswa");
+        // }
         // if(Auth::guard('admin')->attempt($admin)){
         //     return redirect("homeAdmin");
         // }

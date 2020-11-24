@@ -55,18 +55,14 @@ class Database extends Controller
     public function selectSiswa(Request $data)
     {
         $data->validate([
-            "nama" => "required|alpha|regex:/^['][a-zA-Z]{1,}$/",
+            "nisn" => "required|numeric",
+            "nama" => "required",
             "pw" => "required",
             "tmptLahir" => "required|alpha",
-            "tglLahir" => "required|date",
-            "NameMom" => "required|alpha|regex:/^['][a-zA-Z]{1,}$/",
-            "NameDad" => "required|alpha|regex:/^['][a-zA-Z]{1,}$/",
-            "nisn" => "required|numeric|size:10|unique:connection.siswa, NISN",
-            "agama" => "required|alpha",
-            "jk" => "required|alpha",
-            "alamat" => "required",
-            "kelas" => "required",
-            "jurusan" => "required",
+            "tglLahir" => "required",
+            "NameMom" => "required|alpha",
+            "NameDad" => "required|alpha",
+            "alamat" => "required"
         ]);
 
         if ($data->has("Insert")) {
@@ -78,13 +74,13 @@ class Database extends Controller
                     "Tanggal_lahir_siswa"=>$data->input("tglLahir"),
                     "Nama_ibu"=>$data->input("NameMom"),
                     "Nama_ayah"=>$data->input("NameDad"),
-                    "Status"=>1,
+                    "Status"=>$data->input("status"),
                     "NISN"=>$data->input("nisn"),
                     "Agama"=>$data->input("agama"),
                     "Jenis_kelamin"=>$data->input("jk"),
                     "Alamat_siswa"=>$data->input("alamat"),
-                    "id_kelas" => $data->input("kelas"),
-                    "id_jurusan" =>$data->input("jurusan")
+                    "Id_kelas" => $data->input("kelas"),
+                    "Id_jurusan" =>$data->input("jurusan")
                 ]
             );
             // dd("inserted");
@@ -120,9 +116,9 @@ class Database extends Controller
     public function selectGuru(Request $data)
     {
         $data->validate([
-            "nama" => "required|alpha|regex:/^['][a-zA-Z]{1,}$/",
+            "nama" => "required|regex:/^[a-zA-Z]+\'[a-zA-Z]+$",
             "pw" => "required",
-            "notelp" => "required|numeric|size:12|unique:connection.guru, No_guru",
+            "notelp" => "required|numeric|size:12",
             "alamat" => "required",
             "status" => "required"
         ]);
