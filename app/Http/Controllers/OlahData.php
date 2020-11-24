@@ -40,18 +40,18 @@ class OlahData extends Controller
         ];
 
         //cek hashing
-        if(Auth::guard('siswa')->attempt($siswa)){
-            // Cookie::queue("userLogin",json_encode($siswa),120);
-            // $data->session()->put('loggedSiswa', "siswa");
-            // dd(Auth::guard('siswa')->user());
-            return redirect("dashboardSiswa");
-        }
-        if(Auth::guard('admin')->attempt($admin)){
-            return redirect("homeAdmin");
-        }
-        if(Auth::guard('guru')->attempt($guru)){
-            return redirect("homeGuru");
-        }
+        // if(Auth::guard('siswa')->attempt($siswa)){
+        //     // Cookie::queue("userLogin",json_encode($siswa),120);
+        //     // $data->session()->put('loggedSiswa', "siswa");
+        //     // dd(Auth::guard('siswa')->user());
+        //     return redirect("dashboardSiswa");
+        // }
+        // if(Auth::guard('admin')->attempt($admin)){
+        //     return redirect("homeAdmin");
+        // }
+        // if(Auth::guard('guru')->attempt($guru)){
+        //     return redirect("homeGuru");
+        // }
 
 
         // if (siswa::where('NIS',$user)->exists()) {
@@ -67,18 +67,18 @@ class OlahData extends Controller
         //     return redirect("dashboardSiswa");
         // }
 
-        $datasiswa=siswa::all();
-        foreach($datasiswa as $siswas){
-            if($siswas->NIS==$user && Hash::check($pass, $siswas->Password_siswa)){
-                $userLogin = [
-                    "username" => $user,
-                    "password"=> $pass
-                ];
-                Cookie::queue("userLogin",json_encode($userLogin),120);
-                $data->session()->put('loggedSiswa', "siswa");
-                return redirect("dashboardSiswa");
-            }
-        }
+        // $datasiswa=siswa::all();
+        // foreach($datasiswa as $siswas){
+        //     if($siswas->NIS==$user && Hash::check($pass, $siswas->Password_siswa)){
+        //         $userLogin = [
+        //             "username" => $user,
+        //             "password"=> $pass
+        //         ];
+        //         Cookie::queue("userLogin",json_encode($userLogin),120);
+        //         $data->session()->put('loggedSiswa', "siswa");
+        //         return redirect("dashboardSiswa");
+        //     }
+        // }
 
         return redirect("/")->with("error","1");
 
