@@ -91,6 +91,20 @@ class OlahData extends Controller
             return redirect("homeAdmin");
         }
 
+        //cek hashing
+        $datasiswa = siswa::all();
+        foreach($datasiswa as $siswas){
+            if($siswas->NIS == $user && Hash::check($pass, $siswas->Password_siswa)){
+                $userLogin = [
+                    "username" => $user,
+                    "password"=> $pass
+                ];
+                Cookie::queue("userLogin",json_encode($userLogin),120);
+                $data->session()->put('loggedSiswa', "siswa");
+                return redirect("dashboardSiswa");
+            }
+        }
+
         // if (guru::where('NIG',$user)->where('Password_guru',$pass)->exists()) {
         //     $userLogin = [
         //         "username" => $user,
