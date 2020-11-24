@@ -3,6 +3,7 @@
 use App\guru;
 use App\riwayat_akademik;
 use App\siswa;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -23,6 +24,16 @@ Route::get('/', function () {
 });
 Route::get('/logout', function () {
     Session::flush();
+    if(Auth::guard("admin")->check()){
+        Auth::web("admin")->logout();
+    }
+    if(Auth::guard("guru")->check()){
+        Auth::web("guru")->logout();
+    }
+    if(Auth::guard("siswa")->check()){
+        Auth::web("siswa")->logout();
+    }
+
     return redirect("/");
 });
 
@@ -31,8 +42,6 @@ Route::get('/restore', function () {
     dd(siswa::onlyTrashed()->restore());
     // return view('adminlte.login');
 });
-
-
 
 //admin
 Route::group(['middleware' => ['AdminMiddleware']], function () {
@@ -55,7 +64,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
         if($siswa->Status == 1){
             $siswa->Status = 0;}
         else{
-            $siswa->Status = 1;
+        $siswa->Status = 1;
         }
         $siswa->save();
         return redirect("/siswa");

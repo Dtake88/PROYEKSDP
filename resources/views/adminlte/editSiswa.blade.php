@@ -9,7 +9,7 @@
             $siswa = Session::get("siswa");
             // dd($siswa);
         @endphp
-        <form action="updateSiswa" method="POST">
+        <form action="{{url('/updateSiswa')}}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-md-6">
