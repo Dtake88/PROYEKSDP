@@ -25,7 +25,6 @@ class Database extends Controller
             "tglLahir" => "required|date",
             "NameMom" => "required|alpha",
             "NameDad" => "required|alpha",
-            "status" => "required",
             "nisn" => "required|numeric|size:10|unique:connection.siswa, NISN",
             "agama" => "required|alpha",
             "jk" => "required|alpha",
@@ -49,15 +48,11 @@ class Database extends Controller
             );
 
             $lastSiswa = siswa::latest("NIS")->first();
-
-
-
-
         }
         if ($data->has("Update")) {
             $tempnis = siswa::find($data->input("nis"));
             $tempnis->Nama_siswa = $data->input("nama");
-            $tempnis->Password_siswa =Hash::make($data->input("pw")) ;
+            $tempnis->Password_siswa =Hash::make($data->input("pw"));
             $tempnis->Tempat_lahir_siswa = $data->input("tmptLahir");
             $tempnis->Tanggal_lahir_siswa = $data->input("tglLahir");
             $tempnis->Nama_ibu = $data->input("NameMom");

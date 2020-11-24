@@ -11,5 +11,5 @@ class siswa extends Model
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;
-    protected $fillable = ['Nama_siswa', 'Password_siswa', 'Tempat_lahir_siswa', 'Tanggal_lahir_siswa', 'Nama_ibu', 'Nama_ayah', 'Status_siswa', 'NISN', 'Agama', 'Jenis_kelamin', 'Alamat_siswa'];
+    protected $fillable = ['Nama_siswa', 'Password_siswa', 'Tempat_lahir_siswa', 'Tanggal_lahir_siswa', 'Nama_ibu', 'Nama_ayah', 'Status_siswa', 'NISN', 'Agama', 'Jenis_kelamin', 'Alamat_siswa', 'Id_kelas', 'Id_jurusan'];
 }

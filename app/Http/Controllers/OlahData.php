@@ -10,6 +10,7 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class OlahData extends Controller
 {
@@ -46,14 +47,30 @@ class OlahData extends Controller
         }
 
 
-        if (siswa::where('NIS',$user)->where('Password_siswa',$pass)->exists()) {
-            $userLogin = [
-                "username" => $user,
-                "password"=> $pass
-            ];
-            Cookie::queue("userLogin",json_encode($userLogin),120);
-            $data->session()->put('loggedSiswa', "siswa");
-            return redirect("dashboardSiswa");
+        // if (siswa::where('NIS',$user)->exists()) {
+        //     if(Hash::check($pass, )){
+
+        //     }
+        //     $userLogin = [
+        //         "username" => $user,
+        //         "password"=> $pass
+        //     ];
+        //     Cookie::queue("userLogin",json_encode($userLogin),120);
+        //     $data->session()->put('loggedSiswa', "siswa");
+        //     return redirect("dashboardSiswa");
+        // }
+
+        $datasiswa=siswa::all();
+        foreach($datasiswa as $siswas){
+            if($siswas->NIS==$user && Hash::check($pass, $siswas->Password_siswa)){
+                $userLogin = [
+                    "username" => $user,
+                    "password"=> $pass
+                ];
+                Cookie::queue("userLogin",json_encode($userLogin),120);
+                $data->session()->put('loggedSiswa', "siswa");
+                return redirect("dashboardSiswa");
+            }
         }
 
         return redirect("/")->with("error","1");
