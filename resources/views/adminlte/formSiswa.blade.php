@@ -166,11 +166,6 @@
                 <div class="control-group">
                     <label class="control-label">Jenis Kelamin</label>
                     <div class="controls">
-<<<<<<< Updated upstream
-                      <select class="form-control span11" name="jk">
-                        <option value="Pria" selected>Pria</option>
-                        <option value="Wanita">Wanita</option>
-=======
                       <select class="span11" name="agama">
                         <option value="Islam" selected>Islam</option>
                         <option value="Budha">Budha</option>
@@ -178,7 +173,6 @@
                         <option value="Katolik">Katolik</option>
                         <option value="Kristen">Kristen</option>
                         <option value="Konghucu">Konghucu</option>
->>>>>>> Stashed changes
                       </select>
                       @error('jk')
                             <br><span style="color: red;">{{ $message }}</span>
@@ -215,14 +209,14 @@
                   <div class="control-group">
                     <label class="control-label">Jurusan</label>
                     <div class="controls">
-                      <select class="span11" name="kelas">
+                      <select class="span11" name="jurusan">
                           @isset($DBJurusan)
                             @foreach ($DBJurusan as $i)
                             <option value="{{$i->Id_jurusan}}" selected>{{$i->Nama_jurusan}}</option>
                             @endforeach
                           @endisset
                       </select>
-                      @error('kelas')
+                      @error('jurusan')
                             <br><span style="color: red;">{{ $message }}</span>
                         @enderror
                     </div>

@@ -19,13 +19,8 @@ class AdminController extends Controller
 
     public function toHome(Request $request)
     {
-<<<<<<< Updated upstream
-        return view("adminlte.index");
-=======
         $pengumuman = pengumuman::all();
         return view("adminlte.index" , ["pengumuman"=>$pengumuman]);
-
->>>>>>> Stashed changes
     }
 
     public function PindahDashboard()
