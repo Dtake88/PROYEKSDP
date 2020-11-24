@@ -46,9 +46,9 @@ class OlahData extends Controller
             // dd(Auth::guard('siswa')->user());
             return redirect("dashboardSiswa");
         }
-        if(Auth::guard('admin')->attempt($admin)){
-            return redirect("homeAdmin");
-        }
+        // if(Auth::guard('admin')->attempt($admin)){
+        //     return redirect("homeAdmin");
+        // }
         if(Auth::guard('guru')->attempt($guru)){
             return redirect("homeGuru");
         }
@@ -58,6 +58,7 @@ class OlahData extends Controller
         //     if(Hash::check($pass, )){
 
         //     }
+        // if (siswa::where('NIS',$user)->where('Password_siswa',$pass)->exists()) {
         //     $userLogin = [
         //         "username" => $user,
         //         "password"=> $pass
@@ -79,6 +80,28 @@ class OlahData extends Controller
                 return redirect("dashboardSiswa");
             }
         }
+
+        if (administrasi::where('Username_administrasi',$user)->where('Password_admin',$pass)->exists()) {
+            $userLogin = [
+                "username" => $user,
+                "password"=> $pass
+            ];
+            Cookie::queue("userLogin",json_encode($userLogin),120);
+            $data->session()->put('loggedAdmin', "admin");
+            return redirect("homeAdmin");
+        }
+
+        // if (guru::where('NIG',$user)->where('Password_guru',$pass)->exists()) {
+        //     $userLogin = [
+        //         "username" => $user,
+        //         "password"=> $pass
+        //     ];
+        //     Cookie::queue("userLogin",json_encode($userLogin),120);
+        //     $data->session()->put('loggedGuru', $userLogin);
+        //     return redirect("homeGuru");
+        // }
+
+
 
         return redirect("/")->with("error","1");
 
