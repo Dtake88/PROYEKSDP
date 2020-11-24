@@ -13,6 +13,7 @@ class riwayat_akademik extends Model
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;
+    protected $fillable = ['NIS', 'id_kelas', 'id_mapel','Quiz1','Quiz2','Tugas1','Tugas2','UTS','UAS','Sikap','Hasil'];
 
     public function kelas(){
         return $this->hasOne(kelas::class,"Id_kelas","Id_kelas");
@@ -22,6 +23,10 @@ class riwayat_akademik extends Model
         return $this->hasOne(mapel::class,"Id_mapel","Id_mapel");
     }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     public function siswa(){
         return $this->belongsTo(siswa::class,"NIS","NIS");
     }

@@ -15,8 +15,6 @@ class GuruController extends Controller
         return view("guru.index");
     }
 
-
-
     public function pindahInputNilai()
     {
         $sessionGuru= Session::get("loggedGuru")  ;
