@@ -55,12 +55,12 @@ class Database extends Controller
     public function selectSiswa(Request $data)
     {
         $data->validate([
-            "nama" => "required|alpha",
+            "nama" => "required|alpha|regex:/^['][a-zA-Z]{1,}$/",
             "pw" => "required",
             "tmptLahir" => "required|alpha",
             "tglLahir" => "required|date",
-            "NameMom" => "required|alpha",
-            "NameDad" => "required|alpha",
+            "NameMom" => "required|alpha|regex:/^['][a-zA-Z]{1,}$/",
+            "NameDad" => "required|alpha|regex:/^['][a-zA-Z]{1,}$/",
             "nisn" => "required|numeric|size:10|unique:connection.siswa, NISN",
             "agama" => "required|alpha",
             "jk" => "required|alpha",
@@ -119,13 +119,13 @@ class Database extends Controller
 
     public function selectGuru(Request $data)
     {
-        // $data->validate([
-        //     "nama" => "required|alpha",
-        //     "pw" => "required",
-        //     "notelp" => "required|numeric|size:12|unique:connection.guru, No_guru",
-        //     "alamat" => "required",
-        //     "status" => "required"
-        // ]);
+        $data->validate([
+            "nama" => "required|alpha|regex:/^['][a-zA-Z]{1,}$/",
+            "pw" => "required",
+            "notelp" => "required|numeric|size:12|unique:connection.guru, No_guru",
+            "alamat" => "required",
+            "status" => "required"
+        ]);
 
         // dd($data->all());
         if ($data->has("Insert")) {
