@@ -27,5 +27,7 @@
 <!--End-Chart-box-->
     <hr/>
 </div>
-
+@if (Session::has('message'))
+        <script>alert(`{{ Session::get('message') }}`)</script>
+    @endif
 @endsection

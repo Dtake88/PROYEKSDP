@@ -19,12 +19,19 @@ class AdminController extends Controller
 
     public function toHome(Request $request)
     {
+<<<<<<< Updated upstream
         return view("adminlte.index");
+=======
+        $pengumuman = pengumuman::all();
+        return view("adminlte.index" , ["pengumuman"=>$pengumuman]);
+
+>>>>>>> Stashed changes
     }
 
     public function PindahDashboard()
     {
-        return view("adminlte.index");
+        $pengumuman = pengumuman::all();
+        return view("adminlte.index" , ["pengumuman"=>$pengumuman]);
     }
 
     public function pindahPengumuman()
@@ -38,8 +45,12 @@ class AdminController extends Controller
     public function pindahSiswa()
     {
         $daftarSiswa = siswa::all();
+        $DBkelas = kelas::all();
+        $DBJurusan = jurusan::all();
         return view("adminlte.formSiswa",[
-            "daftarSiswa"=>$daftarSiswa
+            "daftarSiswa"=>$daftarSiswa,
+            "DBkelas"=>$DBkelas,
+            "DBJurusan"=>$DBJurusan
         ]);
     }
 
