@@ -37,12 +37,23 @@
                     <td>{{$siswa->Nama_ayah}}</td>
                     <td>{{$siswa->Alamat_siswa}}</td>
                     <td>{{$siswa->Jenis_kelamin}}</td>
-                    <td>{{$siswa->Status_siswa}}</td>
+                    @if ($siswa->Status == 1)
                     <td>
-                        <form action="/siswa/crud" method="post" class="form-horizontal">
+                        <button class="btn btn-danger "><a class="text-white" href="aktifNonaktifSiswa/{{$siswa->NIS}}">Nonaktifkan</a></button>
+                    </td>
+                    @else
+                    <td>
+                        <button class="btn btn-success "><a class="text-white" href="aktifNonaktifSiswa/{{$siswa->NIS}}">Aktifkan</a></button>
+                    </td>
+                    @endif
+                    <td>
+                        <button class="btn btn-primary "><a class="text-white" href="toUpdateSiswa/{{$siswa->NIS}}">Update</a></button>
+
+                        <button class="btn btn-danger"><a class="text-white" href="deleteSiswa/{{$siswa->NIS}}">Delete</a></button>
+                        {{-- <form action="/siswa/crud" method="post" class="form-horizontal">
                             @csrf
                             <button type="submit" class="btn btn-danger" name="Delete" value="{{$siswa->NIS}}">Delete</button>
-                        </form>
+                        </form> --}}
                     </td>
                 </tr>
             @endforeach
@@ -65,6 +76,15 @@
                     <input type="text" class="span11" placeholder="NISN" name="nisn"/>
                   </div>
                 </div>
+                {{-- <div class="control-group">
+                  <label class="control-label">NIS :</label>
+                  <div class="controls">
+                    <input type="text" class="span11" placeholder="NIS" name="nis"/> --}}
+                    {{-- @error('nis')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror --}}
+                  {{-- </div> --}}
+                {{-- </div> --}}
                 <div class="control-group">
                   <label class="control-label">Nama Lengkap :</label>
                   <div class="controls">
@@ -122,31 +142,31 @@
                 <div class="control-group">
                   <label for="normal" class="control-label">Alamat :</label>
                   <div class="controls">
-                    <input type="text" class="span11" name="alamat" placeholder="alamat">
+                    <input type="text" class="form-control span11" name="alamat" placeholder="alamat">
                     @error('alamat')
                             <br><span style="color: red;">{{ $message }}</span>
                         @enderror
                 </div>
                 <div class="control-group">
-                    <label class="control-label">Agama</label>
-                    <div class="controls">
-                      <select class="span11" name="agama">
-                        <option value="Pria" selected>Islam</option>
-                        <option value="Wanita">Budha</option>
-                        <option value="Wanita">Hindu</option>
-                        <option value="Wanita">Katolik</option>
-                        <option value="Wanita">Kristen</option>
-                        <option value="Wanita">Konghucu</option>
-                      </select>
-                      @error('agama')
-                            <br><span style="color: red;">{{ $message }}</span>
-                        @enderror
-                    </div>
-                  </div>
+                  <label class="control-label">Agama :</label>
+                  <div class="controls">
+                    <select class="form-control span11" name="agama">
+                        <option value="Islam" selected>Islam</option>
+                        <option value="Budha">Budha</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Katholik">Katolik</option>
+                        <option value="Kristen">Kristen</option>
+                        <option value="Konghucu">Konghucu</option>
+                    </select>
+                    @error('agama')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
+                </div>
+                </div>
                 <div class="control-group">
                     <label class="control-label">Jenis Kelamin</label>
                     <div class="controls">
-                      <select class="span11" name="jk">
+                      <select class="form-control span11" name="jk">
                         <option value="Pria" selected>Pria</option>
                         <option value="Wanita">Wanita</option>
                       </select>
@@ -155,9 +175,21 @@
                         @enderror
                     </div>
                   </div>
+                  <div class="control-group">
+                    <label class="control-label">Status Siswa</label>
+                    <div class="controls">
+                      <select class="form-control span11" name="status">
+                        <option value="1" selected>Aktif</option>
+                        <option value="0">Tidak Aktif</option>
+                      </select>
+                      @error('status')
+                            <br><span style="color: red;">{{ $message }}</span>
+                        @enderror
+                    </div>
+                  </div>
                 <div class="form-actions">
                   <button type="submit" class="btn btn-success" name="Insert">Insert</button>
-                  <button type="submit" class="btn btn-success" name="Update">Update</button>
+                  {{-- <button type="submit" class="btn btn-success" name="Update">Update</button> --}}
                 </div>
               </form>
               {{-- form untuk admin input siswa dengan excel --}}

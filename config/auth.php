@@ -40,6 +40,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'prov_admin',
+        ],
+        'guru' => [
+            'driver' => 'session',
+            'provider' => 'prov_guru',
+        ],
+        'siswa' => [
+            'driver' => 'session',
+            'provider' => 'prov_siswa',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -70,6 +82,23 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        'prov_admin' => [
+            'driver' => 'eloquent',
+            'model' => App\administrasi::class,
+        ],
+        'prov_guru' => [
+            'driver' => 'eloquent',
+            'model' => App\guru::class,
+        ],
+        'prov_siswa' => [
+            'driver' => 'eloquent',
+            'model' => App\siswa::class,
+        ],
+
+
+
+
+
 
         // 'users' => [
         //     'driver' => 'database',

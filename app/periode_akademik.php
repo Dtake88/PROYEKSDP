@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class periode_akademik extends Model
 {
+    use SoftDeletes;
     protected $table = 'periode_akademik';
     protected $primaryKey = 'Id_periode';
     protected $keyType = 'bigint';
