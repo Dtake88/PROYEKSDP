@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Auth;
 
 class SiswaMiddleware
 {
@@ -16,7 +17,7 @@ class SiswaMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(!$request->session()->has('loggedSiswa')){
+        if(!Auth::guard('siswa')->check()){
             return back()->with("tembak","Not Authorized");
         }
         return $next($request);

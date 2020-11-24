@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class kelas extends Model
 {
-
+    use SoftDeletes;
     protected $table = 'kelas';
     protected $primaryKey = 'id_kelas';
     protected $keyType = 'bigint';

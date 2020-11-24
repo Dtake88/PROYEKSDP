@@ -13,9 +13,45 @@ use Carbon;
 use Carbon\Carbon as CarbonCarbon;
 use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class Database extends Controller
 {
+    public function updateSiswa(Request $request)
+    {
+        // dd($request->all());
+        $siswa = siswa::find($request->NIS);
+        $siswa->NISN = $request->NISN;
+        $siswa->Nama_siswa = $request->nama;
+
+        $siswa->Password_siswa = Hash::make( $request->password);
+        // $siswa->Password_siswa = $request->password;
+        $siswa->Tempat_lahir_siswa = $request->tempatLahir;
+        $siswa->Tanggal_lahir_siswa = $request->tanggalLahir;
+        $siswa->Nama_ibu = $request->namaIbu;
+        $siswa->Nama_ayah = $request->namaAyah;
+        $siswa->agama = $request->agama;
+        $siswa->Jenis_kelamin = $request->jenisKelamin;
+        $siswa->Alamat_Siswa = $request->alamat;
+        $siswa->save();
+        return redirect('/siswa');
+    }
+
+    public function deleteSiswa($id)
+    {
+        $siswa = siswa::find($id);
+        $siswa->delete();
+        return redirect("/siswa");
+    }
+
+    public function toUpdateSiswa($id)
+    {
+        $siswa  = siswa::find($id);
+        Session::put("siswa",$siswa);
+        return view('adminlte.editSiswa',["siswa"=>$siswa]);
+    }
+
+
     public function selectSiswa(Request $data)
     {
         $data->validate([
@@ -30,6 +66,7 @@ class Database extends Controller
             "jk" => "required|alpha",
             "alamat" => "required"
         ]);
+
         if ($data->has("Insert")) {
             siswa::create(
                 [
@@ -43,11 +80,13 @@ class Database extends Controller
                     "NISN"=>$data->input("nisn"),
                     "Agama"=>$data->input("agama"),
                     "Jenis_kelamin"=>$data->input("jk"),
-                    "Alamat_siswa"=>$data->input("alamat")
+                    "Alamat_siswa"=>$data->input("alamat"),
+                    "id_kelas" => 118000,
+                    "id_jurusan" =>117003
                 ]
             );
-
-            $lastSiswa = siswa::latest("NIS")->first();
+            // dd("inserted");
+            return redirect("/siswa");
         }
         if ($data->has("Update")) {
             $tempnis = siswa::find($data->input("nis"));
@@ -76,24 +115,35 @@ class Database extends Controller
 
     public function selectGuru(Request $data)
     {
-        $data->validate([
-            "nama" => "required|alpha",
-            "pw" => "required",
-            "notelp" => "required|numeric|size:12|unique:connection.guru, No_guru",
-            "alamat" => "required",
-            "status" => "required"
-        ]);
+        // $data->validate([
+        //     "nama" => "required|alpha",
+        //     "pw" => "required",
+        //     "notelp" => "required|numeric|size:12|unique:connection.guru, No_guru",
+        //     "alamat" => "required",
+        //     "status" => "required"
+        // ]);
 
+        // dd($data->all());
         if ($data->has("Insert")) {
-            guru::create(
-                [
-                    "Nama_guru"=>$data->input("nama"),
-                    "Password_guru"=>Hash::make($data->input("pw")),
-                    "No_guru"=>$data->input("notelp"),
-                    "Alamat_guru"=>$data->input("alamat"),
-                    "Status_guru"=>$data->input("status")
-                ]
-            );
+
+            // guru::create(
+            //     [
+            //         "Nama_guru"=>$data->input("nama"),
+            //         "Password_guru"=>Hash::make($data->input("pw")),
+            //         "No_hp_guru"=>$data->input("notelp"),
+            //         "Alamat_guru"=>$data->input("alamat"),
+            //         "Status_guru"=>$data->input("status")
+            //     ]
+            // );
+
+            $guru = new guru;
+            $guru->Nama_guru = $data->nama;
+            $guru->Password_guru = Hash::make( $data->pw);
+            $guru->No_hp_guru = $data->notelp;
+            $guru->Alamat_guru = $data->alamat;
+            $guru->Status_guru = $data->status;
+            $guru->save();
+
         }
         if ($data->has("Update")) {
             $tempnig = guru::find($data->input("nig"));
