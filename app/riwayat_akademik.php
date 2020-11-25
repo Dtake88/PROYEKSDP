@@ -23,10 +23,6 @@ class riwayat_akademik extends Model
         return $this->hasOne(mapel::class,"Id_mapel","Id_mapel");
     }
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     public function siswa(){
         return $this->belongsTo(siswa::class,"NIS","NIS");
     }

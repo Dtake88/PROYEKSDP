@@ -73,7 +73,7 @@
                 <div class="control-group">
                   <label class="control-label">NISN :</label>
                   <div class="controls">
-                    <input type="text" class="span11" placeholder="NISN" name="nisn"/>
+                    <input type="text" class="span7" placeholder="NISN" name="nisn"/>
                   </div>
                 </div>
                 {{-- <div class="control-group">
@@ -88,7 +88,7 @@
                 <div class="control-group">
                   <label class="control-label">Nama Lengkap :</label>
                   <div class="controls">
-                    <input type="text" class="span11" placeholder="Nama Lengkap" name="nama" />
+                    <input type="text" class="span7" placeholder="Nama Lengkap" name="nama" />
                     @error('nama')
                         <br><span style="color: red;">{{ $message }}</span>
                     @enderror
@@ -97,7 +97,7 @@
                 <div class="control-group">
                   <label class="control-label">Kata Sandi :</label>
                   <div class="controls">
-                    <input type="password"  class="span11" placeholder="Kata Sandi" name="pw" />
+                    <input type="password" class="span7" placeholder="Kata Sandi" name="pw" />
                     @error('pw')
                         <br><span style="color: red;">{{ $message }}</span>
                     @enderror
@@ -107,7 +107,7 @@
                 <div class="control-group">
                   <label class="control-label">Tempat Lahir :</label>
                   <div class="controls">
-                    <input type="text"  class="span11" placeholder="Alamat" name="tmptLahir" />
+                    <input type="text"  class="span7" placeholder="Alamat" name="tmptLahir" />
                     @error('tmptLahir')
                         <br><span style="color: red;">{{ $message }}</span>
                     @enderror
@@ -116,7 +116,7 @@
                 <div class="control-group">
                   <label class="control-label">Tanggal Lahir :</label>
                   <div class="controls">
-                      <input type="date" value="12-02-2012"  data-date-format="dd-mm-yyyy" class="span11" name="tglLahir">
+                      <input type="date" value="12-02-2012"  data-date-format="dd-mm-yyyy" class="span7" name="tglLahir">
                       @error('tglLahir')
                         <br><span style="color: red;">{{ $message }}</span>
                       @enderror
@@ -125,7 +125,7 @@
                 <div class="control-group">
                     <label class="control-label">Nama Ibu :</label>
                     <div class="controls">
-                        <input type="text"  class="span11" placeholder="Nama Ibu" name="NameMom" />
+                        <input type="text"  class="span7" placeholder="Nama Ibu" name="NameMom" />
                         @error('NameMom')
                             <br><span style="color: red;">{{ $message }}</span>
                         @enderror
@@ -134,7 +134,7 @@
                 <div class="control-group">
                     <label class="control-label">Nama Ayah :</label>
                     <div class="controls">
-                        <input type="text"  class="span11" placeholder="Nama Ayah" name="NameDad" />
+                        <input type="text"  class="span7" placeholder="Nama Ayah" name="NameDad" />
                         @error('NameDad')
                             <br><span style="color: red;">{{ $message }}</span>
                         @enderror
@@ -143,7 +143,7 @@
                 <div class="control-group">
                   <label for="normal" class="control-label">Alamat :</label>
                   <div class="controls">
-                    <input type="text" class="form-control span11" name="alamat" placeholder="alamat">
+                    <input type="text" class="form-control span7" name="alamat" placeholder="alamat">
                     @error('alamat')
                             <br><span style="color: red;">{{ $message }}</span>
                         @enderror
@@ -151,7 +151,7 @@
                 <div class="control-group">
                   <label class="control-label">Agama :</label>
                   <div class="controls">
-                    <select class="form-control span11" name="agama">
+                    <select class="form-control span7" name="agama">
                         <option value="Islam" selected>Islam</option>
                         <option value="Budha">Budha</option>
                         <option value="Hindu">Hindu</option>
@@ -167,7 +167,7 @@
                 <div class="control-group">
                     <label class="control-label">Jenis Kelamin</label>
                     <div class="controls">
-                      <select class="span11" name="agama">
+                      <select class="span7" name="agama">
                         <option value="Islam" selected>Islam</option>
                         <option value="Budha">Budha</option>
                         <option value="Hindu">Hindu</option>
@@ -183,7 +183,7 @@
                   <div class="control-group">
                     <label class="control-label">Status Siswa</label>
                     <div class="controls">
-                      <select class="form-control span11" name="status">
+                      <select class="form-control span7" name="status">
                         <option value="1" selected>Aktif</option>
                         <option value="0">Tidak Aktif</option>
                       </select>
@@ -195,7 +195,7 @@
                   <div class="control-group">
                     <label class="control-label">Kelas</label>
                     <div class="controls">
-                      <select class="span11" name="kelas">
+                      <select class="span7" name="kelas">
                           @isset($DBkelas)
                             @foreach ($DBkelas as $i)
                             <option value="{{$i->Id_kelas}}" selected>{{$i->Nama_kelas}}</option>
@@ -210,7 +210,7 @@
                   <div class="control-group">
                     <label class="control-label">Jurusan</label>
                     <div class="controls">
-                      <select class="span11" name="jurusan">
+                      <select class="span7" name="jurusan">
                           @isset($DBJurusan)
                             @foreach ($DBJurusan as $i)
                             <option value="{{$i->Id_jurusan}}" selected>{{$i->Nama_jurusan}}</option>
