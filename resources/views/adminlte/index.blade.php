@@ -1,8 +1,6 @@
 @extends('adminlte.adminLayout')
 
 @section('indexAdmin')
-
-
     <div class="row-fluid">
         <div class="widget-box">
             <div class="widget-title bg_lo"  data-toggle="collapse" href="#collapseG3" > <span class="icon"> <i class="icon-chevron-down"></i> </span>
