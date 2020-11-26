@@ -13,6 +13,7 @@ use App\riwayat_akademik;
 use App\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -20,7 +21,11 @@ class AdminController extends Controller
     public function toHome(Request $request)
     {
         $pengumuman = pengumuman::all();
-        return view("adminlte.index" , ["pengumuman"=>$pengumuman]);
+
+        return view("adminlte.index" , [
+            "pengumuman"=>$pengumuman,
+            // "fileToa"=>$myPenting
+            ]);
     }
 
     public function PindahDashboard()

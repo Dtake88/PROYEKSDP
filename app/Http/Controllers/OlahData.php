@@ -40,12 +40,12 @@ class OlahData extends Controller
         ];
 
         //cek hashing
-        if(Auth::guard('siswa')->attempt($siswa)){
-            // Cookie::queue("userLogin",json_encode($siswa),120);
-            // $data->session()->put('loggedSiswa', "siswa");
-            // dd(Auth::guard('siswa')->user());
-            return redirect("dashboardSiswa");
-        }
+        // if(Auth::guard('siswa')->attempt($siswa)){
+        //     // Cookie::queue("userLogin",json_encode($siswa),120);
+        //     // $data->session()->put('loggedSiswa', "siswa");
+        //     // dd(Auth::guard('siswa')->user());
+        //     return redirect("dashboardSiswa");
+        // }
         // if(Auth::guard('admin')->attempt($admin)){
         //     return redirect("homeAdmin");
         // }
@@ -68,26 +68,27 @@ class OlahData extends Controller
         //     return redirect("dashboardSiswa");
         // }
 
-        $datasiswa=siswa::all();
-        foreach($datasiswa as $siswas){
-            if($siswas->NIS==$user && Hash::check($pass, $siswas->Password_siswa)){
-                $userLogin = [
-                    "username" => $user,
-                    "password"=> $pass
-                ];
-                Cookie::queue("userLogin",json_encode($userLogin),120);
-                $data->session()->put('loggedSiswa', "siswa");
-                return redirect("dashboardSiswa");
-            }
-        }
+        // $datasiswa=siswa::all();
+        // foreach($datasiswa as $siswas){
+        //     if($siswas->NIS==$user && Hash::check($pass, $siswas->Password_siswa)){
+        //         $userLogin = [
+        //             "username" => $user,
+        //             "password"=> $pass
+        //         ];
+        //         Cookie::queue("userLogin",json_encode($userLogin),120);
+        //         $data->session()->put('loggedSiswa', "siswa");
+        //         return redirect("dashboardSiswa");
+        //     }
+        // }
 
         if (administrasi::where('Username_administrasi',$user)->where('Password_admin',$pass)->exists()) {
+            $idadmin = administrasi::select('Id_administrasi')->where('Username_administrasi',$user)->where('Password_admin',$pass)->get();
             $userLogin = [
                 "username" => $user,
-                "password"=> $pass
+                "password"=> $pass,
             ];
             Cookie::queue("userLogin",json_encode($userLogin),120);
-            $data->session()->put('loggedAdmin', "admin");
+            $data->session()->put('loggedAdmin',$idadmin[0]->Id_administrasi);
             return redirect("homeAdmin");
         }
 

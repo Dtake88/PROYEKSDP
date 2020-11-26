@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use App\guru;
 use App\history_edit;
+use App\Imports\SiswaImport;
+use App\mapel;
 use App\pengumuman;
 use App\periode_akademik;
 use App\siswa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Carbon;
-use Carbon\Carbon as CarbonCarbon;
-use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Database extends Controller
 {
@@ -212,7 +215,7 @@ class Database extends Controller
             "Tingkat" => "required|numeric|size:1"
         ]);
         if ($data->has("Insert")) {
-            DB::table('mapel')->insert(
+            mapel::insert(
                 [
                     "Nama_mapel"=>$data->input("nama"),
                     "KKM"=>$data->input("kkm"),
@@ -221,7 +224,7 @@ class Database extends Controller
             );
         }
         if ($data->has("Update")) {
-            DB::table('mapel')->where('Id_mapel','=',$data->input("id"))->update(
+            mapel::where('Id_mapel','=',$data->input("id"))->update(
                 [
                     "Nama_mapel"=>$data->input("nama"),
                     "KKM"=>$data->input("kkm"),
@@ -231,46 +234,13 @@ class Database extends Controller
         }
         if ($data->has("Delete")) {
             $valueDelete = $data->input("Delete");
-            DB::table('mapel')->where('Id_mapel', '=' , $valueDelete)->delete();
+            mapel::where('Id_mapel', '=' , $valueDelete)->delete();
         }
         $daftarMapel = DB::select('select * from mapel');
         return redirect("/MataPelajaran")->with('daftarMapel', $daftarMapel);
     }
 
-    public function selectToa(Request $data)
-    {
-        // ascas
-        $data->validate([
-            "Judul_pengumuman" => "required",
-            "File_pengumuman" => "required"
-        ]);
-        // dd($data->input("fileToa"));
-        if ($data->has("Insert")) {
-            pengumuman::insert(
-                [
-                    "Judul_pengumuman"=>$data->input("namaToa"),
-                    "Tanggal_pengumuman"=>CarbonCarbon::now()->format('YYYY-MM-DD'),
-                    "File_pengumuman"=>$data->input("fileToa"),
-                    "Id_administrasi"=>$data->input("penToa")
-                ]
-            );
-        }
-        if ($data->has("Update")) {
-            pengumuman::where('Id_pengumuman','=',$data->input("id"))->update(
-                [
-                    "Judul_pengumuman"=>$data->input("namaToa"),
-                    "Tanggal_pengumuman"=>CarbonCarbon::now()->format('YYYY-MM-DD'),
-                    "File_pengumuman"=>$data->input("fileToa"),
-                    "Id_administrasi"=>$data->input("penToa")
-                ]
-            );
-        }
-        if ($data->has("Delete")) {
-            $valueDelete = $data->input("Delete");
-            pengumuman::where('Id_pengumuman', '=' , $valueDelete)->delete();
-        }
-        return redirect("/pengumuman");
-    }
+
 
     public function selectKelas(Request $data)
     {
@@ -338,5 +308,61 @@ class Database extends Controller
             history_edit::where('Id_history_edit','=',$valueDelete)->delete();
         }
         return redirect("/");
+    }
+
+    public function downloadToa($namafile)
+    {
+        return Storage::disk('local')->download("fileToa/".$namafile);
+    }
+
+
+
+    public function selectToa(Request $data)
+    {
+        // ascas
+        $data->validate([
+            "namaToa" => "required",
+            "fileToa" => "required|mimes:pdf"
+        ]);
+        if ($data->session()->has("loggedAdmin")) {
+            $penToa = $data->session()->get("loggedAdmin");
+            $namafile = Str::random(8).".".$data->file("fileSiswa")->getClientOriginalExtension();
+            $data->file("fileToa")->storeAs("fileToa",$namafile,"local");
+            // dd($data->input("fileToa"));
+            if ($data->has("Insert")) {
+                pengumuman::insert(
+                    [
+                        "Judul_pengumuman"=>$data->input("namaToa"),
+                        "Tanggal_pengumuman"=>new Carbon('now'),
+                        "File_pengumuman"=>$namafile,
+                        "Id_administrasi"=>$penToa
+                    ]
+                );
+            }
+        }
+        return redirect("/pengumuman");
+    }
+
+    public function importSiswa(Request $data)
+    {
+        // validasi
+		$this->validate($data, [
+			'fileSiswa' => 'required|mimes:csv,xls,xlsx'
+		]);
+
+		// menangkap file excel
+		$file = $data->file('fileSiswa');
+
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_siswa',$nama_file);
+
+		// import data
+		Excel::import(new SiswaImport, public_path('/file_siswa/'.$nama_file));
+
+		// alihkan halaman kembali
+		return redirect('/siswa');
     }
 }
