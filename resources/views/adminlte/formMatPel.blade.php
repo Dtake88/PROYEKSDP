@@ -29,6 +29,8 @@
                             @csrf
                             <button type="submit" class="btn btn-danger" name="Delete" value="{{$mapel->Id_mapel}}">Delete</button>
                         </form>
+                        <button class="btn btn-primary "><a class="text-white" href="toUpdateMapel/{{$mapel->Id_mapel}}">Update</a></button>
+
                     </td>
                 </tr>
             @endforeach

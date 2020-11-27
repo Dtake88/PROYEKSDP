@@ -27,10 +27,12 @@
                     <td>{{$guru->Alamat_guru}}</td>
                     <td>{{$guru->Status_guru}}</td>
                     <td>
-                        {{-- <form action="/guru/crud" method="post" class="form-horizontal">
-                            @csrf
-                            <button type="submit" class="btn btn-danger" name="Delete" value="{{$guru->NIG}}">Delete</button>
-                        </form> --}}
+                        <td>
+                            <button class="btn btn-primary "><a class="text-white" href="toUpdateGuru/{{$guru->NIG}}">Update</a></button>
+
+                            <button class="btn btn-danger"><a class="text-white" href="deleteGuru/{{$guru->NIG}}">Delete</a></button>
+
+                        </td>
                     </td>
                 </tr>
             @endforeach

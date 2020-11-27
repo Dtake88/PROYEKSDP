@@ -60,12 +60,12 @@ class AdminController extends Controller
     public function pindahKelas()
     {
         $daftarKelas = kelas::all();
-        $DBPeriode = periode_akademik::where("status",1);
+        $DBPeriode = periode_akademik::where("Status",1)->get();
         $GuruAktif = guru::where("Status_guru",1)->get();
         $DBJurusan = jurusan::all();
         return view("adminlte.formKelas",[
             "daftarKelas"=>$daftarKelas,
-            "periode"=>$DBPeriode,
+            "DBPeriode"=>$DBPeriode,
             "Guru"=>$GuruAktif,
             "jurusan"=>$DBJurusan
         ]);
@@ -81,8 +81,16 @@ class AdminController extends Controller
 
     public function pindahRiwayat()
     {
-        $riwayat = riwayat_akademik::all();
-        return view("adminlte.formRiwayat",["riwayat"=>$riwayat]);
+        $DBriwayat = riwayat_akademik::all();
+        $DBsiswa = siswa::all();
+        $DBkelas = kelas::all();
+        $DBmapel = mapel::all();
+        return view("adminlte.formRiwayat",[
+            "DBriwayat"=>$DBriwayat,
+            "DBsiswa"=>$DBsiswa,
+            "DBkelas"=>$DBkelas,
+            "DBmapel"=>$DBmapel
+        ]);
     }
 
 
@@ -93,7 +101,11 @@ class AdminController extends Controller
         $GuruAktif = guru::where("Status_guru",1)->get();
         $Mapel = mapel::all();
         $kelas = kelas::all();
-        return view("adminlte.jadwal",["Jadwal"=>$DBJadwal, "Guru"=>$GuruAktif,"Mapel"=>$Mapel,"kelas"=>$kelas]);
+        return view("adminlte.jadwal",[
+            "Jadwal"=>$DBJadwal,
+            "Guru"=>$GuruAktif,
+            "Mapel"=>$Mapel,
+            "kelas"=>$kelas]);
     }
 
     public function pindahPerodAkademik()

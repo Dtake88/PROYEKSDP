@@ -9,8 +9,10 @@ class mapel extends Model
 {
     use SoftDeletes;
     protected $table = 'mapel';
-    protected $primaryKey = 'id_mapel';
+    protected $primaryKey = 'Id_mapel';
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;
+    protected $fillable = ['Nama_mapel', 'KKM', 'Tingkat'];
+
 }
