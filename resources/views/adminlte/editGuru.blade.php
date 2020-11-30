@@ -11,7 +11,7 @@
         <form action="{{url('/updateGuru')}}" method="POST">
             @csrf
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-sm-9">
                     <div class="form-group">
                         <label for="">NIG</label>
                         <input name="NIG" value="{{$guru->NIG}}" readonly type="text" class="form-control" aria-describedby="" placeholder="">
@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Nama Guru</label>
-                        <input value="{{$guru->Nama_guru}}" name="nama" type="text" class="form-control" aria-describedby="" placeholder="Enter Nama Guru">
+                        <input value="{{$guru->Nama_guru}}" style="width: 50pt; height: 40px;  padding: 0.375rem 0.75rem;" name="nama" type="text" class="form-control" aria-describedby="" placeholder="Enter Nama Guru">
                     </div>
                     <div class="form-group">
                         <label for="">Password Guru</label>
@@ -48,4 +48,5 @@
         </form>
 
     </div>
+
 @endsection
