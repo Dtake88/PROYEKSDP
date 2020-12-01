@@ -13,6 +13,14 @@ class kelas extends Model
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;
+    protected $fillable =
+    [
+     'Id_periode',
+     'NIG',
+     'Nama_kelas',
+     'Tingkat_kelas',
+     'Id_jurusan'
+    ];
 
 
     public function periode(){

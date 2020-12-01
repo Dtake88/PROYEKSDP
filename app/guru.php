@@ -16,7 +16,14 @@ class guru extends Authenticable
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;
-    protected $fillable = ['Nama_guru', 'Password_guru', 'No_guru', 'Alamat_guru', 'Status_guru'];
+    protected $fillable =
+    [
+     'Nama_guru',
+     'Password_guru',
+     'No_guru',
+     'Alamat_guru',
+     'Status_guru'
+    ];
 
 
    /**
@@ -36,7 +43,6 @@ class guru extends Authenticable
     public function membimbing(){
         return $this->hasMany(membimbing::class,"NIG","NIG");
     }
-
 
     public function mapel(){
              return $this->belongsToMany(mapel::class,'membimbing','NIG','Id_mapel');

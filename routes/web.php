@@ -1,6 +1,8 @@
 <?php
 
 use App\guru;
+use App\jurusan;
+use App\kelas;
 use App\riwayat_akademik;
 use App\siswa;
 use Illuminate\Support\Facades\Auth;
@@ -123,7 +125,7 @@ Route::get('/tes', function () {
     // $siswa = siswa::latest("NIS")->first();
     // dd(siswa::latest("NIS")->first()->NIS+1);
 
-    factory(siswa::class,10)->create();
+    factory(kelas::class,5)->create();
     echo"asd";
 
 });

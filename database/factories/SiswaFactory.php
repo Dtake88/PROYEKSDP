@@ -7,11 +7,12 @@ use App\kelas;
 use App\Model;
 use App\siswa;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Hash;
 
 $factory->define(siswa::class, function (Faker $faker) {
     return [
         "Nama_siswa"=>$faker->name(),
-        "Password_siswa" => siswa::latest("NIS")->first()->NIS+1,
+        "Password_siswa" => Hash::make("siswa"), // default semua password e
         "Tempat_lahir_siswa"=>$faker->citySuffix(),
         "Tanggal_lahir_siswa"=>$faker->dateTimeBetween("-18 years","-17 years"),
         "Nama_ibu"=>$faker->firstNameFemale,
@@ -21,8 +22,8 @@ $factory->define(siswa::class, function (Faker $faker) {
         "Jenis_kelamin"=>$faker->randomElement(["wanita","pria"]),
         "Alamat_siswa"=>$faker->citySuffix(),
         "Status"=>1,
-        "id_kelas" => $faker->randomElement(kelas::all()->pluck("Id_kelas")), // dari kelas
-        "id_jurusan" => $faker->randomElement(jurusan::all()->pluck("Id_jurusan")) // juruan
+        "id_kelas" => $faker->randomElement(kelas::all()->pluck("Id_kelas")),
+        "id_jurusan" => $faker->randomElement(jurusan::all()->pluck("Id_jurusan"))
 
 
 
