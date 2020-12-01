@@ -52,6 +52,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/siswa', 'AdminController@pindahSiswa');
     Route::get('/guru', 'AdminController@pindahGuru');
     Route::get('/PeriodeAkademik', 'AdminController@pindahPerodAkademik');
+    Route::get('/AjarMengajar', 'AdminController@pindahAjar');
     Route::get('/kelas', 'AdminController@pindahKelas');
     Route::get('/MataPelajaran', 'AdminController@pindahMatPel');
     Route::get('/riwayat', 'AdminController@pindahRiwayat');
