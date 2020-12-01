@@ -13,6 +13,20 @@ class riwayat_akademik extends Model
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;
+    protected $fillable =
+    [
+     'NIS',
+     'Id_kelas',
+     'Id_mapel',
+     'Quiz1',
+     'Quiz2',
+     'Tugas1',
+     'Tugas2',
+     'UTS',
+     'UAS',
+     'Sikap',
+     'Hasil_akhir'
+    ];
 
     public function kelas(){
         return $this->hasOne(kelas::class,"Id_kelas","Id_kelas");
