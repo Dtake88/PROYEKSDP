@@ -76,13 +76,6 @@ class AdminController extends Controller
         ]);
     }
 
-    public function pindahAjar()
-    {
-        return view("adminlte.formAjar",[
-
-        ]);
-    }
-
     public function pindahMatPel()
     {
         $daftarMatPel = mapel::all();

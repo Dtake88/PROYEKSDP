@@ -411,6 +411,7 @@ class Database extends Controller
     }
     public function selectKelas(Request $data)
     {
+
         $data->validate([
             "period" => "required",
             "nig" => "required",
@@ -476,6 +477,7 @@ class Database extends Controller
     }
     public function selectJadwal(Request $data)
     {
+        dd($data->all());
         $data->validate([
             "Id_kelas" => "required",
             "Id_mapel" => "required",

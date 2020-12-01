@@ -91,12 +91,6 @@
           </a>
       </li>
       <li>
-          <a href="/Jadwal">
-              <i class="icon icon-beaker"></i>
-              <span>Jadwal</span>
-          </a>
-      </li>
-      <li>
           <a href="/riwayat">
               <i class="icon icon-calendar"></i>
               <span>Riwayat akademik</span>
@@ -129,7 +123,7 @@
         @yield('formPeriodeAkademik')
         @yield('riwayat')
         @yield('jadwal')
-        @yield('ajar')
+
 
 
         @yield('editSiswa')

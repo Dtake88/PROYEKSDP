@@ -1,5 +1,6 @@
 <?php
 
+use App\ajar_mengajar;
 use App\guru;
 use App\jurusan;
 use App\kelas;
@@ -52,11 +53,11 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/siswa', 'AdminController@pindahSiswa');
     Route::get('/guru', 'AdminController@pindahGuru');
     Route::get('/PeriodeAkademik', 'AdminController@pindahPerodAkademik');
-    Route::get('/AjarMengajar', 'AdminController@pindahAjar');
+    Route::get('/AjarMengajar', 'AdminController@pindahJadwal');
     Route::get('/kelas', 'AdminController@pindahKelas');
     Route::get('/MataPelajaran', 'AdminController@pindahMatPel');
     Route::get('/riwayat', 'AdminController@pindahRiwayat');
-    Route::get('/Jadwal', 'AdminController@pindahJadwal');
+    // Route::get('/Jadwal', 'AdminController@pindahJadwal');
 
 
     Route::get('/deleteSiswa/{id}', 'Database@deleteSiswa');
@@ -149,7 +150,7 @@ Route::get('/tes', function (Faker $faker) {
     // dd(siswa::latest("NIS")->first()->NIS+1);
 
     // dd($faker->address());
-    // factory(kelas::class,5)->create();
-    // echo"asd";
+    // factory(riwayat_akademik::class,5)->create();
+    echo"asd";
 
 });

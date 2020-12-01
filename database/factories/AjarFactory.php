@@ -14,10 +14,10 @@ $factory->define(ajar_mengajar::class, function (Faker $faker) {
         'Id_kelas'=>$faker->randomElement(kelas::all()->pluck("Id_kelas")),
         'Id_mapel'=>$faker->randomElement(mapel::all()->pluck("Id_mapel")),
         'NIG'=>$faker->randomElement(guru::all()->pluck("NIG")),
-        'Jam_berakhir'=>$faker,
-        'Jam_dimulai',
-        'hari',
-        'jam_belajar',
-        'Status_jadwal'
+        'Jam_berakhir'=>"09:00:00",
+        'Jam_dimulai'=>"08:00:00",
+        'jam_belajar'=>"01:00:00",
+        'hari'=>$faker->randomElement(['senin','selasa','rabu','kamis','jumat']),
+        'Status_jadwal'=>1
     ];
 });
