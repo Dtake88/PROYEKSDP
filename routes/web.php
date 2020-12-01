@@ -115,10 +115,15 @@ Route::post('/toa/crud', 'Database@selectToa');
 Route::post('/kelas/crud', 'Database@selectKelas');
 
 
-Route::get('tes', function () {
+Route::get('/tes', function () {
     // $v = riwayat_akademik::all();
-    $sessionGuru = Session::get("loggedGuru");
-    $guru = guru::find($sessionGuru['username']);
-    dd($guru->mapel);
+    // $sessionGuru = Session::get("loggedGuru");
+    // $guru = guru::find($sessionGuru['username']);
+    // dd($guru->mapel);
+    // $siswa = siswa::latest("NIS")->first();
+    // dd(siswa::latest("NIS")->first()->NIS+1);
+
+    factory(siswa::class,10)->create();
+    echo"asd";
 
 });

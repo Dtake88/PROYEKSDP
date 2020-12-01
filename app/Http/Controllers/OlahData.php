@@ -81,9 +81,6 @@ class OlahData extends Controller
         //     $data->session()->put('loggedGuru', $userLogin);
         //     return redirect("homeGuru");
         // }
-
-
-
         return redirect("/")->with("error","1");
 
 
