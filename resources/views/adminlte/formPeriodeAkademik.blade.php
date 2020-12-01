@@ -14,6 +14,7 @@
             <th>TAHUN AJARAN</th>
             <th>SEMESTER</th>
             <th>STATUS</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -23,6 +24,12 @@
                     <td>{{$PA->Tahun_ajaran}}</td>
                     <td>{{$PA->Semester}}</td>
                     <td>{{$PA->Status}}</td>
+                        <td>
+                            <button class="btn btn-primary "><a class="text-white" href="toUpdatePeriode/{{$PA->Id_periode}}">Update</a></button>
+
+                            <button class="btn btn-danger"><a class="text-white" href="deletePeriode/{{$PA->Id_periode}}">Delete</a></button>
+
+                        </td>
                 </tr>
             @endforeach
         </tbody>
@@ -59,7 +66,7 @@
             <div class="control-group">
                 <label class="control-label">Status Periode Akademik</label>
                 <div class="controls">
-                <select class="span11" name="status">
+                <select class="span11" name="Status">
                     <option value="1" selected>Aktif</option>
                     <option value="0">Tidak Aktif</option>
                 </select>

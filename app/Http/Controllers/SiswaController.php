@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\pengumuman;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -9,7 +10,8 @@ class SiswaController extends Controller
     //
     public function PindahDashboardSiswa()
     {
-        return view("siswa.dashboard");
+        $pengumuman = pengumuman::all();
+        return view("siswa.dashboard" , ["pengumuman"=>$pengumuman]);
     }
     public function PindahJurusan()
     {
@@ -21,7 +23,7 @@ class SiswaController extends Controller
     }
     public function EditBiodata()
     {
-        return view("siswa.EditBiodata");
+        return redirect('/biodata')->with('message', 'Hubungi TU untuk mengganti biodata');
     }
     public function LihatNilai()
     {

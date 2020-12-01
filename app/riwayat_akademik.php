@@ -9,7 +9,7 @@ class riwayat_akademik extends Model
 {
     use SoftDeletes;
     protected $table = 'riwayat_akademik';
-    protected $primaryKey = 'id_riwayat_akademik';
+    protected $primaryKey = 'Id_riwayat_akademik';
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;

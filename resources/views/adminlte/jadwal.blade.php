@@ -6,7 +6,6 @@
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>ID</th>
           <th>ID Kelas</th>
           <th>ID Mapel</th>
           <th>NIG</th>
@@ -14,19 +13,23 @@
           <th>Jam Berakhir</th>
           <th>Hari</th>
           <th>Status</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
           @foreach ($Jadwal as $i)
               <tr>
-                  <td>{{$i->Id_ajar_mengajar}}</td>
-                  <td>{{$i->kelas->Id_kelas}} -{{$i->kelas->Nama_kelas}}</td>
-                  <td>{{$i->Id_mapel}} - {{$i->mapel->Nama_mapel}}</td>
-                  <td>{{$i->NIG}} - {{$i->guru->Nama_guru}}</td>
+                  <td>{{$i->kelas->Nama_kelas}}</td>
+                  <td>{{$i->mapel->Nama_mapel}}</td>
+                  <td>{{$i->guru->Nama_guru}}</td>
                   <td>{{$i->Jam_dimulai}}</td>
                   <td>{{$i->Jam_berakhir}}</td>
                   <td>{{$i->Hari}}</td>
                   <td>{{$i->Status_jadwal}}</td>
+                  <td>
+                    <button class="btn btn-danger"><a class="text-white" href="deleteJadwal/{{$i->Id_ajar_mengajar}}">Delete</a></button>
+                    <button class="btn btn-success"><a class="text-white" href="toUpdateJadwal/{{$i->Id_ajar_mengajar}}">Update</a></button>
+                </td>
               </tr>
           @endforeach
       </tbody>
@@ -39,13 +42,14 @@
           <h5>Input Jadwal</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="#" method="get" class="form-horizontal">
+          <form action="jadwal/crud" method="post" class="form-horizontal">
+            @csrf
             <div class="control-group">
                 <label class="control-label">Kelas</label>
                 <div class="controls">
-                <select class="span11">
+                <select class="span11" name="Id_kelas">
                     @foreach ($kelas as $i)
-                        <option value="{{$i->Id_kelas}}">{{$i->Id_kelas}} - {{$i->Nama_kelas}} - {{$i->Id_jurusan}}</option>
+                        <option value="{{$i->Id_kelas}}">{{$i->Nama_kelas}}</option>
                     @endforeach
                 </select>
                 </div>
@@ -53,9 +57,9 @@
             <div class="control-group">
                 <label class="control-label">Mata Pelajaran</label>
                 <div class="controls">
-                <select class="span11">
+                <select class="span11" name="Id_mapel">
                     @foreach ($Mapel as $i)
-                        <option value="{{$i->Id_mapel}}">{{$i->Id_mapel}} - {{$i->Nama_mapel}} - {{$i->Tingkat}}</option>
+                        <option value="{{$i->Id_mapel}}">{{$i->Nama_mapel}}</option>
                     @endforeach
                 </select>
                 </div>
@@ -63,9 +67,9 @@
             <div class="control-group">
                 <label class="control-label">Guru</label>
                 <div class="controls">
-                <select class="span11">
+                <select class="span11" name="NIG">
                     @foreach ($Guru as $i)
-                        <option value="{{$i->NIG}}">{{$i->NIG}} - {{$i->Nama_guru}}</option>
+                        <option value="{{$i->NIG}}">{{$i->Nama_guru}}</option>
                     @endforeach
                 </select>
                 </div>
@@ -73,7 +77,7 @@
             <div class="control-group">
                 <label class="control-label">Hari</label>
                 <div class="controls">
-                <select class="span11">
+                <select class="span11" name="Hari">
                         <option value="senin">senin</option>
                         <option value="selasa">selasa</option>
                         <option value="rabu">rabu</option>
@@ -85,18 +89,32 @@
             <div class="control-group">
                 <label class="control-label">Jam Mulai :</label>
                 <div class="controls">
-                  <input type="time" name="jamMulai" min="08:00" max="14:00" required>
+                  <input type="time" name="Jam_dimulai">
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">Jam Berakhir :</label>
                 <div class="controls">
-                  <input type="time" name="jamBerakhir" value="15:37z" required>
+                  <input type="time" name="Jam_berakhir" >
                 </div>
             </div>
-
+            <div class="control-group">
+                <label class="control-label">Jam Belajar :</label>
+                <div class="controls">
+                  <input type="time" name="Jam_belajar" >
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Status: </label>
+                <div class="controls">
+                <select class="span11" name="Status_jadwal">
+                        <option value="1">Aktif</option>
+                        <option value="0">Non Aktif</option>
+                </select>
+                </div>
+            </div>
             <div class="form-actions">
-              <button type="submit" class="btn btn-success">Save</button>
+                <button type="submit" class="btn btn-success" name="Insert">Insert</button>
             </div>
           </form>
         </div>

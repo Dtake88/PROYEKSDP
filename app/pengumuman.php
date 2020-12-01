@@ -11,8 +11,9 @@ class pengumuman extends Model
 
     use SoftDeletes;
     protected $table = 'pengumuman';
-    protected $primaryKey = 'id_pengumuman';
+    protected $primaryKey = 'Id_pengumuman';
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;
+    protected $fillable = ['Judul_pengumuman', 'Tanggal_pengumuman', 'File_pengumuman','Id_administrasi'];
 }

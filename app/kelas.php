@@ -9,7 +9,7 @@ class kelas extends Model
 {
     use SoftDeletes;
     protected $table = 'kelas';
-    protected $primaryKey = 'id_kelas';
+    protected $primaryKey = 'Id_kelas';
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;

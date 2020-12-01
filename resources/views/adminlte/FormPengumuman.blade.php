@@ -15,7 +15,6 @@
             <th>Tanggal</th>
             <th>Nama File</th>
             <th>ID Admin</th>
-            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -26,12 +25,6 @@
                     <td>{{$Toa->Tanggal_pengumuman}}</td>
                     <td>{{$Toa->File_pengumuman}}</td>
                     <td>{{$Toa->Id_administrasi}}</td>
-                    <td>
-                        <form action="/toa/crud" method="post" class="form-horizontal">
-                            @csrf
-                            <button type="submit" class="btn btn-danger" name="Delete" value="{{$Toa->Id_pengumuman}}">Delete</button>
-                        </form>
-                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -46,7 +39,7 @@
                 <h5>Input Pengumuman</h5>
                 </div>
                 <div class="widget-content nopadding">
-                <form action="/toa/crud" method="post" class="form-horizontal">
+                <form action="/toa/crud" method="post" class="form-horizontal" enctype="multipart/form-data">
                     @csrf
                     <div class="control-group">
                         <label class="control-label">Judul :</label>
@@ -61,14 +54,13 @@
                         <label class="control-label">File Pengumuman Input</label>
                         <div class="controls">
                           <input type="file" name="fileToa"/>
-                          @error('fileToa')
-                        <br><span style="color: red;">{{ $message }}</span>
-                    @enderror
+                            @error('fileToa')
+                                <br><span style="color: red;">{{ $message }}</span>
+                            @enderror
                         </div>
                       </div>
                     <div class="form-actions">
                     <button type="submit" class="btn btn-success" name="Insert">Insert</button>
-                    <button type="submit" class="btn btn-success" name="Update">Update</button>
                     </div>
                 </form>
                 </div>

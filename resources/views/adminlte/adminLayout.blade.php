@@ -126,6 +126,7 @@
 
 
         @yield('editSiswa')
+        @yield('editGuru')
         @yield('editRiwayat')
 
 

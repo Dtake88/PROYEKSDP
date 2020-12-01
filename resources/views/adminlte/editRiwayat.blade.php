@@ -1,7 +1,60 @@
 @extends('adminlte.adminLayout')
 
 @section('editRiwayat')
+    <div class="container" style="width: 800px">
+        <div class="d-flex justify-content-center">
+            <h1>Update Riwayat Akademik</h1>
+        </div>
+        @php
+            $riwayat_akademik = Session::get("riwayat_akademik");
+            // dd($siswa);
+        @endphp
+        <form action="{{url('/updateRiwayat')}}" method="POST">
+            @csrf
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Id Riwayat Akademik</label>
+                        <input name="Id_riwayat_akademik"  value="{{$riwayat_akademik->Id_riwayat_akademik}}" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nilai Quiz1</label>
+                        <input name="Quiz1"  value="{{$riwayat_akademik->Quiz1}}" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nilai Quiz2</label>
+                        <input name="Quiz2"  value="{{$riwayat_akademik->Quiz2}}" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nilai Tugas1</label>
+                        <input name="Tugas1"  value="{{$riwayat_akademik->Tugas1}}" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nilai Tugas2</label>
+                        <input name="Tugas2"  value="{{$riwayat_akademik->Tugas2}}" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nilai UTS</label>
+                        <input name="UTS"  value="{{$riwayat_akademik->UTS}}" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nilai UAS</label>
+                        <input name="UAS"  value="{{$riwayat_akademik->UAS}}" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Sikap </label>
+                        <input name="Sikap"  value="{{$riwayat_akademik->Sikap}}" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Hasil akhir</label>
+                        <input name="Hasil_akhir"  value="{{$riwayat_akademik->Hasil_akhir}}" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                    </div>
+                </div>
+            </div>
 
-    <h1>riwayat</h1>
+            <button class="btn btn-primary" > <a class="text-white" href="/riwayat">Cancel</a></button>
+            <input class="btn btn-success" type="submit" value="Update">
+        </form>
 
+    </div>
 @endsection
