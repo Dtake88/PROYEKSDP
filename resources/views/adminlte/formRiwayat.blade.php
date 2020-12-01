@@ -55,7 +55,7 @@
                 <form action="/siswa/crud" method="post" class="form-horizontal">
                 @csrf
 
-                <div class="control-group">
+                {{-- <div class="control-group">
                   <label class="control-label">Agama :</label>
                   <div class="controls">
                     <select class="form-control span11" name="agama">
@@ -70,7 +70,7 @@
                         <br><span style="color: red;">{{ $message }}</span>
                     @enderror
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="form-actions">
                   <button type="submit" class="btn btn-success" name="Insert">Insert</button>

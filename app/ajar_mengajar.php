@@ -15,6 +15,17 @@ class ajar_mengajar extends Model
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;
+    protected $fillable =
+    [
+     'Id_kelas',
+     'Id_mapel',
+     'NIG',
+     'Jam_berakhir',
+     'Jam_dimulai',
+     'hari',
+     'jam_belajar',
+     'Status_jadwal'
+    ];
 
 
     public function kelas(){

@@ -8,7 +8,7 @@ use App\siswa;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-
+use Faker\Generator as Faker;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -117,7 +117,7 @@ Route::post('/toa/crud', 'Database@selectToa');
 Route::post('/kelas/crud', 'Database@selectKelas');
 
 
-Route::get('/tes', function () {
+Route::get('/tes', function (Faker $faker) {
     // $v = riwayat_akademik::all();
     // $sessionGuru = Session::get("loggedGuru");
     // $guru = guru::find($sessionGuru['username']);
@@ -125,7 +125,8 @@ Route::get('/tes', function () {
     // $siswa = siswa::latest("NIS")->first();
     // dd(siswa::latest("NIS")->first()->NIS+1);
 
-    factory(kelas::class,5)->create();
-    echo"asd";
+    // dd($faker->address());
+    // factory(kelas::class,5)->create();
+    // echo"asd";
 
 });

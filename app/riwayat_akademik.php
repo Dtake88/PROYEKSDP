@@ -26,4 +26,8 @@ class riwayat_akademik extends Model
         return $this->belongsTo(siswa::class,"NIS","NIS");
     }
 
+    public function ajar(){
+        return $this->hasOne(ajar_mengajar::class,"Id_ajar_mengajar","Id_ajar_mengajar");
+    }
+
 }
