@@ -9,11 +9,11 @@ class riwayat_akademik extends Model
 {
     use SoftDeletes;
     protected $table = 'riwayat_akademik';
-    protected $primaryKey = 'id_riwayat_akademik';
+    protected $primaryKey = 'Id_riwayat_akademik';
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;
-    protected $fillable = ['NIS', 'id_kelas', 'id_mapel','Quiz1','Quiz2','Tugas1','Tugas2','UTS','UAS','Sikap','Hasil'];
+    protected $fillable = ['NIS', 'Id_kelas', 'Id_mapel','Quiz1','Quiz2','Tugas1','Tugas2','UTS','UAS','Sikap','Hasil_akhir'];
 
     public function kelas(){
         return $this->hasOne(kelas::class,"Id_kelas","Id_kelas");

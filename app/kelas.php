@@ -9,11 +9,11 @@ class kelas extends Model
 {
     use SoftDeletes;
     protected $table = 'kelas';
-    protected $primaryKey = 'id_kelas';
+    protected $primaryKey = 'Id_kelas';
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;
-
+    protected $fillable = ['Id_periode', 'NIG', 'Nama_kelas','Tingkat_kelas','Id_jurusan'];
 
     public function periode(){
         return $this->hasOne(periode_akademik::class,"Id_periode","Id_periode");

@@ -59,6 +59,31 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/deleteSiswa/{id}', 'Database@deleteSiswa');
     Route::get('/toUpdateSiswa/{id}', 'Database@toUpdateSiswa');
     Route::post('/updateSiswa', 'Database@updateSiswa');
+
+    Route::get('/deleteGuru/{id}', 'Database@deleteGuru');
+    Route::get('/toUpdateGuru/{id}', 'Database@toUpdateGuru');
+    Route::post('/updateGuru', 'Database@updateGuru');
+
+    Route::get('/deletePeriode/{id}', 'Database@deletePeriode');
+    Route::get('/toUpdatePeriode/{id}', 'Database@toUpdatePeriode');
+    Route::post('/updatePeriode', 'Database@updatePeriode');
+
+    Route::get('/deleteMapel/{id}', 'Database@deleteMapel');
+    Route::get('/toUpdateMapel/{id}', 'Database@toUpdateMapel');
+    Route::post('/updateMapel', 'Database@updateMapel');
+
+    Route::get('/deleteRiwayat/{id}', 'Database@deleteRiwayat');
+    Route::get('/toUpdateRiwayat/{id}', 'Database@toUpdateRiwayat');
+    Route::post('/updateRiwayat', 'Database@updateRiwayat');
+
+    Route::get('/deleteKelas/{id}', 'Database@deleteKelas');
+    Route::get('/toUpdateKelas/{id}', 'Database@toUpdateKelas');
+    Route::post('/updateKelas', 'Database@updateKelas');
+
+    Route::get('/deleteJadwal/{id}', 'Database@deleteJadwal');
+    Route::get('/toUpdateJadwal/{id}', 'Database@toUpdateJadwal');
+    Route::post('/updateJadwal', 'Database@updateJadwal');
+
     Route::get('/aktifNonaktifSiswa/{id}', function($id){
         $siswa = siswa::find($id);
         if($siswa->Status == 1){
@@ -70,10 +95,6 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
         return redirect("/siswa");
     });
 
-    Route::get('toUpdateRiwayat/{id}',function(){
-        $siswa = Session::get("siswa");
-        return view('adminlte.editSiswa',["siswa"=>$siswa]);
-    });
 
 
 
@@ -109,9 +130,11 @@ Route::post('/siswa/crud', 'Database@selectSiswa');
 Route::post('/guru/crud', 'Database@selectGuru');
 Route::post('/mapel/crud', 'Database@selectMatPel');
 Route::post('/perodAkad/crud', 'Database@selectPerodAkad');
+Route::post('/riwayat/crud', 'Database@selectRiwayat');
 Route::post('/toa/crud', 'Database@selectToa');
 Route::post('/kelas/crud', 'Database@selectKelas');
 Route::post('/siswa/import', 'Database@importSiswa');
+Route::post('/jadwal/crud', 'Database@selectJadwal');
 
 
 Route::get('tes', function () {

@@ -28,7 +28,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Password Siswa</label>
-                        <input value="{{$siswa->Password_siswa}}" name="password" type="text" class="form-control" aria-describedby="" placeholder="Enter Password Siswa">
+                        <input value="" name="password" type="text" class="form-control" aria-describedby="" placeholder="Enter Password Siswa">
                     </div>
                     <div class="form-group">
                         <label for="">Tempat Tanggal Lahir</label>

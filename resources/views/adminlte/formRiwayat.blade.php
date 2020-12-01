@@ -23,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-              @foreach ($riwayat as $r)
+              @foreach ($DBriwayat as $r)
                   <tr>
                     <td>{{$r->siswa->Nama_siswa}}</td>
                     <td>{{$r->kelas->Nama_kelas}}</td>
@@ -48,29 +48,92 @@
       <div class="row-fluid">
         <div class="widget-box">
             <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-              <h5>Input Riwayat</h5>
+              <h5>Input Riwayat Akademik</h5>
             </div>
             <div class="widget-content nopadding">
 
-                <form action="/siswa/crud" method="post" class="form-horizontal">
+                <form action="/riwayat/crud" method="post" class="form-horizontal">
                 @csrf
-
                 <div class="control-group">
-                  <label class="control-label">Agama :</label>
-                  <div class="controls">
-                    <select class="form-control span11" name="agama">
-                        <option value="Islam" selected>Islam</option>
-                        <option value="Budha">Budha</option>
-                        <option value="Hindu">Hindu</option>
-                        <option value="Katholik">Katolik</option>
-                        <option value="Kristen">Kristen</option>
-                        <option value="Konghucu">Konghucu</option>
-                    </select>
-                    @error('agama')
-                        <br><span style="color: red;">{{ $message }}</span>
-                    @enderror
+                    <label class="control-label">Siswa :</label>
+                    <div class="controls">
+                      <select class="form-control span11" name="siswa">
+                          @isset($DBsiswa)
+                              @foreach ($DBsiswa as $i)
+                              <option value="{{$i->NIS}}" selected>{{$i->Nama_siswa}}</option>
+                              @endforeach
+                          @endisset
+                      </select>
+                      @error('siswa')
+                          <br><span style="color: red;">{{ $message }}</span>
+                      @enderror
+                      </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label">Kelas :</label>
+                    <div class="controls">
+                      <select class="form-control span11" name="kelas">
+                          @isset($DBkelas)
+                              @foreach ($DBkelas as $v)
+                              <option value="{{$v->Id_kelas}}" selected>{{$v->Nama_kelas}}</option>
+                              @endforeach
+                          @endisset
+                      </select>
+                      @error('kelas')
+                          <br><span style="color: red;">{{ $message }}</span>
+                      @enderror
+                      </div>
+                  </div>
+                  <div class="control-group">
+                      <label class="control-label">Mata Pelajaran :</label>
+                      <div class="controls">
+                        <select class="form-control span11" name="mapel">
+                            @isset($DBmapel)
+                                @foreach ($DBmapel as $i)
+                                <option value="{{$i->Id_mapel}}" selected>{{$i->Nama_mapel}}</option>
+                                @endforeach
+                            @endisset
+                        </select>
+                        @error('mapel')
+                            <br><span style="color: red;">{{ $message }}</span>
+                        @enderror
+                        </div>
                     </div>
+
+                <div class="form-group">
+                    <label for="">Nilai Quiz1</label>
+                    <input name="Quiz1" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
                 </div>
+                <div class="form-group">
+                    <label for="">Nilai Quiz2</label>
+                    <input name="Quiz2" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                </div>
+                <div class="form-group">
+                    <label for="">Nilai Tugas1</label>
+                    <input name="Tugas1"  type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                </div>
+                <div class="form-group">
+                    <label for="">Nilai Tugas2</label>
+                    <input name="Tugas2"  type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                </div>
+                <div class="form-group">
+                    <label for="">Nilai UTS</label>
+                    <input name="UTS"  type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                </div>
+                <div class="form-group">
+                    <label for="">Nilai UAS</label>
+                    <input name="UAS" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                </div>
+                <div class="form-group">
+                    <label for="">Sikap </label>
+                    <input name="Sikap" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                </div>
+                <div class="form-group">
+                    <label for="">Nilai Akhir</label>
+                    <input name="Nilai_akhir"  type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
+                </div>
+
+
 
                 <div class="form-actions">
                   <button type="submit" class="btn btn-success" name="Insert">Insert</button>

@@ -49,9 +49,9 @@ class OlahData extends Controller
         // if(Auth::guard('admin')->attempt($admin)){
         //     return redirect("homeAdmin");
         // }
-        if(Auth::guard('guru')->attempt($guru)){
-            return redirect("homeGuru");
-        }
+        // if(Auth::guard('guru')->attempt($guru)){
+        //     return redirect("homeGuru");
+        // }
 
 
         // if (siswa::where('NIS',$user)->exists()) {

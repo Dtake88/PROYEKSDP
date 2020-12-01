@@ -17,6 +17,7 @@
             <th>Nama Kelas</th>
             <th>Tingkat Kelas</th>
             <th>ID Jurusan</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -28,12 +29,13 @@
                     <td>{{$kls->guru->Nama_guru}}</td>
                     <td>{{$kls->Nama_kelas}}</td>
                     <td>{{$kls->Tingkat_kelas}}</td>
-                    <td>{{$kls->jurusan->Nama_jurusan}}  -  {{$kls->Id_jurusan}}</td>
+                    <td>{{$kls->jurusan->Nama_jurusan}}</td>
                     <td>
                         <form action="/kelas/crud" method="post" class="form-horizontal">
                             @csrf
                             <button type="submit" class="btn btn-danger" name="Delete" value="{{$kls->Id_kelas}}">Delete</button>
                         </form>
+                        <button class="btn btn-success"><a class="text-white" href="toUpdateKelas/{{$kls->Id_kelas}}">Update</a></button>
                     </td>
                 </tr>
             @endforeach
@@ -54,7 +56,7 @@
                     <label class="control-label">Periode</label>
                     <div class="controls">
                     <select class="span11" name="period">
-                        @foreach ($periode as $i)
+                        @foreach ($DBPeriode as $i)
                             <option value="{{$i->Id_periode}}">{{$i->Tahun_ajaran}} - Semester {{$i->Semester}}</option>
                         @endforeach
                     </select>
@@ -68,7 +70,7 @@
                     <div class="controls">
                     <select class="span11" name="nig">
                         @foreach ($Guru as $i)
-                            <option value="{{$i->NIG}}">{{$i->NIG}} - {{$i->Nama_guru}}</option>
+                            <option value="{{$i->NIG}}">{{$i->Nama_guru}}</option>
                         @endforeach
                     </select>
                     @error('nig')
@@ -83,7 +85,7 @@
                     @error('nama')
                         <br><span style="color: red;">{{ $message }}</span>
                     @enderror
-                </div>
+                    </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label">Tingkat Kelas :</label>
@@ -99,7 +101,7 @@
                     <div class="controls">
                     <select class="span11" name="idJur">
                         @foreach ($jurusan as $i)
-                            <option value="{{$i->Id_jurusan}}">{{$i->Nama_jurusan}} - {{$i->Id_jurusan}}</option>
+                            <option value="{{$i->Id_jurusan}}">{{$i->Nama_jurusan}}</option>
                         @endforeach
                     </select>
                     @error('idJur')
