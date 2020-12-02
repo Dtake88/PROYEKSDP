@@ -43,7 +43,7 @@
       </table>
     </div>
   </div>
-<!--Chart-box-->
+    <!--Chart-box-->
     <div class="row-fluid">
         <div class="widget-box">
             <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -117,7 +117,7 @@
             </div>
         </div>
     </div>
-<!--End-Chart-box-->
+    <!--End-Chart-box-->
     <hr/>
 </div>
 {{--  --}}
