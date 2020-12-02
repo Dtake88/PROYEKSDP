@@ -111,6 +111,8 @@ Route::group(['middleware' => ['GuruMiddleware']], function () {
     Route::get('/homeGuru', 'GuruController@toHome');
     Route::get('/inputNilai', 'GuruController@pindahInputNilai');
     Route::get('/getDaftarNilai',"GuruController@getDaftarNilai" );
+    Route::get('/toEditNilai/{id}','GuruController@toEditNilai' );
+    Route::post('/updateRiwayat','GuruController@updateRiwayat' );
 });
 
 

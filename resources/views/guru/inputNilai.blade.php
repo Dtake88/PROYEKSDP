@@ -87,7 +87,7 @@
                           <td class="text-center">{{$i->UAS}}</td>
                           <td class="text-center">{{strtoupper($i->Sikap)}}</td>
                           <td class="text-center">{{$i->Hasil_akhir}}</td>
-                          <td class="text-center"><button class="btn btn-success"><a href="">Edit</a></button></td>
+                        <td class="text-center"><button class="btn btn-success"><a href=" /toEditNilai/{{$i->Id_riwayat_akademik}}">Edit</a></button></td>
                         </tr>
                     @endforeach
 
