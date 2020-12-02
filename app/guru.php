@@ -43,11 +43,15 @@ class guru extends Authenticable
     public function membimbing(){
         return $this->hasMany(membimbing::class,"NIG","NIG");
     }
+    public function ajar(){
+        return $this->hasMany(ajar_mengajar::class,"NIG","NIG");
+    }
+
 
     public function mapel(){
-             return $this->belongsToMany(mapel::class,'membimbing','NIG','Id_mapel');
-                    // ->withPivot('tb_id','tb_stok')//kenalkan tb_stok sebag/ai column pada tabel pivot
-                    ;
+        return $this->belongsToMany(mapel::class,'membimbing','NIG','Id_mapel');
+            // ->withPivot('tb_id','tb_stok')//kenalkan tb_stok sebag/ai column pada tabel pivot
+            ;
     }
 
 

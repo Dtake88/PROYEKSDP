@@ -150,7 +150,8 @@ Route::get('/tes', function (Faker $faker) {
     // dd(siswa::latest("NIS")->first()->NIS+1);
 
     // dd($faker->address());
-    // factory(riwayat_akademik::class,5)->create();
+    factory(ajar_mengajar::class,10)->create();
+    factory(riwayat_akademik::class,100)->create();
     echo"asd";
 
 });
