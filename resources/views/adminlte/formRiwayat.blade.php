@@ -1,8 +1,138 @@
 @extends('adminlte.adminLayout')
 
 @section('riwayat')
-    <h1>Riwayat</h1>
+<div class="row-fluid">
+    <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Input Riwayat Akademik</h5>
+        </div>
+        <div class="widget-content nopadding">
 
+            <form action="/riwayat/crud" method="post" class="form-horizontal">
+            @csrf
+            <div class="control-group">
+                <label class="control-label">Siswa :</label>
+                <div class="controls">
+                  <select class="form-control span11" name="siswa" style="width: 250pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                      @isset($DBsiswa)
+                          @foreach ($DBsiswa as $i)
+                          <option value="{{$i->NIS}}" selected>{{$i->Nama_siswa}}</option>
+                          @endforeach
+                      @endisset
+                  </select>
+                  @error('siswa')
+                      <br><span style="color: red;">{{ $message }}</span>
+                  @enderror
+                  </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Kelas :</label>
+                <div class="controls">
+                  <select class="form-control span11" name="kelas" style="width: 150pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                      @isset($DBkelas)
+                          @foreach ($DBkelas as $v)
+                          <option value="{{$v->Id_kelas}}" selected>{{$v->Nama_kelas}}</option>
+                          @endforeach
+                      @endisset
+                  </select>
+                  @error('kelas')
+                      <br><span style="color: red;">{{ $message }}</span>
+                  @enderror
+                  </div>
+              </div>
+              <div class="control-group">
+                  <label class="control-label">Mata Pelajaran :</label>
+                  <div class="controls">
+                    <select class="form-control span11" name="mapel" style="width: 150pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                        @isset($DBmapel)
+                            @foreach ($DBmapel as $i)
+                            <option value="{{$i->Id_mapel}}" selected>{{$i->Nama_mapel}}</option>
+                            @endforeach
+                        @endisset
+                    </select>
+                    @error('mapel')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="">Nilai Quiz 1 :</label>
+                    <div class="controls">
+                        <input name="Quiz1" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 45pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">Nilai Quiz 2 :</label>
+                    <div class="controls">
+                        <input name="Quiz2" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 45pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">Nilai Tugas 1 :</label>
+                    <div class="controls">
+                        <input name="Tugas1" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 45pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">Nilai Tugas 2 :</label>
+                    <div class="controls">
+                        <input name="Tugas2" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 45pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">Nilai UTS :</label>
+                    <div class="controls">
+                        <input name="UTS" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 45pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">Nilai UAS :</label>
+                    <div class="controls">
+                        <input name="UAS" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 45pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">Nilai Sikap :</label>
+                    <div class="controls">
+                        <input name="Sikap" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 45pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">Nilai Akhir :</label>
+                    <div class="controls">
+                        <input name="Nilai_akhir" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 45pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                    </div>
+                </div>
+
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success" name="Insert">Insert</button>
+              {{-- <button type="submit" class="btn btn-success" name="Update">Update</button> --}}
+            </div>
+          </form>
+          {{-- form untuk admin input siswa dengan excel --}}
+            <div class="control-group">
+                <label class="control-label">File Siswa:</label>
+                <div class="controls">
+                    <input type="file" name="fileToa"/> Import Siswa Format File: Excel
+                </div>
+            </div>
+                <div class="controls">
+                    <form action="GetFormatSiswa" method="get">
+                        Download Format Siswa:
+                        <input type="submit" value="Format Input Siswa">
+                    </form>
+                </div>
+
+
+        </div>
+    </div>
+</div>
+<div class="widget-box">
+    <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+        <h5>Table Riwayat Akademik</h5>
+    </div>
     <div class="widget-content nopadding">
         <table class="table table-bordered table-striped">
           <thead>
@@ -45,122 +175,5 @@
           </tbody>
         </table>
       </div>
-      <div class="row-fluid">
-        <div class="widget-box">
-            <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-              <h5>Input Riwayat Akademik</h5>
-            </div>
-            <div class="widget-content nopadding">
-
-                <form action="/riwayat/crud" method="post" class="form-horizontal">
-                @csrf
-                <div class="control-group">
-                    <label class="control-label">Siswa :</label>
-                    <div class="controls">
-                      <select class="form-control span11" name="siswa">
-                          @isset($DBsiswa)
-                              @foreach ($DBsiswa as $i)
-                              <option value="{{$i->NIS}}" selected>{{$i->Nama_siswa}}</option>
-                              @endforeach
-                          @endisset
-                      </select>
-                      @error('siswa')
-                          <br><span style="color: red;">{{ $message }}</span>
-                      @enderror
-                      </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">Kelas :</label>
-                    <div class="controls">
-                      <select class="form-control span11" name="kelas">
-                          @isset($DBkelas)
-                              @foreach ($DBkelas as $v)
-                              <option value="{{$v->Id_kelas}}" selected>{{$v->Nama_kelas}}</option>
-                              @endforeach
-                          @endisset
-                      </select>
-                      @error('kelas')
-                          <br><span style="color: red;">{{ $message }}</span>
-                      @enderror
-                      </div>
-                  </div>
-                  <div class="control-group">
-                      <label class="control-label">Mata Pelajaran :</label>
-                      <div class="controls">
-                        <select class="form-control span11" name="mapel">
-                            @isset($DBmapel)
-                                @foreach ($DBmapel as $i)
-                                <option value="{{$i->Id_mapel}}" selected>{{$i->Nama_mapel}}</option>
-                                @endforeach
-                            @endisset
-                        </select>
-                        @error('mapel')
-                            <br><span style="color: red;">{{ $message }}</span>
-                        @enderror
-                        </div>
-                    </div>
-
-                <div class="form-group">
-                    <label for="">Nilai Quiz1</label>
-                    <input name="Quiz1" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
-                </div>
-                <div class="form-group">
-                    <label for="">Nilai Quiz2</label>
-                    <input name="Quiz2" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
-                </div>
-                <div class="form-group">
-                    <label for="">Nilai Tugas1</label>
-                    <input name="Tugas1"  type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
-                </div>
-                <div class="form-group">
-                    <label for="">Nilai Tugas2</label>
-                    <input name="Tugas2"  type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
-                </div>
-                <div class="form-group">
-                    <label for="">Nilai UTS</label>
-                    <input name="UTS"  type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
-                </div>
-                <div class="form-group">
-                    <label for="">Nilai UAS</label>
-                    <input name="UAS" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
-                </div>
-                <div class="form-group">
-                    <label for="">Sikap </label>
-                    <input name="Sikap" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
-                </div>
-                <div class="form-group">
-                    <label for="">Nilai Akhir</label>
-                    <input name="Nilai_akhir"  type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai">
-                </div>
-
-
-
-                <div class="form-actions">
-                  <button type="submit" class="btn btn-success" name="Insert">Insert</button>
-                  {{-- <button type="submit" class="btn btn-success" name="Update">Update</button> --}}
-                </div>
-              </form>
-              {{-- form untuk admin input siswa dengan excel --}}
-                <div class="control-group">
-                    <label class="control-label">File Siswa:</label>
-                    <div class="controls">
-                    <input type="file" name="fileToa"/> Import Siswa Format File: Excel
-                    </div>
-                </div>
-                    <div class="controls">
-                        <form action="GetFormatSiswa" method="get">
-                            Download Format Siswa:
-                            <input type="submit" value="Format Input Siswa">
-                        </form>
-                    </div>
-
-
-            </div>
-        </div>
-    </div>
 </div>
-    </div>
-
-
-
 @endsection

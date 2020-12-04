@@ -6,6 +6,7 @@ use App\ajar_mengajar;
 use App\guru;
 use App\history_edit;
 use App\Imports\SiswaImport;
+use App\jurusan;
 use App\kelas;
 use App\mapel;
 use App\pengumuman;
@@ -405,9 +406,14 @@ class Database extends Controller
     {
         $kelas  = kelas::find($id);
         Session::put("kelas",$kelas);
+        $optionperiode = periode_akademik::all();
+        $optionguru = guru::all();
+        $optionjurusan = jurusan::all();
+        Session::put("optionperiode",$optionperiode);
+        Session::put("optionguru",$optionguru);
+        Session::put("optionjurusan",$optionjurusan);
         return view('adminlte.editKelas',[
             "kelas"=>$kelas
-
         ]);
     }
     public function selectKelas(Request $data)
@@ -470,6 +476,12 @@ class Database extends Controller
     {
         $ajar_mengajar  = ajar_mengajar::find($id);
         Session::put("ajar_mengajar",$ajar_mengajar);
+        $optionguru = guru::all();
+        $optionkelas = kelas::all();
+        $optionmapel = mapel::all();
+        Session::put("optionguru",$optionguru);
+        Session::put("optionkelas",$optionkelas);
+        Session::put("optionmapel",$optionmapel);
         return view('adminlte.editJadwal',[
             "ajar_mengajar"=>$ajar_mengajar
 
