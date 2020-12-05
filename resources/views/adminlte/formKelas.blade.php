@@ -1,7 +1,81 @@
 @extends('adminlte.adminLayout')
 
 @section('formKelas')
-
+<!--Chart-box-->
+<div class="row-fluid">
+    <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Input Kelas</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="/kelas/crud" method="post" class="form-horizontal">
+            @csrf
+            <div class="control-group">
+                <label class="control-label">Periode</label>
+                <div class="controls">
+                <select class="span11" name="period" style="width: 150pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                    @foreach ($DBPeriode as $i)
+                        <option value="{{$i->Id_periode}}">{{$i->Tahun_ajaran}} - Semester {{$i->Semester}}</option>
+                    @endforeach
+                </select>
+                @error('period')
+                    <br><span style="color: red;">{{ $message }}</span>
+                @enderror
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Guru</label>
+                <div class="controls">
+                <select class="span11" name="nig"  style="width: 250pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                    @foreach ($Guru as $i)
+                        <option value="{{$i->NIG}}">{{$i->Nama_guru}}</option>
+                    @endforeach
+                </select>
+                @error('nig')
+                    <br><span style="color: red;">{{ $message }}</span>
+                @enderror
+                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Nama Kelas :</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="Nama Lengkap" name="nama" style="width: 150pt; height: 40px;  padding: 0.375rem 0.75rem; " />
+                @error('nama')
+                    <br><span style="color: red;">{{ $message }}</span>
+                @enderror
+                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Tingkat Kelas :</label>
+              <div class="controls">
+                <input type="text"  class="span11" placeholder="Tingkat Kelas" name="tingkat"  style="width: 100pt; height: 40px;  padding: 0.375rem 0.75rem; " />
+                @error('tingkat')
+                    <br><span style="color: red;">{{ $message }}</span>
+                @enderror
+            </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Jurusan</label>
+                <div class="controls">
+                <select class="span11" name="idJur" style="width: 100pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                    @foreach ($jurusan as $i)
+                        <option value="{{$i->Id_jurusan}}">{{$i->Nama_jurusan}}</option>
+                    @endforeach
+                </select>
+                @error('idJur')
+                    <br><span style="color: red;">{{ $message }}</span>
+                @enderror
+                </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success" name="Insert">Insert</button>
+              <button type="submit" class="btn btn-success" name="Update">Update</button>
+            </div>
+          </form>
+        </div>
+    </div>
+</div>
+<!--End-Chart-box-->
 <div class="widget-box">
     <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
       <h5>Table Kelas</h5>
@@ -43,82 +117,5 @@
       </table>
     </div>
   </div>
-    <!--Chart-box-->
-    <div class="row-fluid">
-        <div class="widget-box">
-            <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-              <h5>Input Kelas</h5>
-            </div>
-            <div class="widget-content nopadding">
-              <form action="/kelas/crud" method="post" class="form-horizontal">
-                @csrf
-                <div class="control-group">
-                    <label class="control-label">Periode</label>
-                    <div class="controls">
-                    <select class="span11" name="period">
-                        @foreach ($DBPeriode as $i)
-                            <option value="{{$i->Id_periode}}">{{$i->Tahun_ajaran}} - Semester {{$i->Semester}}</option>
-                        @endforeach
-                    </select>
-                    @error('period')
-                        <br><span style="color: red;">{{ $message }}</span>
-                    @enderror
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">Guru</label>
-                    <div class="controls">
-                    <select class="span11" name="nig">
-                        @foreach ($Guru as $i)
-                            <option value="{{$i->NIG}}">{{$i->Nama_guru}}</option>
-                        @endforeach
-                    </select>
-                    @error('nig')
-                        <br><span style="color: red;">{{ $message }}</span>
-                    @enderror
-                    </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label">Nama Kelas :</label>
-                  <div class="controls">
-                    <input type="text" class="span11" placeholder="Nama Lengkap" name="nama" />
-                    @error('nama')
-                        <br><span style="color: red;">{{ $message }}</span>
-                    @enderror
-                    </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label">Tingkat Kelas :</label>
-                  <div class="controls">
-                    <input type="text"  class="span11" placeholder="Tingkat Kelas" name="tingkat"  />
-                    @error('tingkat')
-                        <br><span style="color: red;">{{ $message }}</span>
-                    @enderror
-                </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">Jurusan</label>
-                    <div class="controls">
-                    <select class="span11" name="idJur">
-                        @foreach ($jurusan as $i)
-                            <option value="{{$i->Id_jurusan}}">{{$i->Nama_jurusan}}</option>
-                        @endforeach
-                    </select>
-                    @error('idJur')
-                        <br><span style="color: red;">{{ $message }}</span>
-                    @enderror
-                    </div>
-                </div>
-                <div class="form-actions">
-                  <button type="submit" class="btn btn-success" name="Insert">Insert</button>
-                  <button type="submit" class="btn btn-success" name="Update">Update</button>
-                </div>
-              </form>
-            </div>
-        </div>
-    </div>
-    <!--End-Chart-box-->
-    <hr/>
-</div>
 {{--  --}}
 @endsection

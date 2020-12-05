@@ -1,10 +1,54 @@
 @extends('adminlte.adminLayout')
 
 @section('formMapel')
-
+<!--Chart-box-->
+<div class="row-fluid">
+    <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Input Mata Pelajaran</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="/mapel/crud" method="post" class="form-horizontal">
+            @csrf
+            <div class="control-group">
+              <label class="control-label">Nama Mata Pelajaran :</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="Nama Mata Pelajaran" name="nama" style="width: 150pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
+                @error('nama')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
+            </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">KKM :</label>
+              <div class="controls">
+                <input type="text"  class="span11" placeholder="KKM"  name="kkm" style="width: 50pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
+                @error('kkm')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
+            </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Tingkat Mata Pelajaran :</label>
+              <div class="controls">
+                <input type="text"  class="span11" placeholder="Tingkatan Mata Pelajaran" name="tingkat"  style="width: 50pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
+                @error('tingkat')
+                        <br><span style="color: red;">{{ $message }}</span>
+                    @enderror
+            </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success" name="Insert">Insert</button>
+              <button type="submit" class="btn btn-success" name="Update">Update</button>
+            </div>
+          </form>
+        </div>
+    </div>
+</div>
+<!--End-Chart-box-->
 <div class="widget-box">
     <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-      <h5>Table Siswa</h5>
+      <h5>Table Mata Pelajaran</h5>
     </div>
     <div class="widget-content nopadding">
       <table class="table table-bordered table-striped">
@@ -38,51 +82,5 @@
       </table>
     </div>
   </div>
-<!--Chart-box-->
-<div class="row-fluid">
-    <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>Input Mata Pelajaran</h5>
-        </div>
-        <div class="widget-content nopadding">
-          <form action="/mapel/crud" method="post" class="form-horizontal">
-            @csrf
-            <div class="control-group">
-              <label class="control-label">Nama Mata Pelajaran :</label>
-              <div class="controls">
-                <input type="text" class="span11" placeholder="Nama Mata Pelajaran" name="nama"/>
-                @error('nama')
-                        <br><span style="color: red;">{{ $message }}</span>
-                    @enderror
-            </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">KKM :</label>
-              <div class="controls">
-                <input type="text"  class="span11" placeholder="KKM"  name="kkm"/>
-                @error('kkm')
-                        <br><span style="color: red;">{{ $message }}</span>
-                    @enderror
-            </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Tingkat Mata Pelajaran :</label>
-              <div class="controls">
-                <input type="text"  class="span11" placeholder="Tingkatan Mata Pelajaran" name="tingkat" />
-                @error('tingkat')
-                        <br><span style="color: red;">{{ $message }}</span>
-                    @enderror
-            </div>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-success" name="Insert">Insert</button>
-              <button type="submit" class="btn btn-success" name="Update">Update</button>
-            </div>
-          </form>
-        </div>
-    </div>
-</div>
-<!--End-Chart-box-->
-    <hr/>
-</div>
+
 @endsection

@@ -12,7 +12,7 @@
             <div class="control-group">
               <label class="control-label">NISN :</label>
               <div class="controls">
-                <input type="text" class="span7" placeholder="NISN" name="nisn"/>
+                <input type="text" class="span7" placeholder="NISN" name="nisn" style="width: 100pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
               </div>
             </div>
             {{-- <div class="control-group">
@@ -27,7 +27,7 @@
             <div class="control-group">
               <label class="control-label">Nama Lengkap :</label>
               <div class="controls">
-                <input type="text" class="span7" placeholder="Nama Lengkap" name="nama" />
+                <input type="text" class="span7" placeholder="Nama Lengkap" name="nama" style="width: 200pt; height: 40px;  padding: 0.375rem 0.75rem; " />
                 @error('nama')
                     <br><span style="color: red;">{{ $message }}</span>
                 @enderror
@@ -36,7 +36,7 @@
             <div class="control-group">
               <label class="control-label">Kata Sandi :</label>
               <div class="controls">
-                <input type="password" class="span7" placeholder="Kata Sandi" name="pw" />
+                <input type="password" class="span7" value="Pass1" placeholder="Kata Sandi" name="pw"  style="width: 200pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
                 @error('pw')
                     <br><span style="color: red;">{{ $message }}</span>
                 @enderror
@@ -46,7 +46,7 @@
             <div class="control-group">
               <label class="control-label">Tempat Lahir :</label>
               <div class="controls">
-                <input type="text"  class="span7" placeholder="Alamat" name="tmptLahir" />
+                <input type="text"  class="span7" placeholder="Tempat lahir" name="tmptLahir"  style="width: 150pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
                 @error('tmptLahir')
                     <br><span style="color: red;">{{ $message }}</span>
                 @enderror
@@ -55,7 +55,7 @@
             <div class="control-group">
               <label class="control-label">Tanggal Lahir :</label>
               <div class="controls">
-                  <input type="date" value="12-02-2012"  data-date-format="dd-mm-yyyy" class="span7" name="tglLahir">
+                  <input type="date" value="12-02-2012"  data-date-format="dd-mm-yyyy" class="span7" name="tglLahir" style="width: 120pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                   @error('tglLahir')
                     <br><span style="color: red;">{{ $message }}</span>
                   @enderror
@@ -64,7 +64,7 @@
             <div class="control-group">
                 <label class="control-label">Nama Ibu :</label>
                 <div class="controls">
-                    <input type="text"  class="span7" placeholder="Nama Ibu" name="NameMom" />
+                    <input type="text"  class="span7" placeholder="Nama Ibu" name="NameMom"  style="width: 200pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
                     @error('NameMom')
                         <br><span style="color: red;">{{ $message }}</span>
                     @enderror
@@ -73,7 +73,7 @@
             <div class="control-group">
                 <label class="control-label">Nama Ayah :</label>
                 <div class="controls">
-                    <input type="text"  class="span7" placeholder="Nama Ayah" name="NameDad" />
+                    <input type="text"  class="span7" placeholder="Nama Ayah" name="NameDad"  style="width: 200pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
                     @error('NameDad')
                         <br><span style="color: red;">{{ $message }}</span>
                     @enderror
@@ -82,7 +82,7 @@
             <div class="control-group">
               <label for="normal" class="control-label">Alamat :</label>
               <div class="controls">
-                <input type="text" class="form-control span7" name="alamat" placeholder="alamat">
+                <input type="text" class="form-control span7" name="alamat" placeholder="alamat" style="width: 300pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                 @error('alamat')
                         <br><span style="color: red;">{{ $message }}</span>
                     @enderror
@@ -90,7 +90,7 @@
             <div class="control-group">
               <label class="control-label">Agama :</label>
               <div class="controls">
-                <select class="form-control span7" name="agama">
+                <select class="form-control span7" name="agama"  style="width: 100pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     <option value="Islam" selected>Islam</option>
                     <option value="Budha">Budha</option>
                     <option value="Hindu">Hindu</option>
@@ -106,13 +106,9 @@
             <div class="control-group">
                 <label class="control-label">Jenis Kelamin</label>
                 <div class="controls">
-                  <select class="span7" name="agama">
-                    <option value="Islam" selected>Islam</option>
-                    <option value="Budha">Budha</option>
-                    <option value="Hindu">Hindu</option>
-                    <option value="Katolik">Katolik</option>
-                    <option value="Kristen">Kristen</option>
-                    <option value="Konghucu">Konghucu</option>
+                  <select class="span7" name="jk"  style="width: 70pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                    <option value="Islam" selected>Pria</option>
+                    <option value="Budha">Wanita</option>
                   </select>
                   @error('jk')
                         <br><span style="color: red;">{{ $message }}</span>
@@ -122,7 +118,7 @@
               <div class="control-group">
                 <label class="control-label">Status Siswa</label>
                 <div class="controls">
-                  <select class="form-control span7" name="status">
+                  <select class="form-control span7" name="status" style="width: 100pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     <option value="1" selected>Aktif</option>
                     <option value="0">Tidak Aktif</option>
                   </select>
@@ -134,7 +130,7 @@
               <div class="control-group">
                 <label class="control-label">Kelas</label>
                 <div class="controls">
-                  <select class="span7" name="kelas">
+                  <select class="span7" name="kelas" style="width: 130pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                       @isset($DBkelas)
                         @foreach ($DBkelas as $i)
                         <option value="{{$i->Id_kelas}}" selected>{{$i->Nama_kelas}}</option>
@@ -149,7 +145,7 @@
               <div class="control-group">
                 <label class="control-label">Jurusan</label>
                 <div class="controls">
-                  <select class="span7" name="jurusan">
+                  <select class="span7" name="jurusan" style="width: 130pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                       @isset($DBJurusan)
                         @foreach ($DBJurusan as $i)
                         <option value="{{$i->Id_jurusan}}" selected>{{$i->Nama_jurusan}}</option>
