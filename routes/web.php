@@ -4,12 +4,15 @@ use App\ajar_mengajar;
 use App\guru;
 use App\jurusan;
 use App\kelas;
+use App\Mail\TestMail;
 use App\riwayat_akademik;
 use App\siswa;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Mail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -152,8 +155,15 @@ Route::get('/tes', function (Faker $faker) {
     // dd(siswa::latest("NIS")->first()->NIS+1);
 
     // dd($faker->address());
-    factory(ajar_mengajar::class,10)->create();
-    factory(riwayat_akademik::class,100)->create();
-    echo"asd";
+    // factory(ajar_mengajar::class,10)->create();
+    // factory(riwayat_akademik::class,100)->create();
+    // echo"asd";
+
+    // return new TestMail();
+
+    // $user = User::find($username);
+    Mail::to("yoshua_d18@mhs.stts.edu")->send(new TestMail());
+
+
 
 });
