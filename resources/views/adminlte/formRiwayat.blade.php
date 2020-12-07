@@ -31,7 +31,7 @@
                   <select class="form-control span11" name="ajar_mengajar" style="width: 250pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                       @isset($DBAjar_mengajar)
                           @foreach ($DBAjar_mengajar as $i)
-                          <option value="{{$i->Id_ajar_mengajar}}" selected>{{$i->kelas->Nama_kelas}}</option>
+                            <option value="{{$i->Id_ajar_mengajar}}" selected>{{$i->kelas->Nama_kelas}}</option>
                           @endforeach
                       @endisset
                   </select>
