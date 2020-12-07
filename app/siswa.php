@@ -42,7 +42,14 @@ class siswa extends AuthSiswa
         return $this->Password_siswa;
     }
 
+    public function kelas()
+    {
+        return $this->hasOne(kelas::class,"Id_kelas","Id_kelas");
+    }
 
+    public function jurusan(){
+        return $this->hasOne(jurusan::class,"Id_jurusan","id_jurusan");
+    }
 
 
 }
