@@ -24,6 +24,19 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class Database extends Controller
 {
+    public function filterSiswa(Request $request){
+
+
+        $daftarSiswa = siswa::all();
+        $DBkelas = kelas::all();
+        $DBJurusan = jurusan::all();
+        return view("adminlte.formSiswa",[
+            "daftarSiswa"=>$daftarSiswa,
+            "DBkelas"=>$DBkelas,
+            "DBJurusan"=>$DBJurusan
+        ]);
+    }
+
     public function updateSiswa(Request $request)
     {
         // dd($request->all());
@@ -353,6 +366,7 @@ class Database extends Controller
         if ($data->has("Insert")) {
             riwayat_akademik::create(
                 [
+                    "NIS"=>$data->input("siswa"),
                     "NIS"=>$data->input("siswa"),
                     "Id_kelas"=>$data->input("kelas"),
                     "Id_mapel"=>$data->input("mapel"),

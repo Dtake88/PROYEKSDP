@@ -90,7 +90,9 @@ class AdminController extends Controller
         $DBsiswa = siswa::all();
         $DBkelas = kelas::all();
         $DBmapel = mapel::all();
+        $DBAjar_mengajar = ajar_mengajar::all();
         return view("adminlte.formRiwayat",[
+            "DBAjar_mengajar"=>$DBAjar_mengajar,
             "DBriwayat"=>$DBriwayat,
             "DBsiswa"=>$DBsiswa,
             "DBkelas"=>$DBkelas,

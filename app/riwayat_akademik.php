@@ -15,6 +15,7 @@ class riwayat_akademik extends Model
     public $timestamps = false;
     protected $fillable =
     [
+     'Id_ajar_mengajar',
      'NIS',
      'Id_kelas',
      'Id_mapel',
