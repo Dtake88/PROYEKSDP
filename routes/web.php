@@ -124,8 +124,9 @@ Route::group(['middleware' => ["SiswaMiddleware"]], function () {
 });
 
 
-//download Pengumuman
+//download
 Route::get('download/{namafile}', 'Database@downloadToa');
+Route::get('GetFormatSiswa', 'SiswaController@downloadFormatSiswa');
 
 
 // post

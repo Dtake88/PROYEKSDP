@@ -4,8 +4,11 @@ namespace App\Imports;
 
 use App\siswa;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Validators\Failure;
 
 class SiswaImport implements ToModel,WithHeadingRow
 {
@@ -16,7 +19,6 @@ class SiswaImport implements ToModel,WithHeadingRow
     */
     public function model(array $row)
     {
-
         //Password = NISN
         $time = strtotime($row['tanggal_lahir_siswa']);
 
@@ -36,5 +38,18 @@ class SiswaImport implements ToModel,WithHeadingRow
             'id_jurusan'=>$row['id_jurusan'],
             'Status'=> $row['status']
         ]);
+
+
     }
+
+    // use Importable;
+
+    // /**
+    //  * @param Failure[] $failures
+    //  */
+    // public function onFailure(Failure ...$failures)
+    // {
+    //     // Handle the failures how you'd like.
+    //     return redirect("/siswa")->with('message','Format Salah');
+    // }
 }
