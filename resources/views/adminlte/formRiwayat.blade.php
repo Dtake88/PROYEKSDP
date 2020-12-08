@@ -16,7 +16,8 @@
                   <select class="form-control span11" name="siswa" style="width: 250pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                       @isset($DBsiswa)
                           @foreach ($DBsiswa as $i)
-                          <option value="{{$i->NIS}}" selected>{{$i->Nama_siswa}}</option>
+                  <option value="{{$i->NIS}}" selected>{{$i->Nama_siswa}} - {{$i->kelas->Nama_kelas}}- {{$i->kelas->Tingkat_kelas}}
+                     </option>
                           @endforeach
                       @endisset
                   </select>
@@ -26,6 +27,24 @@
                   </div>
               </div>
               <div class="control-group">
+                <label class="control-label">Ajar mengajar :</label>
+                <div class="controls">
+                  <select class="form-control span11" name="ajar_mengajar" style="width: 250pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                      @isset($DBAjar_mengajar)
+                          @foreach ($DBAjar_mengajar as $i)
+                    <option value="{{$i->Id_ajar_mengajar}}" >{{$i->mapel->Nama_mapel}} -
+                    {{$i->kelas->Nama_kelas}} - {{$i->kelas->Tingkat_kelas}} </option>
+                          @endforeach
+                      @endisset
+                  </select>
+                  @error('ajar_mengajar')
+                      <br><span style="color: red;">{{ $message }}</span>
+                  @enderror
+                  </div>
+              </div>
+
+
+              {{-- <div class="control-group">
                 <label class="control-label">Kelas :</label>
                 <div class="controls">
                   <select class="form-control span11" name="kelas" style="width: 150pt; height: 40px;  padding: 0.375rem 0.75rem; ">
@@ -54,7 +73,7 @@
                         <br><span style="color: red;">{{ $message }}</span>
                     @enderror
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="control-group">
                     <label class="control-label" for="">Nilai Quiz 1 :</label>

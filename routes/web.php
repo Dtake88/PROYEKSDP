@@ -63,6 +63,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/deleteSiswa/{id}', 'Database@deleteSiswa');
     Route::get('/toUpdateSiswa/{id}', 'Database@toUpdateSiswa');
     Route::post('/updateSiswa', 'Database@updateSiswa');
+    Route::post('/filterSiswa', 'Database@filterSiswa');
 
     Route::get('/deleteGuru/{id}', 'Database@deleteGuru');
     Route::get('/toUpdateGuru/{id}', 'Database@toUpdateGuru');

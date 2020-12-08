@@ -24,6 +24,19 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class Database extends Controller
 {
+    public function filterSiswa(Request $request){
+
+
+        $daftarSiswa = siswa::all();
+        $DBkelas = kelas::all();
+        $DBJurusan = jurusan::all();
+        return view("adminlte.formSiswa",[
+            "daftarSiswa"=>$daftarSiswa,
+            "DBkelas"=>$DBkelas,
+            "DBJurusan"=>$DBJurusan
+        ]);
+    }
+
     public function updateSiswa(Request $request)
     {
         // dd($request->all());
@@ -339,8 +352,9 @@ class Database extends Controller
     {
         $data->validate([
             "siswa" => "required",
-            "kelas" => "required",
-            "mapel" => "required",
+            "ajar_mengajar" => "required",
+            // "kelas" => "required",
+            // "mapel" => "required",
             "Quiz1" => "required",
             "Quiz2" => "required",
             "Tugas1" => "required",
@@ -350,12 +364,16 @@ class Database extends Controller
             "Sikap" => "required",
             "Nilai_akhir" => "required"
         ]);
+        $ajar = ajar_mengajar::find($data->input("ajar_mengajar"));
+        $kelas = $ajar->kelas->Id_kelas;
+        $mapel = $ajar->mapel->Id_mapel;
         if ($data->has("Insert")) {
             riwayat_akademik::create(
                 [
                     "NIS"=>$data->input("siswa"),
-                    "Id_kelas"=>$data->input("kelas"),
-                    "Id_mapel"=>$data->input("mapel"),
+                    "Id_ajar_mengajar"=>$data->input("ajar_mengajar"),
+                    "Id_kelas"=>$kelas,
+                    "Id_mapel"=>$mapel,
                     "Quiz1"=>$data->input("Quiz1"),
                     "Quiz2"=>$data->input("Quiz2"),
                     "Tugas1"=>$data->input("Tugas1"),
