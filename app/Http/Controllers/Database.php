@@ -563,7 +563,7 @@ class Database extends Controller
         ]);
         if ($data->session()->has("loggedAdmin")) {
             $penToa = $data->session()->get("loggedAdmin");
-            $namafile = Str::random(8).".".$data->file("fileSiswa")->getClientOriginalExtension();
+            $namafile = Str::random(8).".".$data->file("fileToa")->getClientOriginalExtension();
             $data->file("fileToa")->storeAs("fileToa",$namafile,"local");
             // dd($data->input("fileToa"));
             if ($data->has("Insert")) {
