@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{asset('css/matrix-style.css')}}" />
     <link href="{{asset('font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -54,6 +55,7 @@
 
             @yield('inputNilai')
             @yield('homeGuru')
+            @yield('editNilai')
 
 
 

@@ -53,9 +53,29 @@ class GuruController extends Controller
             "listNilai" =>$riwayat,
             "ajar" =>$ajar
         ]);
-
-
     }
 
+    public function toEditNilai($idRiwayat)
+    {
+        $riwayat = riwayat_akademik::find($idRiwayat);
+        // dd($riwayat);
+        return view("guru.formEditNilai",["riwayat"=>$riwayat]);
+    }
+
+    public function updateRiwayat(Request $request)
+    {
+        $riwayat = riwayat_akademik::find($request->idRiwayat);
+        $riwayat->Quiz1 = $request->quiz1;
+        $riwayat->Quiz2 = $request->quiz2;
+        $riwayat->Tugas1 = $request->tugas1;
+        $riwayat->Tugas2 = $request->tugas2;
+        $riwayat->UTS = $request->UTS;
+        $riwayat->UAS = $request->UAS;
+        $riwayat->Hasil_akhir = $request->nilaiAkhir;
+        $riwayat->Sikap = $request->sikap;
+        $riwayat->save();
+        // dd($request->all());
+        return redirect("inputNilai");
+    }
 
 }
