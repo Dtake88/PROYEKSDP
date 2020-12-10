@@ -68,10 +68,12 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/deleteGuru/{id}', 'Database@deleteGuru');
     Route::get('/toUpdateGuru/{id}', 'Database@toUpdateGuru');
     Route::post('/updateGuru', 'Database@updateGuru');
+    Route::post('/filterGuru', 'Database@filterGuru');
 
     Route::get('/deletePeriode/{id}', 'Database@deletePeriode');
     Route::get('/toUpdatePeriode/{id}', 'Database@toUpdatePeriode');
     Route::post('/updatePeriode', 'Database@updatePeriode');
+    Route::post('/filterPeriode', 'Database@filterPeriode');
 
     Route::get('/deleteMapel/{id}', 'Database@deleteMapel');
     Route::get('/toUpdateMapel/{id}', 'Database@toUpdateMapel');
@@ -84,10 +86,12 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/deleteKelas/{id}', 'Database@deleteKelas');
     Route::get('/toUpdateKelas/{id}', 'Database@toUpdateKelas');
     Route::post('/updateKelas', 'Database@updateKelas');
+    Route::post('/filterKelas', 'Database@filterKelas');
 
     Route::get('/deleteJadwal/{id}', 'Database@deleteJadwal');
     Route::get('/toUpdateJadwal/{id}', 'Database@toUpdateJadwal');
     Route::post('/updateJadwal', 'Database@updateJadwal');
+    Route::post('/filterJadwal', 'Database@filterJadwal');
 
     Route::get('/aktifNonaktifSiswa/{id}', function($id){
         $siswa = siswa::find($id);

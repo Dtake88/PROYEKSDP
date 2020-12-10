@@ -48,7 +48,41 @@
         </div>
     </div>
 </div>
-<!--End-Chart-box-->
+
+<div>
+    <form action="/filterPeriode" method="post" class="form-horizontal">
+        @csrf
+        <h3>Filter </h3>
+        <label class="control-label">Tahun :</label>
+        <select class="span7" name="filtertahun" style="width: 130pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+            @isset($daftarPerodAkademik)
+              <option value="none"selected>None</option>
+              @foreach ($daftarPerodAkademik as $i)
+                <option value="{{$i->Tahun_ajaran}}" >{{$i->Tahun_ajaran}}</option>
+              @endforeach
+            @endisset
+        </select>
+        <br>
+        <br>
+        <label class="control-label">Semester: </label>
+            <select class="span11" name="filtersemester" style="width: 100pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                <option value="none"selected>None</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        <br>
+        <br>
+        <label class="control-label">Status: </label>
+            <select class="span11" name="filterstatus" style="width: 100pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                <option value="none"selected>None</option>
+                <option value="1">Aktif</option>
+                <option value="0">Tidak Aktif</option>
+            </select>
+        <br>
+        <br>
+        <button style="margin-left: 6.5cm" type="submit" class="btn btn-success" name="filter">Filter</button>
+    </form>
+</div>
 
 <div class="widget-box">
     <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>

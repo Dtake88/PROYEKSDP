@@ -49,8 +49,8 @@
                 <label class="control-label">Status Guru</label>
                 <div class="controls">
                 <select class="span11" name="status" style="width: 90pt; height: 40px;  padding: 0.375rem 0.75rem; ">
-                    <option value="1" selected>Aktif</option>
-                    <option value="0">Tidak Aktif</option>
+                    <option value="1" selected>Wali Kelas</option>
+                    <option value="0">Guru Umum</option>
                 </select>
 
                 </div>
@@ -63,6 +63,27 @@
         </div>
     </div>
 </div>
+
+<div>
+    <form action="/filterGuru" method="post" class="form-horizontal">
+        @csrf
+        <h3>Filter </h3>
+        <label class="control-label">Nama :</label>
+        <input type="text" class="span7" placeholder="Search Nama Guru" name="nama"  style="width: 200pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
+        <br>
+        <br>
+        <label class="control-label">Status :</label>
+        <select class="span11" name="filterstatus" style="width: 90pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+            <option value="none" selected>None</option>
+            <option value="1" >Wali Kelas</option>
+            <option value="0">Guru Umum</option>
+        </select>
+        <br>
+        <br>
+        <button style="margin-left: 6.5cm" type="submit" class="btn btn-success" name="filter">Filter</button>
+    </form>
+</div>
+
 </div>
 <div class="widget-box">
     <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>

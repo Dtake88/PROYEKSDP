@@ -25,9 +25,27 @@ use Maatwebsite\Excel\Facades\Excel;
 class Database extends Controller
 {
     public function filterSiswa(Request $request){
+        if($request->filterkelas == "none"){
+            if($request->filterjurusan == "none"){
+                $daftarSiswa = siswa::all();
+            }
+            else{
+                $daftarSiswa = siswa::where("Id_jurusan",$request->filterjurusan)->get();
+            }
+        }
+        else{
+            if($request->filterjurusan == "none"){
+                $daftarSiswa = siswa::where("Id_kelas",$request->filterkelas)->get();
+            }
+            else{
+                $daftarSiswa = siswa::where("Id_kelas",$request->filterkelas)->where("Id_jurusan",$request->filterjurusan)->get();
+            }
+        }
 
+        if($request->nama != ""){
+            $daftarSiswa = siswa::where("Nama_siswa",$request->nama)->get();
+        }
 
-        $daftarSiswa = siswa::all();
         $DBkelas = kelas::all();
         $DBJurusan = jurusan::all();
         return view("adminlte.formSiswa",[
@@ -132,6 +150,23 @@ class Database extends Controller
         return redirect("/siswa")->with('daftarsiswa', $daftarSiswa);
     }
 
+    public function filterGuru(Request $request){
+        if($request->filterstatus == "none"){
+            $daftarGuru = guru::all();
+        }
+        else{
+            $daftarGuru = guru::where("Status_guru",$request->filterstatus)->get();
+        }
+
+        if($request->nama != ""){
+            $daftarGuru = guru::where("Nama_guru",$request->nama)->get();
+        }
+
+        return view("adminlte.formGuru",[
+            "daftarGuru"=>$daftarGuru
+        ]);
+    }
+
     public function updateGuru(Request $request)
     {
         $guru = guru::find($request->NIG);
@@ -209,6 +244,49 @@ class Database extends Controller
             $gurus->Password_guru = Hash::make($gurus->Password_guru);
         }
         return redirect("/guru")->with('daftarGuru', $daftarGuru);
+    }
+
+    public function filterPeriode(Request $request){
+
+        $daftarPerodAkademik = periode_akademik::all();
+        //filter = 3
+        //kalo diisi 1
+        if($request->filtertahun != "none")
+        {
+            $daftarPerodAkademik=periode_akademik::where("Tahun_ajaran", $request->filtertahun)->get();
+        }
+        if($request->filtersemester != "none")
+        {
+            $daftarPerodAkademik=periode_akademik::where("Semester", $request->filtersemester)->get();
+        }
+        if($request->filterstatus != "none")
+        {
+            $daftarPerodAkademik=periode_akademik::where("Status", $request->filterstatus)->get();
+        }
+        //kalo diisi 2
+        if($request->filtertahun != "none" && $request->filtersemester != "none")
+        {
+            $daftarPerodAkademik=periode_akademik::where("Tahun_ajaran", $request->filtertahun)->where("Semester", $request->filtersemester)->get();
+        }
+        if($request->filtertahun != "none" && $request->filterstatus != "none")
+        {
+            $daftarPerodAkademik=periode_akademik::where("Tahun_ajaran", $request->filtertahun)->where("Status", $request->filterstatus)->get();
+        }
+        if($request->filterstatus != "none" && $request->filtersemester != "none")
+        {
+            $daftarPerodAkademik=periode_akademik::where("Status", $request->filterstatus)->where("Semester", $request->filtersemester)->get();
+        }
+
+        //kalo diisi semua
+        if($request->filtertahun != "none" && $request->filtersemester != "none" && $request->filterstatus != "none")
+        {
+            $daftarPerodAkademik=periode_akademik::where("Tahun_ajaran", $request->filtertahun)->where("Semester", $request->filtersemester)->where("Status", $request->filterstatus)->get();
+        }
+
+
+        return view("adminlte.formPeriodeAkademik",[
+            "daftarPerodAkademik"=>$daftarPerodAkademik
+        ]);
     }
 
     public function updatePeriode(Request $request)
@@ -402,7 +480,34 @@ class Database extends Controller
         return redirect("/riwayat")->with('daftarMapel', $daftarMapel);
     }
 
+    public function filterKelas(Request $request){
+        $daftarKelas = kelas::all();
 
+        if($request->nama != "none" && $request->filterguru != "none" && $request->filtertingkatankelas != "none" && $request->filterjurusan != "none"){
+            $daftarKelas=kelas::where("Nama_kelas", $request->nama)->where("NIG", $request->filterguru)->where("Tingkat_kelas", $request->filtertingkatankelas)->where("Id_jurusan", $request->filterjurusan)->get();
+        }
+        if($request->nama != "none" && $request->filterguru != "none" && $request->filtertingkatankelas != "none"){
+            $daftarKelas=kelas::where("Nama_kelas", $request->nama)->where("NIG", $request->filterguru)->where("Tingkat_kelas", $request->filtertingkatankelas)->get();
+        }
+        if($request->nama != "none" && $request->filterguru != "none"  ){
+            $daftarKelas=kelas::where("Nama_kelas", $request->nama)->where("NIG", $request->filterguru)->get();
+        }
+        if($request->nama != "none" ){
+            $daftarKelas=kelas::where("Nama_kelas", $request->nama)->get();
+        }
+
+
+
+        $DBPeriode = periode_akademik::where("Status",1)->get();
+        $GuruAktif = guru::where("Status_guru",1)->get();
+        $DBJurusan = jurusan::all();
+        return view("adminlte.formKelas",[
+            "daftarKelas"=>$daftarKelas,
+            "DBPeriode"=>$DBPeriode,
+            "Guru"=>$GuruAktif,
+            "jurusan"=>$DBJurusan
+        ]);
+    }
 
     public function deleteKelas($id){
         $kelas = kelas::find($id);
@@ -470,6 +575,128 @@ class Database extends Controller
             DB::table('kelas')->where('Id_kelas', '=' , $valueDelete)->delete();
         }
         return redirect("/kelas");
+    }
+
+    public function filterJadwal(Request $request){
+        $DBJadwal = ajar_mengajar::all();
+        //filter = 5
+        //keisi semua
+        if($request->filterhari != "none" && $request->filtermapel != "none" && $request->filterguru != "none" && $request->filterkelas != "none" && $request->filterstatus != "none"){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("Id_mapel", $request->filtermapel)->where("NIG", $request->filterguru)->where("Id_kelas", $request->filterkelas)->where("Status_jadwal", $request->filterstatus)->get();
+        }
+        //keisi 4
+        if($request->filterhari != "none" && $request->filtermapel != "none" && $request->filterguru != "none" && $request->filterkelas != "none"){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("Id_mapel", $request->filtermapel)->where("NIG", $request->filterguru)->where("Id_kelas", $request->filterkelas)->get();
+        }
+        if($request->filterhari != "none" && $request->filtermapel != "none" && $request->filterguru != "none" && $request->filterstatus != "none"){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("Id_mapel", $request->filtermapel)->where("NIG", $request->filterguru)->where("Status_jadwal", $request->filterstatus)->get();
+        }
+        if($request->filterhari != "none" && $request->filtermapel != "none" && $request->filterstatus != "none" && $request->filterkelas != "none"){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("Id_mapel", $request->filtermapel)->where("Status_jadwal", $request->filterstatus)->where("Id_kelas", $request->filterkelas)->get();
+        }
+        if($request->filterhari != "none" && $request->filterstatus != "none" && $request->filterguru != "none" && $request->filterkelas != "none"){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("Status_jadwal", $request->filterstatus)->where("NIG", $request->filterguru)->where("Id_kelas", $request->filterkelas)->get();
+        }
+        if($request->filterstatus != "none" && $request->filtermapel != "none" && $request->filterguru != "none" && $request->filterkelas != "none"){
+            $DBJadwal=ajar_mengajar::where("Status_jadwal", $request->filterstatus)->where("Id_mapel", $request->filtermapel)->where("NIG", $request->filterguru)->where("Id_kelas", $request->filterkelas)->get();
+        }
+        //keisi 3
+        if($request->filterhari != "none" && $request->filtermapel != "none" && $request->filterguru != "none" ){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("Id_mapel", $request->filtermapel)->where("NIG", $request->filterguru)->get();
+        }
+        if($request->filterhari != "none" && $request->filtermapel != "none" && $request->filterkelas != "none" ){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("Id_mapel", $request->filtermapel)->where("Id_kelas", $request->filterkelas)->get();
+        }
+        if($request->filterhari != "none" && $request->filtermapel != "none" && $request->filterstatus != "none" ){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("Id_mapel", $request->filtermapel)->where("Status_jadwal", $request->filterstatus)->get();
+        }
+
+        if($request->filterhari != "none" && $request->filterguru != "none" && $request->filterkelas != "none" ){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("NIG", $request->filterguru)->where("Id_kelas", $request->filterkelas)->get();
+        }
+        if($request->filterhari != "none" && $request->filterguru != "none" && $request->filterstatus != "none" ){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("NIG", $request->filterguru)->where("Status_jadwal", $request->filterstatus)->get();
+        }
+
+        if($request->filterhari != "none" && $request->filterkelas != "none" && $request->filterstatus != "none" ){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("Id_kelas", $request->filterkelas)->where("Status_jadwal", $request->filterstatus)->get();
+        }
+
+        if($request->filtermapel != "none" && $request->filterguru != "none" && $request->filterkelas != "none" ){
+            $DBJadwal=ajar_mengajar::where("Id_mapel", $request->filtermapel)->where("NIG", $request->filterguru)->where("Id_kelas", $request->filterkelas)->get();
+        }
+        if($request->filtermapel != "none" && $request->filterguru != "none" && $request->filterstatus != "none" ){
+            $DBJadwal=ajar_mengajar::where("Id_mapel", $request->filtermapel)->where("NIG", $request->filterguru)->where("Status_jadwal", $request->filterstatus)->get();
+        }
+
+        if($request->filtermapel != "none" && $request->filterstatus != "none" && $request->filterkelas != "none" ){
+            $DBJadwal=ajar_mengajar::where("Id_mapel", $request->filtermapel)->where("Status_jadwal", $request->filterstatus)->where("Id_kelas", $request->filterkelas)->get();
+        }
+
+        if($request->filterstatus != "none" && $request->filterguru != "none" && $request->filterkelas != "none" ){
+            $DBJadwal=ajar_mengajar::where("Status_jadwal", $request->filterstatus)->where("NIG", $request->filterguru)->where("Id_kelas", $request->filterkelas)->get();
+        }
+
+        //keisi 2
+        if($request->filterhari != "none" && $request->filtermapel != "none" ){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("Id_mapel", $request->filtermapel)->get();
+        }
+        if($request->filterhari != "none" && $request->filterguru != "none" ){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("NIG", $request->filterguru)->get();
+        }
+        if($request->filterhari != "none" && $request->filterkelas != "none" ){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("Id_kelas", $request->filterkelas)->get();
+        }
+        if($request->filterhari != "none" && $request->filterstatus != "none" ){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->where("Status_jadwal", $request->filterstatus)->get();
+        }
+
+        if($request->filterguru != "none" && $request->filtermapel != "none" ){
+            $DBJadwal=ajar_mengajar::where("NIG", $request->filterguru)->where("Id_mapel", $request->filtermapel)->get();
+        }
+        if($request->filterkelas != "none" && $request->filtermapel != "none" ){
+            $DBJadwal=ajar_mengajar::where("Id_kelas", $request->filterkelas)->where("Id_mapel", $request->filtermapel)->get();
+        }
+        if($request->filterstatus != "none" && $request->filtermapel != "none" ){
+            $DBJadwal=ajar_mengajar::where("Status_jadwal", $request->filterstatus)->where("Id_mapel", $request->filtermapel)->get();
+        }
+
+        if($request->filterguru != "none" && $request->filterkelas != "none" ){
+            $DBJadwal=ajar_mengajar::where("NIG", $request->filterguru)->where("Id_kelas", $request->filterkelas)->get();
+        }
+        if($request->filterguru != "none" && $request->filterstatus != "none" ){
+            $DBJadwal=ajar_mengajar::where("NIG", $request->filterguru)->where("Status_jadwal", $request->filterstatus)->get();
+        }
+
+        if($request->filterkelas != "none" && $request->filterstatus != "none" ){
+            $DBJadwal=ajar_mengajar::where("Id_kelas", $request->filterkelas)->where("Status_jadwal", $request->filterstatus)->get();
+        }
+        //keisi 1
+        if($request->filterhari != "none" ){
+            $DBJadwal=ajar_mengajar::where("Hari", $request->filterhari)->get();
+        }
+        if($request->filtermapel != "none" ){
+            $DBJadwal=ajar_mengajar::where("Id_mapel", $request->filtermapel)->get();
+        }
+        if($request->filterguru != "none" ){
+            $DBJadwal=ajar_mengajar::where("NIG", $request->filterguru)->get();
+        }
+        if($request->filterkelas != "none" ){
+            $DBJadwal=ajar_mengajar::where("Id_kelas", $request->filterkelas)->get();
+        }
+        if($request->filterstatus != "none" ){
+            $DBJadwal=ajar_mengajar::where("Status_jadwal", $request->filterstatus)->get();
+        }
+
+
+        $GuruAktif = guru::where("Status_guru",1)->get();
+        $Mapel = mapel::all();
+        $kelas = kelas::all();
+        return view("adminlte.jadwal",[
+            "Jadwal"=>$DBJadwal,
+            "Guru"=>$GuruAktif,
+            "Mapel"=>$Mapel,
+            "kelas"=>$kelas]);
     }
 
     public function deleteJadwal($id){
