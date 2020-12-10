@@ -1,7 +1,17 @@
 @extends('adminlte.adminLayout')
 
 @section('formSiswa')
-
+    @if (Session::has('berhasil'))
+        <div class="alert alert-success">
+            <h1>{{ Session::get('berhasil') }}</h1>
+        </div>
+    @endif
+    @if (Session::has('gagal'))
+        <div class="alert alert-danger">
+            <h1>{{ Session::get('gagal') }}</h1>
+        </div>
+    @endif
+<div class="widget-box">
 
 <div class="row-fluid">
     <div class="widget-box">
@@ -178,7 +188,7 @@
                     <label class="control-label">File Siswa:</label>
                     <div class="controls">
 
-                    <input type="file" accept=".xlsx, .xls, .csv" id="file" name="fileToa" onchange="checkfile(this);"  /> Import Siswa Format File: Excel
+                    <input type="file" accept=".xlsx, .xls, .csv" id="file" name="fileSiswa" onchange="checkfile(this);"  /> Import Siswa Format File: Excel
                     </div>
                 </div>
                     <div class="form-actions">
@@ -191,10 +201,7 @@
         </div>
     </div>
 </div>
-@if (Session::has('message'))
-        <h1 style="color: tomato;">{{ Session::get('message') }}</h1>
-    @endif
-<div class="widget-box">
+
     <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
       <h5>Table Siswa</h5>
     </div>
