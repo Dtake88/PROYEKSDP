@@ -65,6 +65,15 @@
               </div>
             </div>
             <div class="control-group">
+              <label class="control-label">Email  :</label>
+              <div class="controls">
+                <input type="text"  class="span7" placeholder="Email Siswa" name="email" />
+                @error('email')
+                    <br><span style="color: red;">{{ $message }}</span>
+                @enderror
+              </div>
+            </div>
+            <div class="control-group">
               <label class="control-label">Tanggal Lahir :</label>
               <div class="controls">
                   <input type="date" value="12-02-2012"  data-date-format="dd-mm-yyyy" class="span7" name="tglLahir" style="width: 120pt; height: 40px;  padding: 0.375rem 0.75rem; ">
@@ -118,9 +127,9 @@
             <div class="control-group">
                 <label class="control-label">Jenis Kelamin</label>
                 <div class="controls">
-                  <select class="span7" name="jk"  style="width: 70pt; height: 40px;  padding: 0.375rem 0.75rem; ">
-                    <option value="Islam" selected>Pria</option>
-                    <option value="Budha">Wanita</option>
+                  <select class="span7" name="jk">
+                    <option value="pria" selected>Pria</option>
+                    <option value="wanita">Wanita</option>
                   </select>
                   @error('jk')
                         <br><span style="color: red;">{{ $message }}</span>
@@ -145,7 +154,7 @@
                   <select class="span7" name="kelas" style="width: 130pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                       @isset($DBkelas)
                         @foreach ($DBkelas as $i)
-                        <option value="{{$i->Id_kelas}}" selected>{{$i->Nama_kelas}}</option>
+                        <option value="{{$i->Id_kelas}}" selected>{{$i->Nama_kelas . "- Tingkat ".$i->Tingkat_kelas}}</option>
                         @endforeach
                       @endisset
                   </select>
@@ -284,9 +293,6 @@
         </tbody>
       </table>
     </div>
-  </div>
-</div>
-<!--Chart-box-->
 
 
 </div>
