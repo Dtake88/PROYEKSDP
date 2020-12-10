@@ -619,7 +619,7 @@ class Database extends Controller
 
         $array = Excel::toArray(new SiswaImport, public_path('/file_siswa/'.$nama_file));
 
-        if ($array[0][0]["nisn"] != null) {
+        if (array_key_exists("nisn",$array[0][0]) && $array[0][0]["nisn"] != null) {
             // import data
             Excel::import(new SiswaImport, public_path('/file_siswa/'.$nama_file));
 
