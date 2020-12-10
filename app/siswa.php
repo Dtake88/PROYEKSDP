@@ -21,15 +21,16 @@ class siswa extends AuthSiswa
         'Password_siswa',
         'Tempat_lahir_siswa',
         'Tanggal_lahir_siswa',
+        'Email_siswa',
         'Nama_ibu',
         'Nama_ayah',
-        'Status_siswa',
+        'Status',
         'NISN',
         'Agama',
         'Jenis_kelamin',
         'Alamat_siswa',
         'id_kelas',
-        'id_jurusan'
+        'id_jurusan',
     ];
 
   /**

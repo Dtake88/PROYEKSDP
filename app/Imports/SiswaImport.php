@@ -25,6 +25,7 @@ class SiswaImport implements ToModel,WithHeadingRow
             'Nama_siswa'=> $row['nama_siswa'],
             'Tempat_lahir_siswa'=> $row['tempat_lahir_siswa'],
             'Tanggal_lahir_siswa'=> $newformat,
+            'Email_siswa'=>$row['email_siswa'],
             'Jenis_kelamin'=> $row['jenis_kelamin'],
             'Alamat_siswa'=> $row['alamat_siswa'],
             'Agama'=> $row['agama'],
@@ -33,7 +34,7 @@ class SiswaImport implements ToModel,WithHeadingRow
             'Password_siswa' => Hash::make($row['nisn']) ,
             'id_kelas'=> $row['id_kelas'],
             'id_jurusan'=>$row['id_jurusan'],
-            'Status'=> $row['status']
+            'Status'=>1
         ]);
 
 
