@@ -163,7 +163,7 @@ Route::get('/tes', function (Faker $faker) {
     // $user = User::find($username);
 
     // dd(siswa::latest("NIS")->first()->Email_siswa);
-    Mail::to("yoshua_d18@mhs.stts.edu")->send(new NewSiswaMail(113087,"siswa"));
+    // Mail::to("yoshua_d18@mhs.stts.edu")->send(new NewSiswaMail(113087,"siswa"));
 
 
 

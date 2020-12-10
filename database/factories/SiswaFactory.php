@@ -21,7 +21,7 @@ $factory->define(siswa::class, function (Faker $faker) {
         "Agama"=>$faker->randomElement(["Kristen","Khatolik","Islam","Buddha","Hindu"]),
         "Jenis_kelamin"=>$faker->randomElement(["wanita","pria"]),
         "Email_siswa"=>$faker->email,
-        "Alamat_siswa"=>$faker->adress(),
+        "Alamat_siswa"=>$faker->address(),
         "Status"=>1,
         "Id_kelas" => $faker->randomElement(kelas::all()->pluck("Id_kelas")),
         "Id_jurusan" => $faker->randomElement(jurusan::all()->pluck("Id_jurusan")),

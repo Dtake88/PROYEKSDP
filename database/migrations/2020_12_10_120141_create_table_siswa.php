@@ -26,7 +26,7 @@ class CreateTableSiswa extends Migration
             $table->integer('NISN');
             $table->string('Agama',10);
             $table->string('Jenis_kelamin',10);
-            $table->string('Alamat_siswa',50);
+            $table->string('Alamat_siswa',255);
             $table->integer('Id_kelas')->unsigned();
             $table->integer('Id_jurusan')->unsigned();
             $table->date('deleted_at')->nullable();

@@ -1,6 +1,7 @@
 <?php
 
 use App\administrasi;
+use App\Imports\SiswaImport;
 use App\jurusan;
 use App\periode_akademik;
 use Illuminate\Database\Seeder;
