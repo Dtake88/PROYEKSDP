@@ -104,8 +104,6 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
 
 
 
-
-
 });
 
 
@@ -131,7 +129,6 @@ Route::group(['middleware' => ["SiswaMiddleware"]], function () {
 
 //download Pengumuman
 Route::get('download/{namafile}', 'Database@downloadToa');
-
 
 // post
 Route::post('/OlahLogin', 'OlahData@OlahData');
@@ -162,6 +159,7 @@ Route::get('/tes', function (Faker $faker) {
     // return new TestMail();
 
     // $user = User::find($username);
+
     Mail::to("yoshua_d18@mhs.stts.edu")->send(new TestMail());
 
 
