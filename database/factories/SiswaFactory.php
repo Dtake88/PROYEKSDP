@@ -22,9 +22,9 @@ $factory->define(siswa::class, function (Faker $faker) {
         "Jenis_kelamin"=>$faker->randomElement(["wanita","pria"]),
         "Alamat_siswa"=>$faker->citySuffix(),
         "Status"=>1,
-        "id_kelas" => $faker->randomElement(kelas::all()->pluck("Id_kelas")),
-        "id_jurusan" => $faker->randomElement(jurusan::all()->pluck("Id_jurusan"))
-
+        "Id_kelas" => $faker->randomElement(kelas::all()->pluck("Id_kelas")),
+        "Id_jurusan" => $faker->randomElement(jurusan::all()->pluck("Id_jurusan")),
+        "Email_siswa"=>$faker->email
 
 
     ];

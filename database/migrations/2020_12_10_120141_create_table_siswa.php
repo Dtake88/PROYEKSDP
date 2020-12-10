@@ -17,7 +17,6 @@ class CreateTableSiswa extends Migration
             $table->increments("NIS")->start_from(113000);
             $table->string('Nama_siswa',30);
             $table->string('Password_siswa',255);
-            $table->string('Tempat_tanggal_lahir',20);
             $table->string('Tempat_lahir_siswa',20);
             $table->date('Tanggal_lahir_siswa');
             $table->string('Email_siswa',255);
