@@ -7,6 +7,8 @@ use App\guru;
 use App\history_edit;
 use App\Imports\SiswaImport;
 use App\kelas;
+use App\Mail\NewSiswaMail;
+use App\Mail\TestMail;
 use App\mapel;
 use App\pengumuman;
 use App\periode_akademik;
@@ -16,6 +18,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -39,6 +42,7 @@ class Database extends Controller
         $siswa->agama = $request->agama;
         $siswa->Jenis_kelamin = $request->jenisKelamin;
         $siswa->Alamat_Siswa = $request->alamat;
+        $siswa->Email_siswa = $request->alamat;
         $siswa->save();
         return redirect('/siswa');
     }
@@ -60,6 +64,7 @@ class Database extends Controller
 
     public function selectSiswa(Request $data)
     {
+        // dd($data->all());
         $data->validate([
             "nisn" => "required|numeric",
             "nama" => "required",
@@ -68,27 +73,38 @@ class Database extends Controller
             "tglLahir" => "required",
             "NameMom" => "required",
             "NameDad" => "required",
-            "alamat" => "required"
+            "alamat" => "required",
+            "email" => "required|email",
+            "kelas" => "required",
+            "jurusan" => "required",
         ]);
 
         if ($data->has("Insert")) {
-            siswa::create(
-                [
-                    "Nama_siswa"=>$data->input("nama"),
-                    "Password_siswa"=>Hash::make( $data->input("pw")),
-                    "Tempat_lahir_siswa"=>$data->input("tmptLahir"),
-                    "Tanggal_lahir_siswa"=>$data->input("tglLahir"),
-                    "Nama_ibu"=>$data->input("NameMom"),
-                    "Nama_ayah"=>$data->input("NameDad"),                    "Status"=>$data->input("status"),
-                    "NISN"=>$data->input("nisn"),
-                    "Agama"=>$data->input("agama"),
-                    "Jenis_kelamin"=>$data->input("jk"),
-                    "Alamat_siswa"=>$data->input("alamat"),
-                    "Id_kelas" => $data->input("kelas"),
-                    "Id_jurusan" =>$data->input("jurusan")
-                ]
-            );
-            // dd("inserted");
+
+            // siswa::create(
+            //     [
+            //         "Nama_siswa"=>$data->input("nama"),
+            //         "Password_siswa"=>Hash::make( $data->input("pw")),
+            //         "Tempat_lahir_siswa"=>$data->input("tmptLahir"),
+            //         "Tanggal_lahir_siswa"=>$data->input("tglLahir"),
+            //         "Nama_ibu"=>$data->input("NameMom"),
+            //         "Nama_ayah"=>$data->input("NameDad"),                    "Status"=>$data->input("status"),
+            //         "Email_siswa" =>$data->input("email"),
+            //         "NISN"=>$data->input("nisn"),
+            //         "Agama"=>$data->input("agama"),
+            //         "Jenis_kelamin"=>$data->input("jk"),
+            //         "Alamat_siswa"=>$data->input("alamat"),
+            //         "id_kelas" => $data->input("kelas"),
+            //         "id_jurusan" =>$data->input("jurusan")
+            //     ]
+            // );
+
+            // Mail::to("yoshua_d18@mhs.stts.edu")->send(new TestMail());
+            // dd(siswa::latest("NIS")->first()->Email_siswa);
+            Mail::to(siswa::last("NIS")->first()->Email_siswa)->send(new NewSiswaMail(siswa::last("NIS")->first()->NIS , $data->pw));
+
+
+
             return redirect("/siswa");
         }
         if ($data->has("Update")) {

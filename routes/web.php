@@ -4,6 +4,7 @@ use App\ajar_mengajar;
 use App\guru;
 use App\jurusan;
 use App\kelas;
+use App\Mail\NewSiswaMail;
 use App\Mail\TestMail;
 use App\riwayat_akademik;
 use App\siswa;
@@ -149,18 +150,18 @@ Route::get('/tes', function (Faker $faker) {
     // $guru = guru::find($sessionGuru['username']);
     // dd($guru->mapel);
     // $siswa = siswa::latest("NIS")->first();
-    // dd(siswa::latest("NIS")->first()->NIS+1);
 
     // dd($faker->address());
-    // factory(ajar_mengajar::class,10)->create();
+    // factory(siswa::class,10)->create();
     // factory(riwayat_akademik::class,100)->create();
     // echo"asd";
 
-    // return new TestMail();
-
+    // return new NewSiswaMail(113087,"siswa");
+    // dd(siswa::find("113087"));
     // $user = User::find($username);
 
-    Mail::to("yoshua_d18@mhs.stts.edu")->send(new TestMail());
+    // dd(siswa::latest("NIS")->first()->Email_siswa);
+    Mail::to("yoshua_d18@mhs.stts.edu")->send(new NewSiswaMail(113087,"siswa"));
 
 
 

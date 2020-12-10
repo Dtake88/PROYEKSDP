@@ -29,7 +29,8 @@ class siswa extends AuthSiswa
         'Jenis_kelamin',
         'Alamat_siswa',
         'id_kelas',
-        'id_jurusan'
+        'id_jurusan',
+        'Email_siswa',
     ];
 
   /**
