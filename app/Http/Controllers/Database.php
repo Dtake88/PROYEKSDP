@@ -567,8 +567,11 @@ class Database extends Controller
 
     public function downloadToa($namafile)
     {
+        dd($namafile);
         return Storage::disk('local')->download("fileToa/".$namafile);
     }
+
+
 
 
 
@@ -583,7 +586,6 @@ class Database extends Controller
             $penToa = $data->session()->get("loggedAdmin");
             $namafile = Str::random(8).".".$data->file("fileToa")->getClientOriginalExtension();
             $data->file("fileToa")->storeAs("fileToa",$namafile,"local");
-            // dd($data->input("fileToa"));
             if ($data->has("Insert")) {
                 pengumuman::insert(
                     [
@@ -614,10 +616,20 @@ class Database extends Controller
 		// upload ke folder file_siswa di dalam folder public
 		$file->move('file_siswa',$nama_file);
 
-		// import data
-		Excel::import(new SiswaImport, public_path('/file_siswa/'.$nama_file));
 
-		// alihkan halaman kembali
-		return redirect('/siswa');
+        $array = Excel::toArray(new SiswaImport, public_path('/file_siswa/'.$nama_file));
+
+        if ($array[0][0]["nisn"] != null) {
+            // import data
+            Excel::import(new SiswaImport, public_path('/file_siswa/'.$nama_file));
+
+            // alihkan halaman kembali
+            return redirect('/siswa')->with('berhasil','Berhasil Import');
+        }else{
+            return redirect('/siswa')->with('gagal','Gagal Import');
+        }
+
+
+
     }
 }

@@ -16,7 +16,6 @@ class SiswaImport implements ToModel,WithHeadingRow
     */
     public function model(array $row)
     {
-
         //Password = NISN
         $time = strtotime($row['tanggal_lahir_siswa']);
 
@@ -36,5 +35,8 @@ class SiswaImport implements ToModel,WithHeadingRow
             'id_jurusan'=>$row['id_jurusan'],
             'Status'=> $row['status']
         ]);
+
+
     }
+
 }

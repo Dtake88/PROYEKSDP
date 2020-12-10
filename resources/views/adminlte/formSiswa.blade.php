@@ -1,6 +1,18 @@
 @extends('adminlte.adminLayout')
 
 @section('formSiswa')
+    @if (Session::has('berhasil'))
+        <div class="alert alert-success">
+            <h1>{{ Session::get('berhasil') }}</h1>
+        </div>
+    @endif
+    @if (Session::has('gagal'))
+        <div class="alert alert-danger">
+            <h1>{{ Session::get('gagal') }}</h1>
+        </div>
+    @endif
+<div class="widget-box">
+
 <div class="row-fluid">
     <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -175,7 +187,8 @@
                 <div class="control-group">
                     <label class="control-label">File Siswa:</label>
                     <div class="controls">
-                    <input type="file" name="fileSiswa"/> Import Siswa Format File: Excel
+
+                    <input type="file" accept=".xlsx, .xls, .csv" id="file" name="fileSiswa" onchange="checkfile(this);"  /> Import Siswa Format File: Excel
                     </div>
                 </div>
                     <div class="form-actions">
@@ -273,4 +286,24 @@
     </div>
   </div>
 </div>
+<!--Chart-box-->
+
+
+</div>
+    <script>
+        function checkfile(sender) {
+            var validExts = new Array(".xlsx", ".xls", ".csv");
+            var fileExt = sender.value;
+            fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+            if (validExts.indexOf(fileExt) < 0) {
+            alert("Invalid file selected, valid files are of " +
+                    validExts.toString() + " types.");
+            return false;
+            }
+            else return true;
+        }
+    </script>
+
+<!--End-Chart-box-->
+
 @endsection

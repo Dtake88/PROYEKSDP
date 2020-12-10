@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\pengumuman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends Controller
 {
@@ -28,5 +29,10 @@ class SiswaController extends Controller
     public function LihatNilai()
     {
         return view("siswa.LihatNilai");
+    }
+
+    public function downloadFormatSiswa()
+    {
+        return Storage::disk('local')->download("formatSiswa/FormatSiswa.xlsx");
     }
 }
