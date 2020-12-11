@@ -78,6 +78,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/deleteMapel/{id}', 'Database@deleteMapel');
     Route::get('/toUpdateMapel/{id}', 'Database@toUpdateMapel');
     Route::post('/updateMapel', 'Database@updateMapel');
+    Route::post('/filterMapel', 'Database@filterMapel');
 
     Route::get('/deleteRiwayat/{id}', 'Database@deleteRiwayat');
     Route::get('/toUpdateRiwayat/{id}', 'Database@toUpdateRiwayat');
