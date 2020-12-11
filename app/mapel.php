@@ -13,6 +13,6 @@ class mapel extends Model
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;
-    protected $fillable = ['Nama_mapel', 'KKM', 'Tingkat'];
+    protected $fillable = ['Nama_mapel', 'KKM', 'Tingkat', 'Id_jurusan'];
 
 }

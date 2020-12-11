@@ -22,8 +22,8 @@ class ajar_mengajar extends Model
      'NIG',
      'Jam_berakhir',
      'Jam_dimulai',
-     'hari',
-     'jam_belajar',
+     'Hari',
+     'Jam_belajar',
      'Status_jadwal'
     ];
 

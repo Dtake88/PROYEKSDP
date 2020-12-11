@@ -31,12 +31,29 @@
             <div class="control-group">
               <label class="control-label">Tingkat Mata Pelajaran :</label>
               <div class="controls">
-                <input type="text"  class="span11" placeholder="Tingkatan Mata Pelajaran" name="tingkat"  style="width: 50pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
-                @error('tingkat')
+                <select class="form-control span11" name="id_jurusan" style="width: 250pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>                @error('tingkat')
                         <br><span style="color: red;">{{ $message }}</span>
                     @enderror
             </div>
             </div>
+            <label class="control-label">Jurusan :</label>
+                <div class="controls">
+                  <select class="form-control span11" name="id_jurusan" style="width: 250pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                      @isset($jurusan)
+                          @foreach ($jurusan as $i)
+                  <option value="{{$i->Id_jurusan}}">{{$i->Nama_jurusan}}
+                     </option>
+                          @endforeach
+                      @endisset
+                  </select>
+                  @error('id_jurusan')
+                      <br><span style="color: red;">{{ $message }}</span>
+                  @enderror
+                  </div>
             <div class="form-actions">
               <button type="submit" class="btn btn-success" name="Insert">Insert</button>
               <button type="submit" class="btn btn-success" name="Update">Update</button>

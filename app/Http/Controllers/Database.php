@@ -48,6 +48,15 @@ class Database extends Controller
         if($request->nama != ""){
             $daftarSiswa = siswa::where("Nama_siswa",$request->nama)->get();
         }
+        if($request->nama != "" && $request->filterjurusan != "none"){
+            $daftarSiswa = siswa::where("Nama_siswa",$request->nama)->where("Id_jurusan",$request->filterjurusan)->get();
+        }
+        if($request->nama != "" && $request->filterkelas != "none"){
+            $daftarSiswa = siswa::where("Nama_siswa",$request->nama)->where("Id_kelas",$request->filterkelas)->get();
+        }
+        if($request->nama != "" && $request->filterkelas != "none" && $request->filterjurusan != "none"){
+            $daftarSiswa = siswa::where("Nama_siswa",$request->nama)->where("Id_jurusan",$request->filterjurusan)->where("Id_kelas",$request->filterkelas)->get();
+        }
 
         $DBkelas = kelas::all();
         $DBJurusan = jurusan::all();
@@ -421,7 +430,8 @@ class Database extends Controller
                 [
                     "Nama_mapel"=>$data->input("nama"),
                     "KKM"=>$data->input("kkm"),
-                    "Tingkat"=>$data->input("tingkat")
+                    "Tingkat"=>$data->input("tingkat"),
+                    "Id_jurusan"=>$data->input("id_jurusan")
                 ]
             );
         }
@@ -821,7 +831,6 @@ class Database extends Controller
     }
     public function selectJadwal(Request $data)
     {
-        dd($data->all());
         $data->validate([
             "Id_kelas" => "required",
             "Id_mapel" => "required",
@@ -846,7 +855,7 @@ class Database extends Controller
                 ]
             );
         }
-        return redirect("/Jadwal");
+        return redirect("/AjarMengajar");
     }
 
     ///////////////////////////////////////////tambahan
