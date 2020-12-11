@@ -31,7 +31,7 @@ class OlahData extends Controller
             "password" =>$data->pw
         ];
         $admin =  [
-            "Id_administrasi" => $data->user,
+            "Username_administrasi" => $data->user,
             "password" =>$data->pw
         ];
         $guru =  [
@@ -47,11 +47,27 @@ class OlahData extends Controller
             return redirect("dashboardSiswa");
         }
         if(Auth::guard('admin')->attempt($admin)){
+            // dd("asd");
             return redirect("homeAdmin");
         }
         if(Auth::guard('guru')->attempt($guru)){
             return redirect("homeGuru");
         }
+
+
+        // Iki sg lama
+        if (administrasi::where('Username_administrasi',$user)->where('Password_admin',$pass)->exists()) {
+            $idadmin = administrasi::select('Id_administrasi')->where('Username_administrasi',$user)->where('Password_admin',$pass)->get();
+            $userLogin = [
+                "username" => $user,
+                "password"=> $pass,
+            ];
+            Cookie::queue("userLogin",json_encode($userLogin),120);
+            $data->session()->put('loggedAdmin',$idadmin[0]->Id_administrasi);
+            dd("masuk Admin");
+            // return redirect("homeAdmin");
+        }
+
 
 
         // if (siswa::where('NIS',$user)->exists()) {
@@ -81,16 +97,6 @@ class OlahData extends Controller
         //     }
         // }
 
-        if (administrasi::where('Username_administrasi',$user)->where('Password_admin',$pass)->exists()) {
-            $idadmin = administrasi::select('Id_administrasi')->where('Username_administrasi',$user)->where('Password_admin',$pass)->get();
-            $userLogin = [
-                "username" => $user,
-                "password"=> $pass,
-            ];
-            Cookie::queue("userLogin",json_encode($userLogin),120);
-            $data->session()->put('loggedAdmin',$idadmin[0]->Id_administrasi);
-            return redirect("homeAdmin");
-        }
 
         //cek hashing
         // $datasiswa = siswa::all();

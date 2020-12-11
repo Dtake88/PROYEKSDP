@@ -6,6 +6,7 @@ use App\jurusan;
 use App\mapel;
 use App\periode_akademik;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,7 +22,7 @@ class DatabaseSeeder extends Seeder
             "Username_administrasi"=>"dede1",
             "No_administrasi"=>"082264551111",
             "Alamat_administrasi"=>"Surabaya",
-            "Password_admin"=>"dede1"
+            "Password_admin"=>Hash::make("dede1")
         ]);
 
 

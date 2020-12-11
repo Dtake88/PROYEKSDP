@@ -27,7 +27,12 @@ class administrasi extends Authencticable
      */
     public function getAuthPassword()
     {
-    return $this->Password_administrasi;
+    return $this->Password_admin;
+    }
+
+    public function getAuthIdentifierName()
+    {
+        return $this->Username_administrasi;
     }
 
 
