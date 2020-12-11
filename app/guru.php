@@ -20,7 +20,7 @@ class guru extends Authenticable
     [
      'Nama_guru',
      'Password_guru',
-     'No_guru',
+     'No_hp_guru',
      'Alamat_guru',
      'Status_guru'
     ];
