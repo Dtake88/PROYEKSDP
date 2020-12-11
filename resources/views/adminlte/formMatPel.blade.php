@@ -45,7 +45,28 @@
         </div>
     </div>
 </div>
-<!--End-Chart-box-->
+
+<div>
+    <form action="/filterMapel" method="post" class="form-horizontal">
+        @csrf
+        <h3>Filter </h3>
+        <label class="control-label">Nama Mata Pelajaran :</label>
+        <input type="text" class="span7" placeholder="Search Nama Kelas" name="nama"  style="width: 200pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
+        <br>
+        <br>
+        <label class="control-label">Tingkatan Kelas: </label>
+            <select class="span11" name="filtertingkatankelas" style="width: 100pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                <option value="none"selected>None</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        <br>
+        <br>
+        <button style="margin-left: 6.5cm" type="submit" class="btn btn-success" name="filter">Filter</button>
+    </form>
+</div>
+
 <div class="widget-box">
     <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
       <h5>Table Mata Pelajaran</h5>

@@ -148,6 +148,30 @@
         </div>
     </div>
 </div>
+
+<div>
+    <form action="/filterRiwayat" method="post" class="form-horizontal">
+        @csrf
+        <h3>Filter </h3>
+        <label class="control-label">Nama Siswa :</label>
+        <input type="text" class="span7" placeholder="Search Nama Kelas" name="nama"  style="width: 200pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
+        <br>
+        <br>
+        <label class="control-label">Jadwal :</label>
+                  <select class="form-control span11" name="filterajarmengajar" style="width: 250pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                      @isset($DBAjar_mengajar)
+                          @foreach ($DBAjar_mengajar as $i)
+                    <option value="{{$i->Id_ajar_mengajar}}" >{{$i->mapel->Nama_mapel}} -
+                    {{$i->kelas->Nama_kelas}} - {{$i->kelas->Tingkat_kelas}} </option>
+                          @endforeach
+                      @endisset
+                  </select>
+        <br>
+        <br>
+        <button style="margin-left: 6.5cm" type="submit" class="btn btn-success" name="filter">Filter</button>
+    </form>
+</div>
+
 <div class="widget-box">
     <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
         <h5>Table Riwayat Akademik</h5>
