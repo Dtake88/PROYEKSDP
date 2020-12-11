@@ -147,7 +147,7 @@ class Database extends Controller
 
             // Mail::to("yoshua_d18@mhs.stts.edu")->send(new TestMail());
             // dd(siswa::latest("NIS")->first()->Email_siswa);
-            Mail::to(siswa::last("NIS")->first()->Email_siswa)->send(new NewSiswaMail(siswa::last("NIS")->first()->NIS , $data->pw));
+            Mail::to(siswa::latest("NIS")->first()->Email_siswa)->send(new NewSiswaMail(siswa::latest("NIS")->first()->NIS , $data->pw));
 
 
 

@@ -161,8 +161,8 @@ Route::get('/tes', function (Faker $faker) {
 
     // dd($faker->address());
     // factory(siswa::class,10)->create();
-    factory(ajar_mengajar::class,20)->create();
-    factory(riwayat_akademik::class,100)->create();
+    // factory(ajar_mengajar::class,20)->create();
+    // factory(riwayat_akademik::class,100)->create();
     // echo"asd";
 
     // return new NewSiswaMail(113087,"siswa");
@@ -172,6 +172,9 @@ Route::get('/tes', function (Faker $faker) {
     // dd(siswa::latest("NIS")->first()->Email_siswa);
     // Mail::to("yoshua_d18@mhs.stts.edu")->send(new NewSiswaMail(113087,"siswa"));
 
+
+    // Mail::to(siswa::latest("NIS")->first()->Email_siswa)->send(new NewSiswaMail(siswa::latest("NIS")->first()->NIS , "siswa"));
+    // dd(siswa::latest("NIS")->first()->Email_siswa);
 
 
 });
