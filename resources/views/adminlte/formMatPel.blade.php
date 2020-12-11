@@ -31,11 +31,12 @@
             <div class="control-group">
               <label class="control-label">Tingkat Mata Pelajaran :</label>
               <div class="controls">
-                <select class="form-control span11" name="id_jurusan" style="width: 250pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                <select class="span11" name="tingkat" style="width: 250pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
-                </select>                @error('tingkat')
+                </select>
+                 @error('tingkat')
                         <br><span style="color: red;">{{ $message }}</span>
                     @enderror
             </div>

@@ -422,8 +422,7 @@ class Database extends Controller
     {
         $data->validate([
             "nama" => "required",
-            "kkm" => "required",
-            "tingkat" => "required"
+            "kkm" => "required"
         ]);
         if ($data->has("Insert")) {
             mapel::create(
