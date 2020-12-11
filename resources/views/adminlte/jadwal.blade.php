@@ -67,11 +67,7 @@
             <div class="control-group">
                 <label class="control-label">Jam Belajar :</label>
                 <div class="controls">
-                    <select class="span11" name="Jam_belajar" style="width: 100pt; height: 40px;  padding: 0.375rem 0.75rem; ">
-                        <option value="30:00">30:00</option>
-                        <option value="60:00">60:00</option>
-                </select>
-                    <input type="time" name="Jam_belajar"  style="width: 100pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                  <input type="time" name="Jam_belajar"  style="width: 100pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                 </div>
             </div>
             <div class="control-group">
