@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\kelas;
 use App\pengumuman;
+use App\riwayat_akademik;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends Controller
@@ -11,6 +14,7 @@ class SiswaController extends Controller
     //
     public function PindahDashboardSiswa()
     {
+
         $pengumuman = pengumuman::all();
         return view("siswa.dashboard" , ["pengumuman"=>$pengumuman]);
     }
@@ -20,7 +24,8 @@ class SiswaController extends Controller
     }
     public function PindahBiodata()
     {
-        return view("siswa.biodata");
+        $Databiodata=Auth::guard('siswa')->user();
+        return view("siswa.biodata" , ["biodata"=>$Databiodata]);
     }
     public function EditBiodata()
     {
@@ -28,7 +33,10 @@ class SiswaController extends Controller
     }
     public function LihatNilai()
     {
-        return view("siswa.LihatNilai");
+        $Databiodata=Auth::guard('siswa')->user();
+        $dataNilaiSiswa = riwayat_akademik::with('kelas')->with('mapel')->where("NIS",$Databiodata->NIS)->get();
+        // dd($dataNilaiSiswa[0]);
+        return view("siswa.LihatNilai" , ["nilaiSiswa"=>$dataNilaiSiswa]);
     }
 
     public function downloadFormatSiswa()
