@@ -447,12 +447,17 @@ class Database extends Controller
 
 
         if($request->filterajarmengajar != "none" ){
-            $DBriwayat=riwayat_akademik::where("Id_ajar_mengajar", $request->filterajarmengajar)->get();
+            $DBriwayat=$DBriwayat->where("Id_ajar_mengajar", $request->filterajarmengajar);
         }
 
-        if($request->nama != "none" ){
-            $nis=siswa::where("Nama_siswa",$request->nama)->get();
-            $DBriwayat=riwayat_akademik::where("NIS", $nis)->get();
+        if($request->nama != "" ){
+            $nis=siswa::where("Nama_siswa",'like','%'.$request->nama.'%')->pluck("NIS");
+            $DBriwayat=riwayat_akademik::whereIn("NIS", $nis)->get();
+        }
+
+        if($request->filterajarmengajar != "none" && $request->nama != ""){
+            $nis=siswa::where("Nama_siswa",'like','%'.$request->nama.'%')->pluck("NIS");
+            $DBriwayat=riwayat_akademik::whereIn("NIS", $nis)->where("Id_ajar_mengajar", $request->filterajarmengajar)->get();
         }
 
         $DBsiswa = siswa::all();

@@ -154,11 +154,12 @@
         @csrf
         <h3>Filter </h3>
         <label class="control-label">Nama Siswa :</label>
-        <input type="text" class="span7" placeholder="Search Nama Kelas" name="nama"  style="width: 200pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
+        <input type="text" class="span7" placeholder="Search Nama Siswa" name="nama"  style="width: 200pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
         <br>
         <br>
         <label class="control-label">Jadwal :</label>
                   <select class="form-control span11" name="filterajarmengajar" style="width: 250pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                    <option value="none" selected>None</option>
                       @isset($DBAjar_mengajar)
                           @foreach ($DBAjar_mengajar as $i)
                     <option value="{{$i->Id_ajar_mengajar}}" >{{$i->mapel->Nama_mapel}} -
