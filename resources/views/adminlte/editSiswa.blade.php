@@ -39,6 +39,10 @@
                         <label for="">Tanggal Lahir Siswa</label>
                         <input value="{{$siswa->Tanggal_lahir_siswa}}" name="tanggalLahir" type="date" class="form-control" aria-describedby="" placeholder="Enter  Tanggal lahir" style="width: 130pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     </div>
+                    <div class="form-group">
+                        <label for="">Email Siswa</label>
+                        <input value="{{$siswa->Email_siswa}}" name="email" type="date" class="form-control" aria-describedby="" placeholder="Enter Emai" style="width: 130pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                    </div>
 
                 </div>
                 <div class="col-md-6">

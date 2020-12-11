@@ -160,7 +160,8 @@ Route::get('/tes', function (Faker $faker) {
 
     // dd($faker->address());
     // factory(siswa::class,10)->create();
-    // factory(riwayat_akademik::class,100)->create();
+    factory(ajar_mengajar::class,20)->create();
+    factory(riwayat_akademik::class,100)->create();
     // echo"asd";
 
     // return new NewSiswaMail(113087,"siswa");

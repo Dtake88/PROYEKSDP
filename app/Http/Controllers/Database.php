@@ -71,11 +71,16 @@ class Database extends Controller
         $siswa->Tanggal_lahir_siswa = $request->tanggalLahir;
         $siswa->Nama_ibu = $request->namaIbu;
         $siswa->Nama_ayah = $request->namaAyah;
+        $siswa->Email_siswa = $request->email;
         $siswa->agama = $request->agama;
         $siswa->Jenis_kelamin = $request->jenisKelamin;
         $siswa->Alamat_Siswa = $request->alamat;
-        $siswa->Email_siswa = $request->alamat;
+        $siswa->Email_siswa = $request->email;
         $siswa->save();
+
+        Mail::to($request->email)->send(new NewSiswaMail($request->NIS , $request->password));
+
+
         return redirect('/siswa');
     }
 
@@ -113,23 +118,23 @@ class Database extends Controller
 
         if ($data->has("Insert")) {
 
-            // siswa::create(
-            //     [
-            //         "Nama_siswa"=>$data->input("nama"),
-            //         "Password_siswa"=>Hash::make( $data->input("pw")),
-            //         "Tempat_lahir_siswa"=>$data->input("tmptLahir"),
-            //         "Tanggal_lahir_siswa"=>$data->input("tglLahir"),
-            //         "Nama_ibu"=>$data->input("NameMom"),
-            //         "Nama_ayah"=>$data->input("NameDad"),                    "Status"=>$data->input("status"),
-            //         "Email_siswa" =>$data->input("email"),
-            //         "NISN"=>$data->input("nisn"),
-            //         "Agama"=>$data->input("agama"),
-            //         "Jenis_kelamin"=>$data->input("jk"),
-            //         "Alamat_siswa"=>$data->input("alamat"),
-            //         "id_kelas" => $data->input("kelas"),
-            //         "id_jurusan" =>$data->input("jurusan")
-            //     ]
-            // );
+            siswa::create(
+                [
+                    "Nama_siswa"=>$data->input("nama"),
+                    "Password_siswa"=>Hash::make( $data->input("pw")),
+                    "Tempat_lahir_siswa"=>$data->input("tmptLahir"),
+                    "Tanggal_lahir_siswa"=>$data->input("tglLahir"),
+                    "Nama_ibu"=>$data->input("NameMom"),
+                    "Nama_ayah"=>$data->input("NameDad"),                    "Status"=>$data->input("status"),
+                    "Email_siswa" =>$data->input("email"),
+                    "NISN"=>$data->input("nisn"),
+                    "Agama"=>$data->input("agama"),
+                    "Jenis_kelamin"=>$data->input("jk"),
+                    "Alamat_siswa"=>$data->input("alamat"),
+                    "id_kelas" => $data->input("kelas"),
+                    "id_jurusan" =>$data->input("jurusan")
+                ]
+            );
 
             // Mail::to("yoshua_d18@mhs.stts.edu")->send(new TestMail());
             // dd(siswa::latest("NIS")->first()->Email_siswa);
