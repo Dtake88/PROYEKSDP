@@ -876,7 +876,6 @@ class Database extends Controller
 
     public function downloadToa($namafile)
     {
-        dd($namafile);
         return Storage::disk('local')->download("fileToa/".$namafile);
     }
 
