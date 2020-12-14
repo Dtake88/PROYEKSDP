@@ -19,14 +19,14 @@ class CreateTableRiwayatAkademik extends Migration
             $table->integer('NIS')->unsigned();
             $table->integer('Id_kelas')->unsigned();
             $table->integer('Id_mapel')->unsigned();
-            $table->integer('Quiz1');
-            $table->integer('Quiz2');
-            $table->integer('Tugas1');
-            $table->integer('Tugas2');
-            $table->integer('UTS');
-            $table->integer('UAS');
-            $table->string('Sikap',1);
-            $table->integer('Hasil_akhir');
+            $table->integer('Quiz1')->nullable();
+            $table->integer('Quiz2')->nullable();
+            $table->integer('Tugas1')->nullable();
+            $table->integer('Tugas2')->nullable();
+            $table->integer('UTS')->nullable();
+            $table->integer('UAS')->nullable();
+            $table->string('Sikap',1)->nullable();
+            $table->integer('Hasil_akhir')->nullable();
             $table->date('deleted_at')->nullable();
 
             $table->foreign('Id_ajar_mengajar')->references('Id_ajar_mengajar')->on('ajar_mengajar');
