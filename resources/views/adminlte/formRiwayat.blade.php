@@ -129,26 +129,17 @@
               <button type="submit" class="btn btn-success" name="Insert">Insert</button>
               {{-- <button type="submit" class="btn btn-success" name="Update">Update</button> --}}
             </div>
-          </form>
-          {{-- form untuk admin input siswa dengan excel --}}
-            <div class="control-group">
-                <label class="control-label">File Siswa:</label>
-                <div class="controls">
-                    <input type="file" name="fileToa"/> Import Siswa Format File: Excel
-                </div>
-            </div>
-                <div class="controls">
-                    <form action="GetFormatSiswa" method="get">
-                        Download Format Siswa:
-                        <input type="submit" value="Format Input Siswa">
-                    </form>
                 </div>
 
 
         </div>
-    </div>
-</div>
 
+
+<div class="row-fluid">
+    <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>History Riwayat Akademik</h5>
+          </div>
 <div>
     <form action="/filterRiwayat" method="post" class="form-horizontal">
         @csrf
@@ -219,5 +210,7 @@
           </tbody>
         </table>
       </div>
+</div>
+</div>
 </div>
 @endsection
