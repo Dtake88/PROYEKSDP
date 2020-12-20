@@ -68,36 +68,43 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/toUpdateSiswa/{id}', 'Database@toUpdateSiswa');
     Route::post('/updateSiswa', 'Database@updateSiswa');
     Route::post('/filterSiswa', 'Database@filterSiswa');
+    Route::get('/kefilterSiswa', 'Database@kefilterSiswa');
 
     Route::get('/deleteGuru/{id}', 'Database@deleteGuru');
     Route::get('/toUpdateGuru/{id}', 'Database@toUpdateGuru');
     Route::post('/updateGuru', 'Database@updateGuru');
     Route::post('/filterGuru', 'Database@filterGuru');
+    Route::get('/kefilterGuru', 'Database@kefilterGuru');
 
     Route::get('/deletePeriode/{id}', 'Database@deletePeriode');
     Route::get('/toUpdatePeriode/{id}', 'Database@toUpdatePeriode');
     Route::post('/updatePeriode', 'Database@updatePeriode');
     Route::post('/filterPeriode', 'Database@filterPeriode');
+    Route::get('/kefilterPeriode', 'Database@kefilterPeriode');
 
     Route::get('/deleteMapel/{id}', 'Database@deleteMapel');
     Route::get('/toUpdateMapel/{id}', 'Database@toUpdateMapel');
     Route::post('/updateMapel', 'Database@updateMapel');
     Route::post('/filterMapel', 'Database@filterMapel');
+    Route::get('/kefilterMapel', 'Database@kefilterMapel');
 
     Route::get('/deleteRiwayat/{id}', 'Database@deleteRiwayat');
     Route::get('/toUpdateRiwayat/{id}', 'Database@toUpdateRiwayat');
     Route::post('/updateRiwayat', 'Database@updateRiwayat');
     Route::post('/filterRiwayat', 'Database@filterRiwayat');
+    Route::get('/kefilterRiwayat', 'Database@kefilterRiwayat');
 
     Route::get('/deleteKelas/{id}', 'Database@deleteKelas');
     Route::get('/toUpdateKelas/{id}', 'Database@toUpdateKelas');
     Route::post('/updateKelas', 'Database@updateKelas');
     Route::post('/filterKelas', 'Database@filterKelas');
+    Route::get('/kefilterKelas', 'Database@kefilterKelas');
 
     Route::get('/deleteJadwal/{id}', 'Database@deleteJadwal');
     Route::get('/toUpdateJadwal/{id}', 'Database@toUpdateJadwal');
     Route::post('/updateJadwal', 'Database@updateJadwal');
     Route::post('/filterJadwal', 'Database@filterJadwal');
+    Route::get('/kefilterJadwal', 'Database@kefilterJadwal');
 
     Route::get('/aktifNonaktifSiswa/{id}', function($id){
         $siswa = siswa::find($id);
