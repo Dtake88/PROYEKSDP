@@ -14,6 +14,7 @@ use App\mapel;
 use App\pengumuman;
 use App\periode_akademik;
 use App\riwayat_akademik;
+use App\Rules\batasannilai;
 use App\siswa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -557,10 +558,10 @@ class Database extends Controller
 
     public function selectRiwayat(Request $data)
     {
-        $data->validate([
+        $this->validate($data,[
             "siswa" => "required",
             "ajar_mengajar" => "required",
-            "Quiz1" => "required",
+            "Quiz1" => ["required",new batasannilai],
             "Quiz2" => "required",
             "Tugas1" => "required",
             "Tugas2" => "required",
