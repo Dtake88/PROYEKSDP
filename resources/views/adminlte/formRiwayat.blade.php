@@ -47,6 +47,9 @@
                     <div class="controls">
                         <input name="Quiz1" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 45pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     </div>
+                    @error('Quiz1')
+                      <br><span style="color: red;">{{ $message }}</span>
+                  @enderror
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="">Nilai Quiz 2 :</label>
@@ -81,7 +84,13 @@
                 <div class="control-group">
                     <label class="control-label" for="">Nilai Sikap :</label>
                     <div class="controls">
-                        <input name="Sikap" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 45pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                        <select class="span11" name="Sikap" style="width: 45pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                            <option value="A"selected>A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                        </select>
                     </div>
                 </div>
                 <div class="control-group">

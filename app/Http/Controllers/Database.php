@@ -560,8 +560,6 @@ class Database extends Controller
         $data->validate([
             "siswa" => "required",
             "ajar_mengajar" => "required",
-            // "kelas" => "required",
-            // "mapel" => "required",
             "Quiz1" => "required",
             "Quiz2" => "required",
             "Tugas1" => "required",
