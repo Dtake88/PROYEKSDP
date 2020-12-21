@@ -27,6 +27,16 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class Database extends Controller
 {
+    public function kefilterSiswa(){
+        $daftarSiswa = siswa::all();
+        $DBkelas = kelas::all();
+        $DBJurusan = jurusan::all();
+        return view("adminlte.filtersiswa",[
+            "daftarSiswa"=>$daftarSiswa,
+            "DBkelas"=>$DBkelas,
+            "DBJurusan"=>$DBJurusan
+        ]);
+    }
     public function filterSiswa(Request $request){
         if($request->filterkelas == "none"){
             if($request->filterjurusan == "none"){
@@ -48,10 +58,19 @@ class Database extends Controller
         if($request->nama != ""){
             $daftarSiswa = siswa::where("Nama_siswa",$request->nama)->get();
         }
+        if($request->nama != "" && $request->filterjurusan != "none"){
+            $daftarSiswa = siswa::where("Nama_siswa",$request->nama)->where("Id_jurusan",$request->filterjurusan)->get();
+        }
+        if($request->nama != "" && $request->filterkelas != "none"){
+            $daftarSiswa = siswa::where("Nama_siswa",$request->nama)->where("Id_kelas",$request->filterkelas)->get();
+        }
+        if($request->nama != "" && $request->filterkelas != "none" && $request->filterjurusan != "none"){
+            $daftarSiswa = siswa::where("Nama_siswa",$request->nama)->where("Id_jurusan",$request->filterjurusan)->where("Id_kelas",$request->filterkelas)->get();
+        }
 
         $DBkelas = kelas::all();
         $DBJurusan = jurusan::all();
-        return view("adminlte.formSiswa",[
+        return view("adminlte.filtersiswa",[
             "daftarSiswa"=>$daftarSiswa,
             "DBkelas"=>$DBkelas,
             "DBJurusan"=>$DBJurusan
@@ -138,7 +157,7 @@ class Database extends Controller
 
             // Mail::to("yoshua_d18@mhs.stts.edu")->send(new TestMail());
             // dd(siswa::latest("NIS")->first()->Email_siswa);
-            Mail::to(siswa::last("NIS")->first()->Email_siswa)->send(new NewSiswaMail(siswa::last("NIS")->first()->NIS , $data->pw));
+            Mail::to(siswa::latest("NIS")->first()->Email_siswa)->send(new NewSiswaMail(siswa::latest("NIS")->first()->NIS , $data->pw));
 
 
 
@@ -171,6 +190,13 @@ class Database extends Controller
         return redirect("/siswa")->with('daftarsiswa', $daftarSiswa);
     }
 
+    public function kefilterGuru(){
+        $daftarGuru = guru::all();
+        return view("adminlte.filterguru",[
+            "daftarGuru"=>$daftarGuru
+        ]);
+    }
+
     public function filterGuru(Request $request){
         if($request->filterstatus == "none"){
             $daftarGuru = guru::all();
@@ -183,7 +209,7 @@ class Database extends Controller
             $daftarGuru = guru::where("Nama_guru",$request->nama)->get();
         }
 
-        return view("adminlte.formGuru",[
+        return view("adminlte.filterguru",[
             "daftarGuru"=>$daftarGuru
         ]);
     }
@@ -267,6 +293,13 @@ class Database extends Controller
         return redirect("/guru")->with('daftarGuru', $daftarGuru);
     }
 
+    public function kefilterPeriode(){
+        $daftarPerodAkademik = periode_akademik::all();
+        return view("adminlte.filterperiode",[
+            "daftarPerodAkademik"=>$daftarPerodAkademik
+        ]);
+    }
+
     public function filterPeriode(Request $request){
 
         $daftarPerodAkademik = periode_akademik::all();
@@ -305,7 +338,7 @@ class Database extends Controller
         }
 
 
-        return view("adminlte.formPeriodeAkademik",[
+        return view("adminlte.filterperiode",[
             "daftarPerodAkademik"=>$daftarPerodAkademik
         ]);
     }
@@ -366,6 +399,15 @@ class Database extends Controller
         return redirect("/PeriodeAkademik")->with('daftarPerod', $daftarPerod);
     }
 
+    public function kefilterMapel(){
+        $daftarMatPel = mapel::all();
+        $DBJurusan = jurusan::all();
+        return view("adminlte.filtermapel",[
+            "daftarMatPel"=>$daftarMatPel,
+            "jurusan"=>$DBJurusan
+        ]);
+    }
+
     public function filterMapel(Request $request){
         $daftarMatPel = mapel::all();
 
@@ -380,7 +422,7 @@ class Database extends Controller
         }
 
 
-        return view("adminlte.formMatPel",[
+        return view("adminlte.filtermapel",[
             "daftarMatPel"=>$daftarMatPel
         ]);
     }
@@ -413,15 +455,15 @@ class Database extends Controller
     {
         $data->validate([
             "nama" => "required",
-            "kkm" => "required",
-            "tingkat" => "required"
+            "kkm" => "required"
         ]);
         if ($data->has("Insert")) {
             mapel::create(
                 [
                     "Nama_mapel"=>$data->input("nama"),
                     "KKM"=>$data->input("kkm"),
-                    "Tingkat"=>$data->input("tingkat")
+                    "Tingkat"=>$data->input("tingkat"),
+                    "Id_jurusan"=>$data->input("id_jurusan")
                 ]
             );
         }
@@ -442,24 +484,44 @@ class Database extends Controller
         return redirect("/MataPelajaran")->with('daftarMapel', $daftarMapel);
     }
 
+    public function kefilterRiwayat(){
+        $DBriwayat = riwayat_akademik::all();
+        $DBsiswa = siswa::all();
+        $DBkelas = kelas::all();
+        $DBmapel = mapel::all();
+        $DBAjar_mengajar = ajar_mengajar::all();
+        return view("adminlte.filterriwayat",[
+            "DBAjar_mengajar"=>$DBAjar_mengajar,
+            "DBriwayat"=>$DBriwayat,
+            "DBsiswa"=>$DBsiswa,
+            "DBkelas"=>$DBkelas,
+            "DBmapel"=>$DBmapel
+        ]);
+    }
+
     public function filterRiwayat(Request $request){
         $DBriwayat = riwayat_akademik::all();
 
 
         if($request->filterajarmengajar != "none" ){
-            $DBriwayat=riwayat_akademik::where("Id_ajar_mengajar", $request->filterajarmengajar)->get();
+            $DBriwayat=$DBriwayat->where("Id_ajar_mengajar", $request->filterajarmengajar);
         }
 
-        if($request->nama != "none" ){
-            $nis=siswa::where("Nama_siswa",$request->nama)->get();
-            $DBriwayat=riwayat_akademik::where("NIS", $nis)->get();
+        if($request->nama != "" ){
+            $nis=siswa::where("Nama_siswa",'like','%'.$request->nama.'%')->pluck("NIS");
+            $DBriwayat=riwayat_akademik::whereIn("NIS", $nis)->get();
+        }
+
+        if($request->filterajarmengajar != "none" && $request->nama != ""){
+            $nis=siswa::where("Nama_siswa",'like','%'.$request->nama.'%')->pluck("NIS");
+            $DBriwayat=riwayat_akademik::whereIn("NIS", $nis)->where("Id_ajar_mengajar", $request->filterajarmengajar)->get();
         }
 
         $DBsiswa = siswa::all();
         $DBkelas = kelas::all();
         $DBmapel = mapel::all();
         $DBAjar_mengajar = ajar_mengajar::all();
-        return view("adminlte.formRiwayat",[
+        return view("adminlte.filterriwayat",[
             "DBAjar_mengajar"=>$DBAjar_mengajar,
             "DBriwayat"=>$DBriwayat,
             "DBsiswa"=>$DBsiswa,
@@ -498,8 +560,6 @@ class Database extends Controller
         $data->validate([
             "siswa" => "required",
             "ajar_mengajar" => "required",
-            // "kelas" => "required",
-            // "mapel" => "required",
             "Quiz1" => "required",
             "Quiz2" => "required",
             "Tugas1" => "required",
@@ -547,6 +607,19 @@ class Database extends Controller
         return redirect("/riwayat")->with('daftarMapel', $daftarMapel);
     }
 
+    public function kefilterKelas(){
+        $daftarKelas = kelas::all();
+        $DBPeriode = periode_akademik::where("Status",1)->get();
+        $GuruAktif = guru::where("Status_guru",1)->get();
+        $DBJurusan = jurusan::all();
+        return view("adminlte.filterkelas",[
+            "daftarKelas"=>$daftarKelas,
+            "DBPeriode"=>$DBPeriode,
+            "Guru"=>$GuruAktif,
+            "jurusan"=>$DBJurusan
+        ]);
+    }
+
     public function filterKelas(Request $request){
         $daftarKelas = kelas::all();
 
@@ -585,7 +658,7 @@ class Database extends Controller
         $DBPeriode = periode_akademik::where("Status",1)->get();
         $GuruAktif = guru::where("Status_guru",1)->get();
         $DBJurusan = jurusan::all();
-        return view("adminlte.formKelas",[
+        return view("adminlte.filterkelas",[
             "daftarKelas"=>$daftarKelas,
             "DBPeriode"=>$DBPeriode,
             "Guru"=>$GuruAktif,
@@ -659,6 +732,18 @@ class Database extends Controller
             DB::table('kelas')->where('Id_kelas', '=' , $valueDelete)->delete();
         }
         return redirect("/kelas");
+    }
+
+    public function kefilterJadwal(){
+        $DBJadwal = ajar_mengajar::all();
+        $GuruAktif = guru::where("Status_guru",1)->get();
+        $Mapel = mapel::all();
+        $kelas = kelas::all();
+        return view("adminlte.filterjadwal",[
+            "Jadwal"=>$DBJadwal,
+            "Guru"=>$GuruAktif,
+            "Mapel"=>$Mapel,
+            "kelas"=>$kelas]);
     }
 
     public function filterJadwal(Request $request){
@@ -774,7 +859,7 @@ class Database extends Controller
         $GuruAktif = guru::where("Status_guru",1)->get();
         $Mapel = mapel::all();
         $kelas = kelas::all();
-        return view("adminlte.jadwal",[
+        return view("adminlte.filterjadwal",[
             "Jadwal"=>$DBJadwal,
             "Guru"=>$GuruAktif,
             "Mapel"=>$Mapel,
@@ -816,7 +901,6 @@ class Database extends Controller
     }
     public function selectJadwal(Request $data)
     {
-        dd($data->all());
         $data->validate([
             "Id_kelas" => "required",
             "Id_mapel" => "required",
@@ -841,7 +925,7 @@ class Database extends Controller
                 ]
             );
         }
-        return redirect("/Jadwal");
+        return redirect("/AjarMengajar");
     }
 
     ///////////////////////////////////////////tambahan

@@ -40,26 +40,6 @@ class DatabaseSeeder extends Seeder
             "Nama_jurusan"=>"Umum"
         ]);
 
-        mapel::create([
-            "Nama_mapel"=>"Matematika",
-            "KKM"=>65,
-            "Tingkat"=>1,
-            "id_jurusan"=>1,
-        ]);
-
-        mapel::create([
-            "Nama_mapel"=>"Matematika",
-            "KKM"=>65,
-            "Tingkat"=>1,
-            "id_jurusan"=>2,
-        ]);
-
-        mapel::create([
-            "Nama_mapel"=>"Matematika",
-            "KKM"=>65,
-            "Tingkat"=>1,
-            "id_jurusan"=>3,
-        ]);
 
         mapel::create([
             "Nama_mapel"=>"Matematika",
@@ -141,13 +121,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        $this->call([
-            GuruSeeder::class,
-            KelasSeeder::class,
-            SiswaSeeder::class,
-            AjarSeeder::class,
-            RiwayatSeeder::class
+        // $this->call([
+        //     GuruSeeder::class,
+        //     KelasSeeder::class,
+        //     SiswaSeeder::class,
+        //     AjarSeeder::class,
+        //     RiwayatSeeder::class
 
-        ]);
+        // ]);
     }
 }

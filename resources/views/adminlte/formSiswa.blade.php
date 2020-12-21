@@ -211,42 +211,14 @@
     </div>
 </div>
 
-<div>
-    <form action="/filterSiswa" method="post" class="form-horizontal">
-        @csrf
-        <h3>Filter </h3>
-        <label class="control-label">Nama :</label>
-        <input type="text" class="span7" placeholder="Search Nama Siswa" name="nama"  style="width: 200pt; height: 40px;  padding: 0.375rem 0.75rem; "/>
-<br><br>
-        <label class="control-label">Jurusan :</label>
-        <select class="span7" name="filterjurusan" style="width: 130pt; height: 40px;  padding: 0.375rem 0.75rem; ">
-            @isset($DBJurusan)
-            <option value="none"selected>None</option>
-              @foreach ($DBJurusan as $i)
-              <option value="{{$i->Id_jurusan}}" >{{$i->Nama_jurusan}}</option>
-              @endforeach
-            @endisset
-        </select>
-        <br>
-        <br>
-        <label class="control-label">Kelas :</label>
-        <select class="span7" name="filterkelas" style="width: 130pt; height: 40px;  padding: 0.375rem 0.75rem; ">
-            @isset($DBkelas)
-                <option value="none"selected>None</option>
-              @foreach ($DBkelas as $i)
-              <option value="{{$i->Id_kelas}}" >{{$i->Nama_kelas}}</option>
-              @endforeach
-            @endisset
-        </select>
-        <br>
-        <br>
-        <button style="margin-left: 6.5cm" type="submit" class="btn btn-success" name="filter">Filter</button>
-    </form>
-</div>
+
 
 <div class="widget-box">
     <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
       <h5>Table Siswa</h5>
+      <form action="/kefilterSiswa" method="get">
+        <input class="btn btn-success" style="margin-top: 1mm; margin-left: 80%;" type="submit" value="Filter Siswa">
+      </form>
     </div>
 
     <div class="widget-content nopadding">

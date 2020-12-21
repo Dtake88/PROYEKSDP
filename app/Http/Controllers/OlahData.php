@@ -64,8 +64,8 @@ class OlahData extends Controller
             ];
             Cookie::queue("userLogin",json_encode($userLogin),120);
             $data->session()->put('loggedAdmin',$idadmin[0]->Id_administrasi);
-            dd("masuk Admin");
-            // return redirect("homeAdmin");
+            // dd("masuk Admin");
+            return redirect("homeAdmin");
         }
 
 

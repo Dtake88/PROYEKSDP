@@ -79,8 +79,10 @@ class AdminController extends Controller
     public function pindahMatPel()
     {
         $daftarMatPel = mapel::all();
+        $DBJurusan = jurusan::all();
         return view("adminlte.formMatPel",[
-            "daftarMatPel"=>$daftarMatPel
+            "daftarMatPel"=>$daftarMatPel,
+            "jurusan"=>$DBJurusan
         ]);
     }
 

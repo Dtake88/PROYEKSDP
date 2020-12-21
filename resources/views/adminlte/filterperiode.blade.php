@@ -49,13 +49,9 @@
     </div>
 </div>
 
-
 <div class="widget-box">
     <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
       <h5>Table Periode Akademik</h5>
-      <form action="/kefilterPeriode" method="get">
-        <input class="btn btn-success" style="margin-top: 1mm; margin-left: 80%;" type="submit" value="Filter Periode">
-      </form>
     </div>
     <div class="widget-content nopadding">
       <table class="table table-bordered table-striped">
