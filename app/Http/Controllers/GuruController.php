@@ -23,7 +23,7 @@ class GuruController extends Controller
     public function pindahInputNilai()
     {
         $sessionGuru= Auth::guard('guru')->user()->NIG;
-        $guru = guru::find($sessionGuru);
+        // $guru = guru::find($sessionGuru);
         // $ajar = $guru->ajar;
         // dd($sessionGuru);
         $DBkelas = kelas::where("Id_kelas", $sessionGuru)->get();
