@@ -7,7 +7,9 @@
     <div class="row-fluid">
         <div class="widget-box">
 
-
+            <form action="/keFilterRiwayat" method="get">
+                <input class="btn btn-success" style="margin-top: 1mm; margin-left: 80%;" type="submit" value="Filter Riwayat">
+            </form> <span class="icon">
         </div>
     </div>
     <!--End-Chart-box-->
@@ -15,9 +17,7 @@
 
     <!--End-Chart-box-->
     <div class="widget-title">
-        <form action="/keFilterRiwayatGuru" method="get">
-            <input class="btn btn-success" style="margin-top: 1mm; margin-left: 80%;" type="submit" value="Filter Riwayat">
-        </form> <span class="icon">
+
         <span class="icon"> <i class="icon-th"></i> </span>
       <h5>Daftar Nilai</h5>
     </div>

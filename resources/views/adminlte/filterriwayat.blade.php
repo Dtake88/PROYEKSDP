@@ -1,6 +1,6 @@
-@extends('adminlte.adminLayout')
+@extends('guru.guruLayout')
 
-@section('riwayat')
+@section('inputNilai')
 
 <div>
     <form action="/filterRiwayat" method="post" class="form-horizontal">
