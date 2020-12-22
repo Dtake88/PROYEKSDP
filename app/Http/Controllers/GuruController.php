@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ajar_mengajar;
 use App\guru;
 use App\kelas;
+use App\mapel;
 use App\riwayat_akademik;
 use App\siswa;
 use Illuminate\Http\Request;
@@ -79,6 +80,54 @@ class GuruController extends Controller
         $riwayat->save();
         // dd($request->all());
         return redirect("inputNilai");
+    }
+
+    public function keFilterRiwayat()
+    {
+        $DBriwayat = riwayat_akademik::all();
+        $DBsiswa = siswa::all();
+        $DBkelas = kelas::all();
+        $DBmapel = mapel::all();
+        $DBAjar_mengajar = ajar_mengajar::all();
+        return view("guru.filterriwayat",[
+            "DBAjar_mengajar"=>$DBAjar_mengajar,
+            "DBriwayat"=>$DBriwayat,
+            "DBsiswa"=>$DBsiswa,
+            "DBkelas"=>$DBkelas,
+            "DBmapel"=>$DBmapel
+        ]);
+    }
+
+    public function filterRiwayatGuru(Request $request)
+    {
+        $DBriwayat = riwayat_akademik::all();
+
+
+        if($request->filterajarmengajar != "none" ){
+            $DBriwayat=$DBriwayat->where("Id_ajar_mengajar", $request->filterajarmengajar);
+        }
+
+        if($request->nama != "" ){
+            $nis=siswa::where("Nama_siswa",'like','%'.$request->nama.'%')->pluck("NIS");
+            $DBriwayat=riwayat_akademik::whereIn("NIS", $nis)->get();
+        }
+
+        if($request->filterajarmengajar != "none" && $request->nama != ""){
+            $nis=siswa::where("Nama_siswa",'like','%'.$request->nama.'%')->pluck("NIS");
+            $DBriwayat=riwayat_akademik::whereIn("NIS", $nis)->where("Id_ajar_mengajar", $request->filterajarmengajar)->get();
+        }
+
+        $DBsiswa = siswa::all();
+        $DBkelas = kelas::all();
+        $DBmapel = mapel::all();
+        $DBAjar_mengajar = ajar_mengajar::all();
+        return view("guru.filterriwayat",[
+            "DBAjar_mengajar"=>$DBAjar_mengajar,
+            "DBriwayat"=>$DBriwayat,
+            "DBsiswa"=>$DBsiswa,
+            "DBkelas"=>$DBkelas,
+            "DBmapel"=>$DBmapel
+        ]);
     }
 
 }
