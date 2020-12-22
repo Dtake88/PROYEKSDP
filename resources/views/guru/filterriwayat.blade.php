@@ -1,6 +1,6 @@
 @extends('guru.guruLayout')
 
-@section('riwayat')
+@section('inputNilai')
 
 <div>
     <form action="/filterRiwayatGuru" method="post" class="form-horizontal">
@@ -63,10 +63,9 @@
                     <td>{{$r->UAS}}</td>
                     <td>{{strtoupper($r->Sikap)}}</td>
                     <td>{{$r->Hasil_akhir}}</td>
-                    <td>
-                    <button class="btn btn-success"><a class="text-white" href="toUpdateRiwayat/{{$r->Id_riwayat_akademik}}">Update</a></button>
-                    <button class="btn btn-danger"><a class="text-white" href="deleteRiwayat/{{$r->Id_riwayat_akademik}}">Delete</a></button>
-                    </td>
+
+                        <td class="text-center"><button class="btn btn-success"><a href="/toEditNilai/{{$i->Id_riwayat_akademik}}">Edit</a></button></td>
+
                   </tr>
               @endforeach
           </tbody>

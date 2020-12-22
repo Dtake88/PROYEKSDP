@@ -129,7 +129,7 @@ Route::group(['middleware' => ['GuruMiddleware']], function () {
     Route::get('/getDaftarNilai',"GuruController@getDaftarNilai" );
     Route::get('/toEditNilai/{id}','GuruController@toEditNilai' );
     Route::post('/updateRiwayat','GuruController@updateRiwayat' );
-    Route::get('/keFilterRiwayatGuru', 'GuruController@keFilterRiwayat');
+    Route::get('/keFilterRiwayat', 'GuruController@keFilterRiwayat');
     Route::post('/filterRiwayatGuru', 'GuruController@filterRiwayatGuru');
 });
 
