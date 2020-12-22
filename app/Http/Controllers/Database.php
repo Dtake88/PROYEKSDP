@@ -558,18 +558,18 @@ class Database extends Controller
 
     public function selectRiwayat(Request $data)
     {
-        // $this->validate($data,[
-        //     "siswa" => "required",
-        //     "ajar_mengajar" => "required",
-        //     "Quiz1" => ["required",new batasannilai],
-        //     "Quiz2" => "required",
-        //     "Tugas1" => "required",
-        //     "Tugas2" => "required",
-        //     "UTS" => "required",
-        //     "UAS" => "required",
-        //     "Sikap" => "required",
-        //     "Nilai_akhir" => "required"
-        // ]);
+        $this->validate($data,[
+            "siswa" => "required",
+            "ajar_mengajar" => "required",
+            "Quiz1" => ["required",new batasannilai],
+            "Quiz2" => ["required",new batasannilai],
+            "Tugas1" =>  ["required",new batasannilai],
+            "Tugas2" =>  ["required",new batasannilai],
+            "UTS" => ["required",new batasannilai],
+            "UAS" =>  ["required",new batasannilai],
+            "Sikap" => "required",
+            "Nilai_akhir" =>  ["required",new batasannilai]
+        ]);
         $ajar = ajar_mengajar::find($data->input("ajar_mengajar"));
         $kelas = $ajar->kelas->Id_kelas;
         $mapel = $ajar->mapel->Id_mapel;
