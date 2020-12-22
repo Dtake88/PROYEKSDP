@@ -4,10 +4,12 @@
 <div class="row-fluid">
     <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>Input Riwayat Akademik</h5>
+            <h5>Input Riwayat Akademik</h5>
         </div>
         <div class="widget-content nopadding">
-
+            <form action="/kefilterRiwayat" method="get">
+                <input class="btn btn-success" style="margin-top: 1mm; margin-left: 80%;" type="submit" value="Filter Riwayat">
+            </form>
             <form action="/riwayat/crud" method="post" class="form-horizontal">
             @csrf
             <div class="control-group">
@@ -42,7 +44,7 @@
                   @enderror
                   </div>
               </div>
-                <div class="control-group">
+              <div class="control-group">
                     <label class="control-label" for="">Nilai Quiz 1 :</label>
                     <div class="controls">
                         <input name="Quiz1" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 45pt; height: 40px;  padding: 0.375rem 0.75rem; ">
@@ -50,7 +52,7 @@
                     @error('Quiz1')
                       <br><span style="color: red;">{{ $message }}</span>
                   @enderror
-                </div>
+              </div>
                 <div class="control-group">
                     <label class="control-label" for="">Nilai Quiz 2 :</label>
                     <div class="controls">
@@ -109,14 +111,12 @@
 
 
         </div>
-
+</div>
 
 <div class="widget-box">
     <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
         <h5>Table Riwayat Akademik</h5>
-        <form action="/kefilterRiwayat" method="get">
-            <input class="btn btn-success" style="margin-top: 1mm; margin-left: 80%;" type="submit" value="Filter Riwayat">
-          </form>
+
     </div>
     <div class="widget-content nopadding">
         <table class="table table-bordered table-striped">
