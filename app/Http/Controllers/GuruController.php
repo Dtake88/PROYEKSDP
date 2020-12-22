@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\ajar_mengajar;
 use App\guru;
+use App\kelas;
 use App\riwayat_akademik;
+use App\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -18,20 +21,20 @@ class GuruController extends Controller
 
     public function pindahInputNilai()
     {
-        // dd(Auth::guard('guru')->user()->NIG);
         $sessionGuru= Auth::guard('guru')->user()->NIG;
-        // dd($sessionGuru);
         $guru = guru::find($sessionGuru);
-        $ajar = $guru->ajar;
-        // $kelas = $guru->kelas;
-        // $mapel = $guru->mapel;
-        // dd($ajar);
+        // $ajar = $guru->ajar;
+        // dd($sessionGuru);
+        $DBkelas = kelas::where("Id_kelas", $sessionGuru)->get();
+        // dd($DBkelas[0]->Id_kelas);
+        // $DBsiswa = siswa::where('id_kelas',$DBkelas[0]->Id_kelas)->get();
 
-        // dd($mapel);
-        // iki penggen tak bikin ajax nde selection e
-        // jadi awal e kan milih KELAS e ,
-        // lek kelas e ganti pilihan MAPEL e bakal ganti pisan , tapi angel hehe
-        return view("guru.inputNilai" ,  ["ajar" => $ajar]);
+        $listNilai = riwayat_akademik::where('id_kelas',$DBkelas[0]->Id_kelas)->get();
+        return view("guru.inputNilai" ,  [
+            // "ajar" => $ajar,
+            // "DBsiswa"=>$DBsiswa,
+            "listNilai"=>$listNilai
+            ]);
     }
 
     public function getDaftarNilai(Request  $request)

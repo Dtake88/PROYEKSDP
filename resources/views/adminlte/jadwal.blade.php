@@ -15,7 +15,7 @@
                 <div class="controls">
                 <select class="span11" name="Id_kelas" style="width: 150pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     @foreach ($kelas as $i)
-                        <option value="{{$i->Id_kelas}}">{{$i->Nama_kelas}}</option>
+                        <option value="{{$i->Id_kelas}}">{{$i->Nama_kelas}} </option>
                     @endforeach
                 </select>
                 </div>
@@ -25,7 +25,7 @@
                 <div class="controls">
                 <select class="span11" name="Id_mapel" style="width: 150pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     @foreach ($Mapel as $i)
-                        <option value="{{$i->Id_mapel}}">{{$i->Nama_mapel}}</option>
+                        <option value="{{$i->Id_mapel}}">{{$i->Nama_mapel}} - {{$i->Tingkat}}</option>
                     @endforeach
                 </select>
                 </div>
