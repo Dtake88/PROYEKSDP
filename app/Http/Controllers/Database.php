@@ -145,7 +145,8 @@ class Database extends Controller
                     "Tempat_lahir_siswa"=>$data->input("tmptLahir"),
                     "Tanggal_lahir_siswa"=>$data->input("tglLahir"),
                     "Nama_ibu"=>$data->input("NameMom"),
-                    "Nama_ayah"=>$data->input("NameDad"),                    "Status"=>$data->input("status"),
+                    "Nama_ayah"=>$data->input("NameDad"),
+                    "Status"=>$data->input("status"),
                     "Email_siswa" =>$data->input("email"),
                     "NISN"=>$data->input("nisn"),
                     "Agama"=>$data->input("agama"),
@@ -158,7 +159,7 @@ class Database extends Controller
 
             // Mail::to("yoshua_d18@mhs.stts.edu")->send(new TestMail());
             // dd(siswa::latest("NIS")->first()->Email_siswa);
-            Mail::to(siswa::latest("NIS")->first()->Email_siswa)->send(new NewSiswaMail(siswa::latest("NIS")->first()->NIS , $data->pw));
+            // Mail::to(siswa::latest("NIS")->first()->Email_siswa)->send(new NewSiswaMail(siswa::latest("NIS")->first()->NIS , $data->pw));
 
 
 
@@ -561,14 +562,14 @@ class Database extends Controller
         $this->validate($data,[
             "siswa" => "required",
             "ajar_mengajar" => "required",
-            "Quiz1" => ["required",new batasannilai],
-            "Quiz2" => "required",
-            "Tugas1" => "required",
-            "Tugas2" => "required",
-            "UTS" => "required",
-            "UAS" => "required",
-            "Sikap" => "required",
-            "Nilai_akhir" => "required"
+            // "Quiz1" => "required",
+            // "Quiz2" => "required",
+            // "Tugas1" => "required",
+            // "Tugas2" => "required",
+            // "UTS" => "required",
+            // "UAS" => "required",
+            // "Sikap" => "required",
+            // "Nilai_akhir" => "required"
         ]);
         $ajar = ajar_mengajar::find($data->input("ajar_mengajar"));
         $kelas = $ajar->kelas->Id_kelas;
@@ -580,14 +581,14 @@ class Database extends Controller
                     "Id_ajar_mengajar"=>$data->input("ajar_mengajar"),
                     "Id_kelas"=>$kelas,
                     "Id_mapel"=>$mapel,
-                    "Quiz1"=>$data->input("Quiz1"),
-                    "Quiz2"=>$data->input("Quiz2"),
-                    "Tugas1"=>$data->input("Tugas1"),
-                    "Tugas2"=>$data->input("Tugas2"),
-                    "UTS"=>$data->input("UTS"),
-                    "UAS"=>$data->input("UAS"),
-                    "Sikap"=>$data->input("Sikap"),
-                    "Hasil_akhir"=>$data->input("Nilai_akhir")
+                    "Quiz1"=>0,
+                    "Quiz2"=>0,
+                    "Tugas1"=>0,
+                    "Tugas2"=>0,
+                    "UTS"=>0,
+                    "UAS"=>0,
+                    "Sikap"=>"-",
+                    "Hasil_akhir"=>0
                 ]
             );
         }

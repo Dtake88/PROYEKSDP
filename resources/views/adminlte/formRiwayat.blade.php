@@ -42,7 +42,7 @@
                   @enderror
                   </div>
               </div>
-                <div class="control-group">
+                {{-- <div class="control-group">
                     <label class="control-label" for="">Nilai Quiz 1 :</label>
                     <div class="controls">
                         <input name="Quiz1" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 45pt; height: 40px;  padding: 0.375rem 0.75rem; ">
@@ -98,12 +98,12 @@
                     <div class="controls">
                         <input name="Nilai_akhir" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 45pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     </div>
-                </div>
+                </div> --}}
 
 
             <div class="form-actions">
               <button type="submit" class="btn btn-success" name="Insert">Insert</button>
-              {{-- <button type="submit" class="btn btn-success" name="Update">Update</button> --}}
+              <button type="submit" class="btn btn-success" name="Update">Update</button>
             </div>
                 </div>
 
@@ -112,11 +112,13 @@
 
 
 <div class="widget-box">
-    <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-        <h5>Table Riwayat Akademik</h5>
+    <div class="widget-title">
         <form action="/kefilterRiwayat" method="get">
             <input class="btn btn-success" style="margin-top: 1mm; margin-left: 80%;" type="submit" value="Filter Riwayat">
-          </form>
+        </form> <span class="icon">
+            <i class="icon-th"></i> </span>
+        <h5>Table Riwayat Akademik</h5>
+
     </div>
     <div class="widget-content nopadding">
         <table class="table table-bordered table-striped">
@@ -125,14 +127,14 @@
               <th>Siswa</th>
               <th>Kelas</th>
               <th>Mapel</th>
-              <th>Quiz 1</th>
+              {{-- <th>Quiz 1</th>
               <th>Quiz 2</th>
               <th>Tugas 1</th>
               <th>Tugas 2</th>
               <th>UTS</th>
               <th>UAS</th>
               <th>Sikap</th>
-              <th>Hasil Akhir</th>
+              <th>Hasil Akhir</th> --}}
               <th>Action</th>
 
             </tr>
@@ -143,14 +145,14 @@
                     <td>{{$r->siswa->Nama_siswa}}</td>
                     <td>{{$r->kelas->Nama_kelas}}</td>
                     <td>{{$r->mapel->Nama_mapel}}</td>
-                    <td>{{$r->Quiz1}}</td>
+                    {{-- <td>{{$r->Quiz1}}</td>
                     <td>{{$r->Quiz2}}</td>
                     <td>{{$r->Tugas1}}</td>
                     <td>{{$r->Tugas2}}</td>
                     <td>{{$r->UTS}}</td>
                     <td>{{$r->UAS}}</td>
                     <td>{{strtoupper($r->Sikap)}}</td>
-                    <td>{{$r->Hasil_akhir}}</td>
+                    <td>{{$r->Hasil_akhir}}</td> --}}
                     <td>
                     <button class="btn btn-success"><a class="text-white" href="toUpdateRiwayat/{{$r->Id_riwayat_akademik}}">Update</a></button>
                     <button class="btn btn-danger"><a class="text-white" href="deleteRiwayat/{{$r->Id_riwayat_akademik}}">Delete</a></button>
