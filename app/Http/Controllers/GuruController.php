@@ -23,14 +23,19 @@ class GuruController extends Controller
     public function pindahInputNilai()
     {
         $sessionGuru= Auth::guard('guru')->user()->NIG;
+
+        $DBAjar_mengajar = ajar_mengajar::select('id_kelas')->where('status_jadwal',1)->where("NIG",$sessionGuru)->get();
+        // dd($DBAjar_mengajar);
         // $guru = guru::find($sessionGuru);
         // $ajar = $guru->ajar;
         // dd($sessionGuru);
-        $DBkelas = kelas::where("Id_kelas", $sessionGuru)->get();
+        $DBkelas = kelas::select('Id_kelas')->whereIn("Id_kelas", $DBAjar_mengajar)->get();
+        // dd($DBkelas);
         // dd($DBkelas[0]->Id_kelas);
         // $DBsiswa = siswa::where('id_kelas',$DBkelas[0]->Id_kelas)->get();
 
-        $listNilai = riwayat_akademik::where('id_kelas',$DBkelas[0]->Id_kelas)->get();
+        $listNilai = riwayat_akademik::whereIn('id_kelas',$DBkelas)->get();
+        // dd($listNilai);
         return view("guru.inputNilai" ,  [
             // "ajar" => $ajar,
             // "DBsiswa"=>$DBsiswa,
