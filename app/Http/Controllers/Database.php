@@ -492,7 +492,7 @@ class Database extends Controller
         $DBkelas = kelas::all();
         $DBmapel = mapel::all();
         $DBAjar_mengajar = ajar_mengajar::all();
-        return view("adminlte.filterriwayat",[
+        return view("Guru.filterriwayat",[
             "DBAjar_mengajar"=>$DBAjar_mengajar,
             "DBriwayat"=>$DBriwayat,
             "DBsiswa"=>$DBsiswa,
@@ -538,6 +538,18 @@ class Database extends Controller
         return redirect("/riwayat");
     }
     public function updateRiwayat(Request $request){
+
+        $this->validate($request,[
+            "Quiz1" => ["required",new batasannilai],
+            "Quiz2" => ["required",new batasannilai],
+            "Tugas1" =>  ["required",new batasannilai],
+            "Tugas2" =>  ["required",new batasannilai],
+            "UTS" => ["required",new batasannilai],
+            "UAS" =>  ["required",new batasannilai],
+            "Sikap" => "required",
+            "Hasil_akhir" =>  ["required",new batasannilai]
+        ]);
+
         $riwayat_akademik = riwayat_akademik::find($request->Id_riwayat_akademik);
         $riwayat_akademik->Quiz1 = $request->Quiz1;
         $riwayat_akademik->Quiz2 = $request->Quiz2;
