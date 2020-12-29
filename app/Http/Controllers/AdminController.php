@@ -12,6 +12,7 @@ use App\periode_akademik;
 use App\riwayat_akademik;
 use App\siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -34,8 +35,14 @@ class AdminController extends Controller
         return view("adminlte.index" , ["pengumuman"=>$pengumuman]);
     }
 
-    public function pindahPengumuman()
+    public function pindahPengumuman(Request $data)
     {
+        // $sessionAdmin= Auth::guard('admin');
+
+        // dd($sessionAdmin);
+
+        // $penToa = $data->session()->get("loggedAdmin");
+        // dd($penToa);
         $daftarToa = pengumuman::all();
         return view("adminlte.FormPengumuman",[
             "daftarToa"=>$daftarToa

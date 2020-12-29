@@ -141,6 +141,7 @@ Route::group(['middleware' => ["SiswaMiddleware"]], function () {
     Route::get('/EditBiodata', 'SiswaController@EditBiodata');
     Route::get('/nilaiSiswa', 'SiswaController@LihatNilai');
     Route::get('/dashboardSiswa', 'SiswaController@PindahDashboardSiswa');
+    Route::post('/filterRiwayatSiswa', 'SiswaController@FilterNilai');
 });
 
 

@@ -23,7 +23,7 @@ class GuruController extends Controller
     public function pindahInputNilai()
     {
         $sessionGuru= Auth::guard('guru')->user()->NIG;
-
+        // dd($sessionGuru);
         $DBAjar_mengajar = ajar_mengajar::select('id_kelas')->where('status_jadwal',1)->where("NIG",$sessionGuru)->get();
         // dd($DBAjar_mengajar);
         // $guru = guru::find($sessionGuru);
@@ -46,6 +46,7 @@ class GuruController extends Controller
     public function getDaftarNilai(Request  $request)
     {
         $sessionGuru= Auth::guard('guru')->user()->NIG;
+
         // dd($request->all());
         // $sessionGuru= $request->session()->get('loggedGuru');
         // $NIG = $sessionGuru["username"];

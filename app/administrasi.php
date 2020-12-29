@@ -16,7 +16,13 @@ class administrasi extends Authencticable
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;
-    protected $fillable = ['Nama_administrasi', 'Username_administrasi', 'No_administrasi', 'Alamat_administrasi', 'Password_administrasi'];
+    protected $fillable =
+    ['Nama_administrasi',
+    'Username_administrasi',
+    'No_administrasi',
+    'Alamat_administrasi',
+    'Password_administrasi'
+];
 
 
 
@@ -27,7 +33,7 @@ class administrasi extends Authencticable
      */
     public function getAuthPassword()
     {
-    return $this->Password_admin;
+        return $this->Password_admin;
     }
 
     public function getAuthIdentifierName()

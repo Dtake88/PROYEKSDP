@@ -996,8 +996,6 @@ class Database extends Controller
             "namaToa" => "required",
             "fileToa" => "required|mimes:pdf"
         ]);
-        if ($data->session()->has("loggedAdmin")) {
-            $penToa = $data->session()->get("loggedAdmin");
             $namafile = Str::random(8).".".$data->file("fileToa")->getClientOriginalExtension();
             $data->file("fileToa")->storeAs("fileToa",$namafile,"local");
             if ($data->has("Insert")) {
@@ -1005,12 +1003,11 @@ class Database extends Controller
                     [
                         "Judul_pengumuman"=>$data->input("namaToa"),
                         "Tanggal_pengumuman"=>new Carbon('now'),
-                        "File_pengumuman"=>$namafile,
-                        "Id_administrasi"=>$penToa
+                        "File_pengumuman"=>$namafile
                     ]
                 );
             }
-        }
+
         return redirect("/pengumuman");
     }
 

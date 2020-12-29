@@ -38,35 +38,35 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="">Quiz 1</label>
-                    <input class="form-control nilai" value="{{$riwayat->Quiz1}}" max="100" min="0" id="quiz1" name="quiz1" type="number" class="form-control" aria-describedby="" placeholder="">
+                    <input class="form-control nilai" value="{{$riwayat->Quiz1}}" max="100" min="0" id="quiz1" name="quiz1" type="number" aria-describedby="" placeholder="" style="height: 40px">
                 </div>
                 <div class="form-group">
                     <label for="">Quiz 2</label>
-                    <input id="quiz2" class="form-control nilai" value="{{$riwayat->Quiz2}}" max="100" min="0"  name="quiz2" type="number" class="form-control" aria-describedby="" placeholder="">
+                    <input id="quiz2" class="form-control nilai" value="{{$riwayat->Quiz2}}" max="100" min="0"  name="quiz2" type="number" aria-describedby="" placeholder="" style="height: 40px">
                 </div>
                 <div class="form-group">
                     <label for="">Tugas 1</label>
-                    <input id="tugas1" class="form-control nilai" value="{{$riwayat->Tugas1}}" max="100" min="0"  name="tugas1" type="number" class="form-control" aria-describedby="" placeholder="">
+                    <input id="tugas1" class="form-control nilai" value="{{$riwayat->Tugas1}}" max="100" min="0"  name="tugas1" type="number" aria-describedby="" placeholder="" style="height: 40px">
                 </div>
                 <div class="form-group">
                     <label for="">Tugas 2</label>
-                    <input id="tugas2" class="form-control nilai" value="{{$riwayat->Tugas2}}" max="100" min="0"  name="tugas2" type="number" class="form-control" aria-describedby="" placeholder="">
+                    <input id="tugas2" class="form-control nilai" value="{{$riwayat->Tugas2}}" max="100" min="0"  name="tugas2" type="number" aria-describedby="" placeholder="" style="height: 40px">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="">UTS</label>
-                    <input id="UTS" class="form-control nilai" value="{{$riwayat->UTS}}" max="100" min="0"  name="UTS" type="number" class="form-control" aria-describedby="" placeholder="">
+                    <input id="UTS" class="form-control nilai" value="{{$riwayat->UTS}}" max="100" min="0"  name="UTS" type="number" aria-describedby="" placeholder="" style="height: 40px">
                 </div>
                 <div class="form-group">
                     <label for="">UAS</label>
-                    <input id="UAS" class="form-control nilai" value="{{$riwayat->UAS}}" max="100" min="0"  name="UAS" type="number" class="form-control" aria-describedby="" placeholder="">
+                    <input id="UAS" class="form-control nilai" value="{{$riwayat->UAS}}" max="100" min="0"  name="UAS" type="number" aria-describedby="" placeholder="" style="height: 40px">
                 </div>
 
                 <div class="form-group">
                     <label for="">Sikap</label>
-                    <select class="form-control" name="sikap">
+                    <select class="form-control" name="sikap" style="height: 40px">
                         <option value="a" selected>A</option>
                         <option value="b" >B</option>
                         <option value="c" >C</option>
@@ -77,7 +77,7 @@
         </div>
                     <div class="form-group">
                         <h3>Nilai Akhir</h3>
-                        <input id="nilaiAkhir" name="nilaiAkhir" type="text" readonly class="form-control" value="">
+                        <input id="nilaiAkhir" name="nilaiAkhir" type="text" readonly class="form-control" value=""  style="height: 40px; width: 80px" >
                     </div>
 
         <button class="btn btn-primary" > <a class="text-white" href="/inputNilai">Cancel</a></button>

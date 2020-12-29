@@ -64,7 +64,7 @@
                     <td>{{strtoupper($r->Sikap)}}</td>
                     <td>{{$r->Hasil_akhir}}</td>
 
-                        <td class="text-center"><button class="btn btn-success"><a href="/toEditNilai/{{$i->Id_riwayat_akademik}}">Edit</a></button></td>
+                        <td class="text-center"><button class="btn btn-success"><a href="/toEditNilai/{{$r->Id_riwayat_akademik}}">Edit</a></button></td>
 
                   </tr>
               @endforeach

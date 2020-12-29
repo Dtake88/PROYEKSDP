@@ -18,9 +18,7 @@ class CreateTablePengumuman extends Migration
             $table->string('Judul_pengumuman',50);
             $table->date('Tanggal_pengumuman');
             $table->string('File_pengumuman',50);
-            $table->integer('Id_administrasi')->unsigned();
             $table->date('deleted_at')->nullable();
-            $table->foreign('Id_administrasi')->references('Id_administrasi')->on('administrasi');
         });
     }
 
