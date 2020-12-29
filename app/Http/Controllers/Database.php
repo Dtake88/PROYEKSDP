@@ -83,6 +83,8 @@ class Database extends Controller
         // dd($request->all());
         $siswa = siswa::find($request->NIS);
         $siswa->NISN = $request->NISN;
+        $siswa->Id_kelas = $request->Id_kelas;
+        $siswa->Id_jurusan = $request->Id_jurusan;
         $siswa->Nama_siswa = $request->nama;
 
         $siswa->Password_siswa = Hash::make( $request->password);
@@ -115,6 +117,10 @@ class Database extends Controller
     {
         $siswa  = siswa::find($id);
         Session::put("siswa",$siswa);
+        $optionkelas = kelas::all();
+        Session::put("optionkelas",$optionkelas);
+        $optionjurusan = jurusan::all();
+        Session::put("optionjurusan",$optionjurusan);
         return view('adminlte.editSiswa',["siswa"=>$siswa]);
     }
 
