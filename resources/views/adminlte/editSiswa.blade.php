@@ -8,6 +8,8 @@
         <br>
         @php
             $siswa = Session::get("siswa");
+            $optionkelas = Session::get("optionkelas");
+            $optionjurusan = Session::get("optionjurusan");
             // dd($siswa);
         @endphp
         <form action="{{url('/updateSiswa')}}" method="POST">
@@ -24,6 +26,28 @@
                         <input name="NISN" value="{{$siswa->NISN}}" type="text" class="form-control" aria-describedby="" placeholder="Enter NISN" style="width: 80pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     </div>
                     <div class="form-group">
+                        <label for="">Kelas :</label>
+                        <select class="form-control" name="Id_kelas"  style="width: 100pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                            @foreach ($optionkelas as $i)
+                                <option value="{{$i->Id_kelas}}" >{{$i->Nama_kelas}}</option>
+                            @endforeach
+                        </select>
+                        @error('Id_kelas')
+                              <br><span style="color: red;">{{ $message }}</span>
+                          @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="">Jurusan :</label>
+                        <select class="form-control" name="Id_jurusan"  style="width: 100pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                            @foreach ($optionjurusan as $i)
+                                <option value="{{$i->Id_jurusan}}" >{{$i->Nama_jurusan}}</option>
+                            @endforeach
+                        </select>
+                        @error('Id_kelas')
+                              <br><span style="color: red;">{{ $message }}</span>
+                          @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="">Nama Siswa</label>
                         <input value="{{$siswa->Nama_siswa}}" name="nama" type="text" class="form-control" aria-describedby="" placeholder="Enter Nama Siswa" style="width: 270pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     </div>
@@ -35,17 +59,18 @@
                         <label for="">Tempat Tanggal Lahir</label>
                         <input value="{{$siswa->Tempat_lahir_siswa}}" name="tempatLahir" type="text" class="form-control" aria-describedby="" placeholder="Enter Tempat tanggal lahir" style="width: 150pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     </div>
+
+
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Tanggal Lahir Siswa</label>
                         <input value="{{$siswa->Tanggal_lahir_siswa}}" name="tanggalLahir" type="date" class="form-control" aria-describedby="" placeholder="Enter  Tanggal lahir" style="width: 130pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     </div>
                     <div class="form-group">
                         <label for="">Email Siswa</label>
-                        <input value="{{$siswa->Email_siswa}}" name="email" type="date" class="form-control" aria-describedby="" placeholder="Enter Emai" style="width: 130pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                        <input value="{{$siswa->Email_siswa}}" name="email" type="email" class="form-control" aria-describedby="" placeholder="Enter Emai" style="width: 130pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     </div>
-
-                </div>
-                <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Nama Ibu</label>
                         <input value="{{$siswa->Nama_ibu}}" name="namaIbu" type="text" class="form-control" aria-describedby="" placeholder="Enter Nama Ibu" style="width: 270pt; height: 40px;  padding: 0.375rem 0.75rem; ">
