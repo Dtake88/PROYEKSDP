@@ -160,6 +160,7 @@ Route::post('/toa/crud', 'Database@selectToa');
 Route::post('/kelas/crud', 'Database@selectKelas');
 Route::post('/siswa/import', 'Database@importSiswa');
 Route::post('/jadwal/crud', 'Database@selectJadwal');
+Route::post('/JurusanTerpilih', 'SiswaController@pilihJurusan');
 
 
 Route::get('/tes', function (Faker $faker) {

@@ -100,7 +100,7 @@ class Database extends Controller
         $siswa->Email_siswa = $request->email;
         $siswa->save();
 
-        Mail::to($request->email)->send(new NewSiswaMail($request->NIS , $request->password));
+        // Mail::to($request->email)->send(new NewSiswaMail($request->NIS , $request->password));
 
 
         return redirect('/siswa');
@@ -158,8 +158,8 @@ class Database extends Controller
                     "Agama"=>$data->input("agama"),
                     "Jenis_kelamin"=>$data->input("jk"),
                     "Alamat_siswa"=>$data->input("alamat"),
-                    "id_kelas" => $data->input("kelas"),
-                    "id_jurusan" =>$data->input("jurusan")
+                    "Id_kelas" => $data->input("kelas"),
+                    "Id_jurusan" =>$data->input("jurusan")
                 ]
             );
 
@@ -171,6 +171,7 @@ class Database extends Controller
 
             return redirect("/siswa");
         }
+
         if ($data->has("Update")) {
             $tempnis = siswa::find($data->input("nis"));
             $tempnis->Nama_siswa = $data->input("nama");
@@ -191,6 +192,7 @@ class Database extends Controller
             $valueDelete = $data->input("Delete");
             siswa::where('NIS', '=' , $valueDelete)->delete();
         }
+
         $daftarSiswa = siswa::all();
         foreach($daftarSiswa as $siswas){
             $siswas->Password_siswa = Hash::make($siswas->Password_siswa);
