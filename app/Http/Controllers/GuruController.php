@@ -140,17 +140,19 @@ class GuruController extends Controller
     public function lihatNilai()
     {
         $sessionGuru= Auth::guard('guru')->user();
-        $periodeAktif = periode_akademik::select('Id_periode')->where('Status',1)->get();
-        // dd($periodeAktif);
-        $walikelas = kelas::where('NIG',$sessionGuru->NIG)->whereIn('Id_periode',$periodeAktif)->get();
-        // dd($walikelas);
-        // $riwayat = riwayat_akademik::select('NIS')->where("Id_kelas",$walikelas[0]->Id_kelas)->get();
-        $siswaKelas = siswa::where('Id_kelas',$walikelas[0]->Id_kelas)->get();
-        if ($sessionGuru->Status_guru) {
+        // dd($sessionGuru->Status_guru);
+
+        if ($sessionGuru->Status_guru == 1) {
+            $periodeAktif = periode_akademik::select('Id_periode')->where('Status',1)->get();
+            // dd($periodeAktif);
+            $walikelas = kelas::where('NIG',$sessionGuru->NIG)->whereIn('Id_periode',$periodeAktif)->get();
+            // dd($walikelas);
+            // $riwayat = riwayat_akademik::select('NIS')->where("Id_kelas",$walikelas[0]->Id_kelas)->get();
+            $siswaKelas = siswa::where('Id_kelas',$walikelas[0]->Id_kelas)->get();
             return view('guru.lihatNilai',[
                 "siswaKelas"=>$siswaKelas
             ]);
-        }else {
+        }else if($sessionGuru->Status_guru == 0) {
             return redirect()->back();
         }
 
