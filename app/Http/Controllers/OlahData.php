@@ -66,6 +66,7 @@ class OlahData extends Controller
             $data->session()->put('loggedAdmin',$idadmin[0]->Id_administrasi);
             // dd("masuk Admin");
             return redirect("homeAdmin");
+            // return redirect("homeAdmin");
         }
 
 

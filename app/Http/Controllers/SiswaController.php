@@ -177,4 +177,5 @@ class SiswaController extends Controller
         $updateSiswa->save();
         return redirect('/dashboardSiswa');
     }
+    
 }

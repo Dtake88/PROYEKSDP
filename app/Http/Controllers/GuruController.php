@@ -6,6 +6,7 @@ use App\ajar_mengajar;
 use App\guru;
 use App\kelas;
 use App\mapel;
+use App\periode_akademik;
 use App\riwayat_akademik;
 use App\siswa;
 use Illuminate\Http\Request;
@@ -133,6 +134,42 @@ class GuruController extends Controller
             "DBsiswa"=>$DBsiswa,
             "DBkelas"=>$DBkelas,
             "DBmapel"=>$DBmapel
+        ]);
+    }
+
+    public function lihatNilai()
+    {
+        $sessionGuru= Auth::guard('guru')->user();
+        $periodeAktif = periode_akademik::select('Id_periode')->where('Status',1)->get();
+        // dd($periodeAktif);
+        $walikelas = kelas::where('NIG',$sessionGuru->NIG)->whereIn('Id_periode',$periodeAktif)->get();
+        // dd($walikelas);
+        // $riwayat = riwayat_akademik::select('NIS')->where("Id_kelas",$walikelas[0]->Id_kelas)->get();
+        $siswaKelas = siswa::where('Id_kelas',$walikelas[0]->Id_kelas)->get();
+        if ($sessionGuru->Status_guru) {
+            return view('guru.lihatNilai',[
+                "siswaKelas"=>$siswaKelas
+            ]);
+        }else {
+            return redirect()->back();
+        }
+
+    }
+
+    public function cetakRaport($nis)
+    {
+        $siswaRaport = siswa::where('NIS',$nis)->get();
+        // dd($siswaRaport[0]);
+        $periodeAktif = periode_akademik::select('Id_periode')->where('Status',1)->get();
+        $kelasRaport = kelas::where('Id_kelas',$siswaRaport[0]->Id_kelas)->whereIn('Id_periode',$periodeAktif)->get();
+        // dd($kelasRaport);
+
+        $riwayatRaport = riwayat_akademik::where('NIS',$siswaRaport[0]->NIS)->where('Id_kelas',$kelasRaport[0]->Id_kelas)->get();
+
+        return view('guru.ReportRaport',[
+            "siswaRaport"=>$siswaRaport[0],
+            "kelasRaport"=>$kelasRaport[0],
+            "riwayatRaport"=>$riwayatRaport
         ]);
     }
 

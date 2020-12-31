@@ -126,11 +126,13 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
 Route::group(['middleware' => ['GuruMiddleware']], function () {
     Route::get('/homeGuru', 'GuruController@toHome');
     Route::get('/inputNilai', 'GuruController@pindahInputNilai');
+    Route::get('/lihatNilai', 'GuruController@lihatNilai');
     Route::get('/getDaftarNilai',"GuruController@getDaftarNilai" );
     Route::get('/toEditNilai/{id}','GuruController@toEditNilai' );
     Route::post('/updateRiwayat','GuruController@updateRiwayat' );
     Route::get('/keFilterRiwayat', 'GuruController@keFilterRiwayat');
     Route::post('/filterRiwayatGuru', 'GuruController@filterRiwayatGuru');
+    Route::get('/toRaport/{id}','GuruController@cetakRaport');
 });
 
 
