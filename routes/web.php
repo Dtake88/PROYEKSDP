@@ -61,6 +61,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/kelas', 'AdminController@pindahKelas');
     Route::get('/MataPelajaran', 'AdminController@pindahMatPel');
     Route::get('/riwayat', 'AdminController@pindahRiwayat');
+    Route::get('/naikKelas','AdminController@NaikKelas');
     // Route::get('/Jadwal', 'AdminController@pindahJadwal');
 
 

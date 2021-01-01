@@ -132,4 +132,49 @@ class AdminController extends Controller
         ]);
 
     }
+
+    public function NaikKelas(Request $data)
+    {
+        $DBsiswa=siswa::where('status', 1)->get();
+        $countDBsiswa = siswa::where('status', 1)->count();
+        $periodeAktif = periode_akademik::select('Id_periode')->where('Status',1)->where('Semester',2)->get();
+
+        for ($i=0; $i <$countDBsiswa ; $i++) {
+            $kelasSiswa = kelas::select('Id_kelas')
+                    ->where('Id_kelas',$DBsiswa[$i]->Id_kelas)
+                    ->whereIn('Id_periode',$periodeAktif[0])->get();
+            $riwayatSiswa=riwayat_akademik::where('NIS', $DBsiswa[$i]->NIS)
+                    ->where('Id_kelas',$kelasSiswa[0]->Id_kelas)->get();
+            $countRiwayat = riwayat_akademik::where('NIS', $DBsiswa[$i]->NIS)
+                    ->where('Id_kelas',$kelasSiswa[0]->Id_kelas)->count();
+            $countKKM=0;
+            for ($j=0; $j < $countRiwayat ; $j++) {
+                $countKKM = $countKKM +mapel::where('KKM','>=',$riwayatSiswa[$j]->Hasil_akhir)
+                            ->where('Id_mapel',$riwayatSiswa[$j]->Id_mapel)->count();
+            }
+
+            echo($kelasSiswa[0]->Id_kelas);
+            echo("<br>");
+            echo($DBsiswa[$i]->NIS . " - " . $DBsiswa[$i]->Nama_siswa . " - kelas:" .
+            $DBsiswa[$i]->Id_kelas. " -  gk lulus:" . $countKKM . " - Tingkat : " . $DBsiswa[$i]->kelas->Tingkat_kelas);
+            echo("<br>");
+        }
+        // dd($DBsiswa);
+
+
+        // dd($kelasSiswa[0]);
+        // $riwayatSiswa=riwayat_akademik::whereIn('NIS', $DBsiswa->NIS)
+        //             ->where('Id_kelas',$kelasSiswa[0]->Id_kelas)->get();
+        // // dd($riwayatSiswa);
+        // $countRiwayat = riwayat_akademik::whereIn('NIS', $DBsiswa->NIS)
+        // ->where('Id_kelas',$kelasSiswa[0]->Id_kelas)->count();
+
+        // $countRiwayat = riwayat_akademik::whereIn('NIS', $DBsiswa->NIS)
+        // ->where('Id_kelas',$kelasSiswa[0]->Id_kelas)->count();
+
+
+        // return view('adminlte.coba',[
+        //     'DBsiswa'=>$DBsiswa
+        // ]);
+    }
 }

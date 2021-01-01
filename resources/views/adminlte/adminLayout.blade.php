@@ -97,6 +97,12 @@
           </a>
       </li>
       <li>
+          <a href="/naikKelas">
+              <i class="icon icon-signout"></i>
+              <span>Naik Kelas</span>
+          </a>
+      </li>
+      <li>
           <a href="/logout">
               <i class="icon icon-signout"></i>
               <span>Log Out</span>
@@ -123,6 +129,7 @@
         @yield('formPeriodeAkademik')
         @yield('riwayat')
         @yield('jadwal')
+        @yield('naikKelas')
 
 
 

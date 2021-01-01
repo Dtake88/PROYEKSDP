@@ -18,7 +18,7 @@
             var uts= parseInt($("#UTS").val());
             var uas= parseInt($("#UAS").val());
             var akhir= $("#nilaiAkhir").val();
-            var nilai = (quiz1 + quiz2 + tugas1+ tugas2 +uts +uas)/6;
+            var nilai = (uas*0.4)+(uts*0.3)+((quiz1+quiz2+tugas1+tugas2)*0.3);
             return nilai;
         }
         $("document").ready(function(){
