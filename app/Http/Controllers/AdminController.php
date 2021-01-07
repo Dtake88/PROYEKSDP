@@ -133,6 +133,15 @@ class AdminController extends Controller
 
     }
 
+    public function PindahSiswaAktif()
+    {
+        $DBsiswa=siswa::where('status', 1)->get();
+        return view("adminlte.formSiswaAktif",[
+            "DBsiswa"=>$DBsiswa
+        ]);
+
+    }
+
     public function NaikKelas(Request $data)
     {
         $DBsiswa=siswa::where('status', 1)->get();

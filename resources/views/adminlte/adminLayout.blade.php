@@ -103,6 +103,12 @@
           </a>
       </li>
       <li>
+        <a href="/PindahSiswaAktif">
+            <i class="icon icon-signout"></i>
+            <span>Siswa Aktif</span>
+        </a>
+    </li>
+      <li>
           <a href="/logout">
               <i class="icon icon-signout"></i>
               <span>Log Out</span>

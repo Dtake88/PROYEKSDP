@@ -117,6 +117,7 @@
                             <button type="submit" class="btn btn-danger" name="Delete" value="{{$kls->Id_kelas}}">Delete</button>
                         </form>
                         <button class="btn btn-success"><a class="text-white" href="toUpdateKelas/{{$kls->Id_kelas}}">Update</a></button>
+                        <button class="btn btn-primary"><a class="text-white" href="toJadwalKelas/{{$kls->Id_kelas}}">Jadwal</a></button>
                     </td>
                 </tr>
             @endforeach

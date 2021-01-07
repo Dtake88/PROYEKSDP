@@ -9,7 +9,7 @@ class jurusan extends Model
 {
     use SoftDeletes;
     protected $table = 'jurusan';
-    protected $primaryKey = 'id_jurusan';
+    protected $primaryKey = 'Id_jurusan';
     protected $keyType = 'bigint';
     public $incrementing = true;
     public $timestamps = false;

@@ -725,6 +725,17 @@ class Database extends Controller
             "kelas"=>$kelas
         ]);
     }
+    public function toJadwalKelas($id)
+    {
+        $jadwalKelas = ajar_mengajar::where('Id_kelas', $id)->get();
+        $namaKelas = kelas::find($id);
+        //dd($jadwalKelas);
+
+        return view('adminlte.formJadwalKelas',[
+            "jadwalKelas"=>$jadwalKelas,
+            "namaKelas"=>$namaKelas
+        ]);
+    }
     public function selectKelas(Request $data)
     {
 

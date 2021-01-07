@@ -50,7 +50,7 @@ class siswa extends AuthSiswa
     }
 
     public function jurusan(){
-        return $this->hasOne(jurusan::class,"Id_jurusan","id_jurusan");
+        return $this->hasOne(jurusan::class,"Id_jurusan","Id_jurusan");
     }
 
 

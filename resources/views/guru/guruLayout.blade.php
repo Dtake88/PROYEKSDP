@@ -35,9 +35,13 @@
     <!--sidebar-menu-->
     <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
     <ul>
+        @php
+            $namaguru = Auth::guard("guru")->user()->NIG;
+        @endphp
         <li><a href="{{url("/homeGuru")}}"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
         <li> <a href="{{url("/inputNilai")}}"><i class="icon icon-bullhorn"></i>Input Nilai</a></li>
         <li> <a href="{{url("/lihatNilai")}}"><i class="icon icon-list-alt"></i>Lihat Nilai</a></li>
+        <li> <a href="/jadwalguru/{{$namaguru}}"><i class="icon icon-list-alt"></i>Jadwal Mengajar</a></li>
         <li><a href="/logout"><i class="icon icon-signout"></i> <span>Log Out</span></a></li>
     </ul>
     </div>

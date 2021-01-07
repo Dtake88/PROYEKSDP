@@ -73,6 +73,17 @@ class GuruController extends Controller
         return view("guru.formEditNilai",["riwayat"=>$riwayat]);
     }
 
+    public function jadwalguru($id)
+    {
+        $jadwalguru = ajar_mengajar::where('NIG',$id)->get();
+        $namaguru = guru::find($id);
+        //dd($namaguru);
+        return view("guru.lihatjadwalguru",[
+            "jadwalguru"=>$jadwalguru,
+            "namaguru"=>$namaguru
+        ]);
+    }
+
     public function updateRiwayat(Request $request)
     {
         $riwayat = riwayat_akademik::find($request->idRiwayat);

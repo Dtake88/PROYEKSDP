@@ -62,6 +62,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/MataPelajaran', 'AdminController@pindahMatPel');
     Route::get('/riwayat', 'AdminController@pindahRiwayat');
     Route::get('/naikKelas','AdminController@NaikKelas');
+    Route::get('/PindahSiswaAktif','AdminController@PindahSiswaAktif');
     // Route::get('/Jadwal', 'AdminController@pindahJadwal');
 
 
@@ -97,6 +98,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
 
     Route::get('/deleteKelas/{id}', 'Database@deleteKelas');
     Route::get('/toUpdateKelas/{id}', 'Database@toUpdateKelas');
+    Route::get('/toJadwalKelas/{id}', 'Database@toJadwalKelas');
     Route::post('/updateKelas', 'Database@updateKelas');
     Route::post('/filterKelas', 'Database@filterKelas');
     Route::get('/kefilterKelas', 'Database@kefilterKelas');
@@ -128,6 +130,7 @@ Route::group(['middleware' => ['GuruMiddleware']], function () {
     Route::get('/homeGuru', 'GuruController@toHome');
     Route::get('/inputNilai', 'GuruController@pindahInputNilai');
     Route::get('/lihatNilai', 'GuruController@lihatNilai');
+    Route::get('/jadwalguru/{id}', 'GuruController@jadwalguru');
     Route::get('/getDaftarNilai',"GuruController@getDaftarNilai" );
     Route::get('/toEditNilai/{id}','GuruController@toEditNilai' );
     Route::post('/updateRiwayat','GuruController@updateRiwayat' );
