@@ -923,7 +923,7 @@ class Database extends Controller
         $ajar_mengajar->Jam_belajar = $request->Jam_belajar;
         $ajar_mengajar->Status_jadwal = $request->Status_jadwal;
         $ajar_mengajar->save();
-        return redirect('/Jadwal');
+        return redirect('/AjarMengajar');
     }
     public function toUpdateJadwal($id)
     {
