@@ -64,7 +64,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/naikKelas','AdminController@NaikKelas');
     // Route::get('/Jadwal', 'AdminController@pindahJadwal');
 
-
+    Route::get('/toAbsensiKelas/{id}', 'AdminController@cetakAbsensi');
     Route::get('/deleteSiswa/{id}', 'Database@deleteSiswa');
     Route::get('/toUpdateSiswa/{id}', 'Database@toUpdateSiswa');
     Route::post('/updateSiswa', 'Database@updateSiswa');

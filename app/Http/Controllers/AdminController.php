@@ -153,12 +153,66 @@ class AdminController extends Controller
                             ->where('Id_mapel',$riwayatSiswa[$j]->Id_mapel)->count();
             }
 
-            echo($kelasSiswa[0]->Id_kelas);
-            echo("<br>");
-            echo($DBsiswa[$i]->NIS . " - " . $DBsiswa[$i]->Nama_siswa . " - kelas:" .
-            $DBsiswa[$i]->Id_kelas. " -  gk lulus:" . $countKKM . " - Tingkat : " . $DBsiswa[$i]->kelas->Tingkat_kelas);
-            echo("<br>");
+            // echo($kelasSiswa[0]->Id_kelas);
+            // echo("<br>");
+            // echo($DBsiswa[$i]->NIS . " - " . $DBsiswa[$i]->Nama_siswa . " - kelas:" .
+            // $DBsiswa[$i]->Id_kelas. " -  gk lulus:" . $countKKM . " - Tingkat : " . $DBsiswa[$i]->kelas->Tingkat_kelas);
+            // echo("<br>");
+            // echo();
+            // dd($DBsiswa[$i]->jurusan);
+            if ($countKKM<=3 && $DBsiswa[$i]->kelas->Tingkat_kelas == 2) {
+                if ($DBsiswa[$i]->Id_jurusan == 3) {
+                    $siswa = siswa::find($DBsiswa[$i]->NIS);
+                    // dd($siswa);
+                    $periodeGanjilAktif = periode_akademik::select('Id_periode')->where('Status',1)->where('Semester',1)->get();
+                    // dd($periodeGanjilAktif[0]->Id_periode);
+                    $updateKelas = kelas::where("id_jurusan" , 3)
+                                    ->where("id_periode", $periodeGanjilAktif[0]->Id_periode)
+                                    ->inRandomOrder()->first();
+                    // dd($updateKelas->Id_kelas);
+                    $siswa->Id_kelas = $updateKelas->Id_kelas;
+                    $siswa->save();
+                }else if ($DBsiswa[$i]->Id_jurusan == 2) {
+                    $siswa = siswa::find($DBsiswa[$i]->NIS);
+
+                    $periodeGanjilAktif = periode_akademik::select('Id_periode')->where('Status',1)->where('Semester',1)->get();
+                    // dd($periodeGanjilAktif[0]->Id_periode);
+                    $updateKelas = kelas::where('Id_periode',$periodeGanjilAktif[0]->Id_periode)
+                                    ->where('Id_jurusan', 2)
+                                    ->where("Tingkat_kelas",3)->get();
+                    // dd($updateKelas);
+                    $siswa->Id_kelas = $updateKelas->Id_kelas;
+                    $siswa->save();
+                }else if($DBsiswa[$i]->Id_jurusan == 1){
+                    $siswa = siswa::find($DBsiswa[$i]->NIS);
+                    $periodeGanjilAktif = periode_akademik::select('Id_periode')->where('Status',1)->where('Semester',1)->get();
+                    // dd($periodeGanjilAktif[0]->Id_periode);
+                    $updateKelas = kelas::where('Id_periode',$periodeGanjilAktif[0]->Id_periode)
+                                    ->where('Id_jurusan', 1)
+                                    ->where("Tingkat_kelas",3)->get();
+                    // dd($updateKelas);
+                    $siswa->Id_kelas = $updateKelas->Id_kelas;
+                    $siswa->save();
+                }
+            }
+            if ($countKKM<=3 && $DBsiswa[$i]->kelas->Tingkat_kelas == 3) {
+                if ($DBsiswa[$i]->Id_jurusan == 3) {
+                    $siswa = siswa::find($DBsiswa[$i]->NIS);
+                    $siswa->Status = 0;
+                    $siswa->save();
+                }else if ($DBsiswa[$i]->Id_jurusan == 2) {
+                    $siswa = siswa::find($DBsiswa[$i]->NIS);
+                    $siswa->Status = 0;
+                    $siswa->save();
+                }else if($DBsiswa[$i]->Id_jurusan == 1){
+                    $siswa = siswa::find($DBsiswa[$i]->NIS);
+                    $siswa->Status = 0;
+                    $siswa->save();
+                }
+            }
         }
+
+        return redirect("/homeAdmin");
         // dd($DBsiswa);
 
 
@@ -176,5 +230,15 @@ class AdminController extends Controller
         // return view('adminlte.coba',[
         //     'DBsiswa'=>$DBsiswa
         // ]);
+    }
+
+    public function cetakAbsensi($kelas)
+    {
+        $siswaKelas = siswa::where('Id_kelas',$kelas)->get();
+        $kelasAbsensi = kelas::where('Id_kelas', $kelas)->first();
+        // dd($kelasAbsensi);
+        return view('adminlte.cetakAbsensi',[
+            "siswaKelas"=>$siswaKelas,
+            "kelasAbsensi"=>$kelasAbsensi]);
     }
 }

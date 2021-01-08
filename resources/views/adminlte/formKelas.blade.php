@@ -98,6 +98,7 @@
             <th>Nama Kelas</th>
             <th>Tingkat Kelas</th>
             <th>ID Jurusan</th>
+            <th>Cetak</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -111,6 +112,7 @@
                     <td>{{$kls->Nama_kelas}}</td>
                     <td>{{$kls->Tingkat_kelas}}</td>
                     <td>{{$kls->jurusan->Nama_jurusan}}</td>
+                    <td><button class="btn btn-success"><a class="text-white" href="toAbsensiKelas/{{$kls->Id_kelas}}">Cetak Absensi Kelas</a></button></td>
                     <td>
                         <form action="/kelas/crud" method="post" class="form-horizontal">
                             @csrf
