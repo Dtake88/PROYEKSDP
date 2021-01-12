@@ -21,19 +21,19 @@
                     </div>
                     <div class="form-group">
                         <label for="">Nilai Quiz1</label>
-                        <input name="Quiz1"  value="{{$riwayat_akademik->Quiz1}}" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 50pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                        <input name="Quiz1"  value="{{$riwayat_akademik->Quiz1}}"  max="100" min="0"  type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 50pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     </div>
                     <div class="form-group">
                         <label for="">Nilai Quiz2</label>
-                        <input name="Quiz2"  value="{{$riwayat_akademik->Quiz2}}" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 50pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                        <input name="Quiz2"  value="{{$riwayat_akademik->Quiz2}}" max="100" min="0"  type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 50pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     </div>
                     <div class="form-group">
                         <label for="">Nilai Tugas1</label>
-                        <input name="Tugas1"  value="{{$riwayat_akademik->Tugas1}}" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 50pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                        <input name="Tugas1"  value="{{$riwayat_akademik->Tugas1}}" max="100" min="0"  type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 50pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     </div>
                     <div class="form-group">
                         <label for="">Nilai Tugas2</label>
-                        <input name="Tugas2"  value="{{$riwayat_akademik->Tugas2}}" type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 50pt; height: 40px;  padding: 0.375rem 0.75rem; ">
+                        <input name="Tugas2"  value="{{$riwayat_akademik->Tugas2}}" max="100" min="0"  type="text" class="form-control" aria-describedby="" placeholder="Enter Nilai" style="width: 50pt; height: 40px;  padding: 0.375rem 0.75rem; ">
                     </div>
 
                 </div>
