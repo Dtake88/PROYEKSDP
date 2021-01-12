@@ -104,7 +104,7 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" > <a class="text-white" href="/PeriodeAkademik">Cancel</a></button>
+            <button class="btn btn-primary" > <a class="text-white" href="/AjarMengajar">Cancel</a></button>
             <input class="btn btn-success" type="submit" value="Update">
         </form>
 
