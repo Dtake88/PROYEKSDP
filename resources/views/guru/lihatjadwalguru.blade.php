@@ -1,25 +1,42 @@
+<style>
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+
+    }
+    tr:nth-child(even) {background-color: #f2f2f2;}
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
 <div class="row-fluid">
     <div class="widget-box">
-        <h1>Jadwal Guru {{$namaguru->Nama_guru}}</h1>
+        <h1  style="margin-left : 40%;">Jadwal Guru {{$namaguru->Nama_guru}}</h1>
         <br>
-        <table class="table" style="border: 1px solid black;border-collapse: collapse;">
+        <table>
             <thead>
                 <tr>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Hari</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Mata Pelajaran</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Kelas</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Jam Dimulai</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Jam Berakhir</th>
+                    <th>Hari</th>
+                    <th>Mata Pelajaran</th>
+                    <th>Kelas</th>
+                    <th>Jam Dimulai</th>
+                    <th>Jam Berakhir</th>
                 </tr>
             </thead>
             <tbody>
                     @foreach ($jadwalguru as $i)
                             <tr>
-                                <td style="text-align: center;border: 1px solid black;color:black;border-collapse: collapse;">{{$i->Hari}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:black;border-collapse: collapse;">{{$i->mapel->Nama_mapel}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:black;border-collapse: collapse;">{{$i->kelas->Nama_kelas}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:black;border-collapse: collapse;">{{$i->Jam_dimulai}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:black;border-collapse: collapse;">{{$i->Jam_berakhir}}</td>
+                                <td>{{$i->Hari}}</td>
+                                <td>{{$i->mapel->Nama_mapel}}</td>
+                                <td>{{$i->kelas->Nama_kelas}}</td>
+                                <td>{{$i->Jam_dimulai}}</td>
+                                <td>{{$i->Jam_berakhir}}</td>
                             </tr>
                     @endforeach
             </tbody>

@@ -1,26 +1,43 @@
+<style>
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+
+    }
+    tr:nth-child(even) {background-color: #f2f2f2;}
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
 <div class="row-fluid">
     <div class="widget-box">
-        <h1>Daftar Siswa Aktif</h1>
+        <h1 style="margin-left : 40%;">Daftar Siswa Aktif</h1>
         <br>
-        <table class="table" style="border: 1px solid black;border-collapse: collapse;">
+        <table>
             <thead>
                 <tr>
-                    <th style="border: 1px solid black;border-collapse: collapse;">NISN</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">NIS</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Nama</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Jurusan</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Kelas</th>
+                    <th>NISN</th>
+                    <th>NIS</th>
+                    <th>Nama</th>
+                    <th>Jurusan</th>
+                    <th>Kelas</th>
                 </tr>
             </thead>
             <tbody>
                 @isset($DBsiswa)
                     @foreach ($DBsiswa as $i)
                             <tr>
-                                <td style="text-align: center;border: 1px solid black;color:black;border-collapse: collapse;">{{$i->NISN}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:black;border-collapse: collapse;">{{$i->NIS}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:black;border-collapse: collapse;">{{$i->Nama_siswa}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:black;border-collapse: collapse;">{{$i->jurusan->Nama_jurusan}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:black;border-collapse: collapse;">{{$i->kelas->Nama_kelas}}</td>
+                                <td>{{$i->NISN}}</td>
+                                <td>{{$i->NIS}}</td>
+                                <td>{{$i->Nama_siswa}}</td>
+                                <td>{{$i->jurusan->Nama_jurusan}}</td>
+                                <td>{{$i->kelas->Nama_kelas}}</td>
                             </tr>
                     @endforeach
                 @endisset

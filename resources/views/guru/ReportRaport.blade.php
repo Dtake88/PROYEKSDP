@@ -1,26 +1,44 @@
+<style>
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+
+    }
+    tr:nth-child(even) {background-color: #f2f2f2;}
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
 <div class="row-fluid">
     <div class="widget-box">
+        <h1 style="margin-left : 43%;">Raport Siswa</h1>
         @isset($siswaRaport)
-            <h4>Nama:{{$siswaRaport->Nama_siswa}}</h4>
+            <label  style="font-size: 12pt;font-weight: bold;">Nama:{{$siswaRaport->Nama_siswa}}</label><br>
         @endisset
         @isset($kelasRaport)
-            <h4>Kelas:{{$kelasRaport->Nama_kelas}}</h4>
-            <h4>Semester:{{$kelasRaport->periode->Semester}}</h4>
+            <label  style="font-size: 12pt;font-weight: bold;">Kelas:{{$kelasRaport->Nama_kelas}}</label><br>
+            <label  style="font-size: 12pt;font-weight: bold;">Semester:{{$kelasRaport->periode->Semester}}</label><br><br>
         @endisset
-        <table class="table" style="border: 1px solid black;border-collapse: collapse;">
+        <table>
             <thead>
                 <tr>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Mata Pelajaran</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">KKM</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Quiz 1</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Quiz 2</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Tugas 1</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Tugas 2</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">UTS</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">UAS</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Sikap</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Hasil Akhir</th>
-                    <th style="border: 1px solid black;border-collapse: collapse;">Keterangan</th>
+                    <th>Mata Pelajaran</th>
+                    <th>KKM</th>
+                    <th>Quiz 1</th>
+                    <th>Quiz 2</th>
+                    <th>Tugas 1</th>
+                    <th>Tugas 2</th>
+                    <th>UTS</th>
+                    <th>UAS</th>
+                    <th>Sikap</th>
+                    <th>Hasil Akhir</th>
+                    <th>Keterangan</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,32 +46,32 @@
                     @foreach ($riwayatRaport as $i)
                         @if ($i->Hasil_akhir < $i->mapel->KKM)
                             <tr>
-                                <td style="text-align: center;border: 1px solid black;color:red;border-collapse: collapse;">{{$i->mapel->Nama_mapel}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:red;border-collapse: collapse;">{{$i->mapel->KKM}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:red;border-collapse: collapse;">{{$i->Quiz1}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:red;border-collapse: collapse;">{{$i->Quiz2}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:red;border-collapse: collapse;">{{$i->Tugas1}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:red;border-collapse: collapse;">{{$i->Tugas2}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:red;border-collapse: collapse;">{{$i->UTS}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:red;border-collapse: collapse;">{{$i->UAS}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:red;border-collapse: collapse;">{{$i->Sikap}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:red;border-collapse: collapse;">{{$i->Hasil_akhir}}</td>
-                                <td style="text-align: center;border: 1px solid black;color:red;border-collapse: collapse;">Tidak Lulus</td>
+                                <td>{{$i->mapel->Nama_mapel}}</td>
+                                <td>{{$i->mapel->KKM}}</td>
+                                <td>{{$i->Quiz1}}</td>
+                                <td>{{$i->Quiz2}}</td>
+                                <td>{{$i->Tugas1}}</td>
+                                <td>{{$i->Tugas2}}</td>
+                                <td>{{$i->UTS}}</td>
+                                <td>{{$i->UAS}}</td>
+                                <td>{{$i->Sikap}}</td>
+                                <td>{{$i->Hasil_akhir}}</td>
+                                <td>Tidak Lulus</td>
                             </tr>
                         @endif
                         @if ($i->Hasil_akhir > $i->mapel->KKM)
                             <tr>
-                                <td style="text-align: center;border: 1px solid black;border-collapse: collapse;">{{$i->mapel->Nama_mapel}}</td>
-                                <td style="text-align: center;border: 1px solid black;border-collapse: collapse;">{{$i->mapel->KKM}}</td>
-                                <td style="text-align: center;border: 1px solid black;border-collapse: collapse;">{{$i->Quiz1}}</td>
-                                <td style="text-align: center;border: 1px solid black;border-collapse: collapse;">{{$i->Quiz2}}</td>
-                                <td style="text-align: center;border: 1px solid black;border-collapse: collapse;">{{$i->Tugas1}}</td>
-                                <td style="text-align: center;border: 1px solid black;border-collapse: collapse;">{{$i->Tugas2}}</td>
-                                <td style="text-align: center;border: 1px solid black;border-collapse: collapse;">{{$i->UTS}}</td>
-                                <td style="text-align: center;border: 1px solid black;border-collapse: collapse;">{{$i->UAS}}</td>
-                                <td style="text-align: center;border: 1px solid black;border-collapse: collapse;">{{$i->Sikap}}</td>
-                                <td style="text-align: center;border: 1px solid black;border-collapse: collapse;">{{$i->Hasil_akhir}}</td>
-                                <td style="text-align: center;border: 1px solid black;border-collapse: collapse;">Lulus</td>
+                                <td>{{$i->mapel->Nama_mapel}}</td>
+                                <td>{{$i->mapel->KKM}}</td>
+                                <td>{{$i->Quiz1}}</td>
+                                <td>{{$i->Quiz2}}</td>
+                                <td>{{$i->Tugas1}}</td>
+                                <td>{{$i->Tugas2}}</td>
+                                <td>{{$i->UTS}}</td>
+                                <td>{{$i->UAS}}</td>
+                                <td>{{$i->Sikap}}</td>
+                                <td>{{$i->Hasil_akhir}}</td>
+                                <td>Lulus</td>
                             </tr>
                         @endif
                     @endforeach
